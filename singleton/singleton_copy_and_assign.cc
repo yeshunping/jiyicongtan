@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 
-#include "base/macro.h"
-
 using std::cout;
 using std::endl;
 
@@ -20,15 +18,30 @@ class A {
     return &a;
   }
 
+  A(const A& a) {
+    cout << "print by copy, a address :" << &a
+         << ", new object address : " << this << endl;
+  }
+
+  void operator=(const A& a) {
+    cout << "print by assign, a address :" << &a
+         << ", new object address : " << this << endl;
+  }
+
  private:
   A() {
     cout << "print by A::A()" << endl;
   }
-  DISALLOW_COPY_AND_ASSIGN(A);
 };
 
 int main(int argc, char** argv) {
   A* a = A::GetInstance();
   a->f1();
+
+  A b(*a);
+  b.f1();
+
+  A c = *a;
+  c.f1();
   return 0;
 }

@@ -12,6 +12,7 @@ class A {
   void f1() {
     cout << "print by f1" << endl;
   }
+
   static A& GetInstance() {
     static A a;
     return a;

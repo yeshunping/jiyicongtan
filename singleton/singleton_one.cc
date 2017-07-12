@@ -12,15 +12,25 @@ class A {
   void f1() {
     cout << "print by f1" << endl;
   }
+
   static A& GetInstance() {
     static A a;
     return a;
+  }
+
+  A(const A& a) {
+    cout << "print by copy.";
+  }
+
+  void operator=(const A&) {
+    cout << "print by assign";
   }
 
  private:
   A() {
     cout << "print by A::A()" << endl;
   }
+
 };
 
 int main(int argc, char** argv) {

@@ -16,19 +16,25 @@ class A {
   }
 
   static A* GetInstance() {
-    static A a;
-    return &a;
+    if (a_ == nullptr) {
+      a_ = new A();
+    }
+    return a_;
   }
 
  private:
   A() {
     cout << "print by A::A()" << endl;
   }
+  static A* a_;
   DISALLOW_COPY_AND_ASSIGN(A);
 };
+
+A* A::a_ = nullptr;
 
 int main(int argc, char** argv) {
   A* a = A::GetInstance();
   a->f1();
+
   return 0;
 }
