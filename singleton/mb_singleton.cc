@@ -11,15 +11,18 @@ MutexWrapper MbSingleton::mutex_;
 MbSingleton::MbSingleton() {}
 
 MbSingleton* MbSingleton::Instance() {
+  MbSingleton* tmp = instance_;
   __asm__ __volatile__("mfence" : : : "memory");
-  if (instance_ == NULL) {
+  if (tmp == NULL) {
     LockGuard lk(&mutex_);
-    if (instance_ == NULL) {
+    tmp = instance_;
+    if (tmp == NULL) {
+      tmp = new MbSingleton;
       __asm__ __volatile__("mfence" : : : "memory");
-      instance_ = new MbSingleton;
+      instance_ = tmp;
     }
   }
-  return instance_;
+  return tmp;
 }
 
 void MbSingleton::CallMe() {
