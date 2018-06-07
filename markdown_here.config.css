@@ -19,7 +19,7 @@
 /* .markdown-here-wrapper[data-md-url*="mail.yahoo."] ul { color: red; } */
 
 pre, code {
-  font-size: 0.85em;
+  font-size: 1em;
   font-family: Consolas, Inconsolata, Courier, monospace;
 }
 
@@ -32,7 +32,7 @@ code {
 }
 
 pre {
-  font-size: 1em;
+  font-size: 0.9em;
   line-height: 1.2em;
 }
 
@@ -64,6 +64,7 @@ p {
   /* !important is needed here because Hotmail/Outlook.com uses !important to
      kill the margin in <p>. We need this to win. */
   margin: 0 0 1.2em 0 !important;
+  font-size: 15px;
 }
 
 table, pre, dl, blockquote, q, ul, ol {
@@ -139,17 +140,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 1.6em;
+  font-size: 17px;
   text-align: center; 
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 16px;
   text-align: center; 
 }
 
 h3 {
-  font-size: 17px;
+  font-size: 16px;
   white-space: normal;
   font-family: arial, sans-serif;
   font-variant-ligatures: normal;
@@ -164,7 +165,6 @@ h3 {
   border-left-width: 6px !important;
   border-left-style: solid !important;
   border-left-color: rgb(0, 153, 127) !important;
-  font-size: 20px !important;
   letter-spacing: 1px !important;
   word-spacing: 1px !important;"
 }
