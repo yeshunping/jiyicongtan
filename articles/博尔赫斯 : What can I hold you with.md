@@ -109,7 +109,7 @@ I am trying to bribe you with uncertainty, with danger, with defeat.
 我试图用困惑、危险、失败来打动你。
 
 
-## 我该用什么换得你芳心？
+### 我该用什么换得你芳心？
 叶顺平 译
 
 我献给你斜街，残阳，荒郊冷月。
@@ -149,5 +149,5 @@ I am trying to bribe you with uncertainty, with danger, with defeat.
 以危险，
 以失败。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc2NjQ5MjU4MywtMTYyNzU4MTAwXX0=
+eyJoaXN0b3J5IjpbLTM0OTc4NzcyOCwtMTYyNzU4MTAwXX0=
 -->
