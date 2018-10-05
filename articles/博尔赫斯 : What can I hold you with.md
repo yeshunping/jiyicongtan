@@ -1,5 +1,5 @@
 # What can I hold you with?
-## 博尔赫斯的诗歌原作
+### 博尔赫斯的诗歌原作
 
 I offer you lean streets,
 
@@ -57,7 +57,7 @@ the hunger of my heart;
 
 I am trying to bribe you with uncertainty, with danger, with defeat.
 
-## 我能用什么来拥有你？
+### 我能用什么来拥有你？
 陈东飚 译
 
 我交给你狭窄的街，孤注一掷的日落，荒郊的冷月。 
@@ -76,7 +76,7 @@ I am trying to bribe you with uncertainty, with danger, with defeat.
 我交给你对你自己的解释，有关你自己的理论，你自己的确凿而惊人的消息。 
 我能够给你我的寂寞，我的黑暗，我心灵的饥渴，我在尝试贿赂你，用无常，用危险，用失败。
 
-## 我用什么才能留住你？
+### 我用什么才能留住你？
 王永年 译
 
 我给你瘦落的街道，
@@ -149,5 +149,5 @@ I am trying to bribe you with uncertainty, with danger, with defeat.
 以危险，
 以失败。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2Mjc1ODEwMF19
+eyJoaXN0b3J5IjpbMTc2NjQ5MjU4MywtMTYyNzU4MTAwXX0=
 -->
