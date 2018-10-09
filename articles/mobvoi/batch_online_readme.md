@@ -9,7 +9,8 @@ https://docs.google.com/spreadsheets/d/1A1Jzluo5QuNBkrf0P1wghhIdgRWGLA9rcE1J5q6_
 - 创建软链接 model 到下载后的模型目录。比如
   ln -sf 2018-05-18 model
   修改后，batch_online_recognizer_server_params.ascii_proto 的配置就不需要修改了。
-  
+  否则需要修改配置里的模型路径。
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI3NDAxMzEwMCwtMTE1MTg1MTU3OF19
+eyJoaXN0b3J5IjpbNTY2NjM3NjAzLC0xMTUxODUxNTc4XX0=
 -->
