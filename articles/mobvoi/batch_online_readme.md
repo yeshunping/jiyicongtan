@@ -14,6 +14,8 @@ https://docs.google.com/spreadsheets/d/1A1Jzluo5QuNBkrf0P1wghhIdgRWGLA9rcE1J5q6_
   修改后，batch_online_recognizer_server_params.ascii_proto 的配置就不需要修改了。
   否则需要修改配置里的模型路径。
 
+- 如果没有测试的音频
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzAwODQzMDI1LC0xMTUxODUxNTc4XX0=
+eyJoaXN0b3J5IjpbLTExNzAzODE5OTgsMzAwODQzMDI1LC0xMT
+UxODUxNTc4XX0=
 -->
