@@ -14,8 +14,12 @@ https://docs.google.com/spreadsheets/d/1A1Jzluo5QuNBkrf0P1wghhIdgRWGLA9rcE1J5q6_
   修改后，batch_online_recognizer_server_params.ascii_proto 的配置就不需要修改了。
   否则需要修改配置里的模型路径。
 
-- 如果没有测试的音频
+- 如果没有测试的音频，可以拷贝repo里的测试音频。路径为：
+ portable/testmodel/wav.scp
+
+- 开始执行 ： "bash start.sh"
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNzAzODE5OTgsMzAwODQzMDI1LC0xMT
-UxODUxNTc4XX0=
+eyJoaXN0b3J5IjpbNDY2MTI4MjU1LDMwMDg0MzAyNSwtMTE1MT
+g1MTU3OF19
 -->
