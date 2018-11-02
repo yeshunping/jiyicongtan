@@ -74,97 +74,7 @@ The optimizations discussed thus far can yield significant improvements in softw
 
 **Table 2. x86 Architectures**
 
-Target CPU Types
 
--march= Type
-
-i386 DX/SX/CX/EX/SL
-
-i386
-
-i486 DX/SX/DX2/SL/SX2/DX4
-
-i486
-
-487
-
-i486
-
-Pentium
-
-pentium
-
-Pentium MMX
-
-pentium-mmx
-
-Pentium Pro
-
-pentiumpro
-
-Pentium II
-
-pentium2
-
-Celeron
-
-pentium2
-
-Pentium III
-
-pentium3
-
-Pentium 4
-
-pentium4
-
-Via C3
-
-c3
-
-Winchip 2
-
-winchip2
-
-Winchip C6-2
-
-winchip-c6
-
-AMD K5
-
-i586
-
-AMD K6
-
-k6
-
-AMD K6 II
-
-k6-2
-
-AMD K6 III
-
-k6-3
-
-AMD Athlon
-
-athlon
-
-AMD Athlon 4
-
-athlon
-
-AMD Athlon XP/MP
-
-athlon
-
-AMD Duron
-
-athlon
-
-AMD Tbird
-
-athlon-tbird
 
 The default architecture is i386. GCC runs on all other i386/x86 architectures, but it can result in degraded performance on more recent processors. If you're concerned about portability of an image, you should compile it with the default. If you're more interested in performance, pick the architecture that matches your own.
 
@@ -209,9 +119,6 @@ Math Unit Optimizations
 Some specialized optimizations require explicit definition by the developer. These optimizations are specific to the i386 and x86 architectures. A math unit, for one, can be specified, although in many cases it is automatically defined based on the specification of a target architecture. Possible units for the -mfpmath= option are shown in Table 3.
 
 **Table 3. Math Unit Optimizations**
-TODO(spye): 绘制表格
-![enter image description here](https://picasaweb.google.com/102168485242400020941/6619293540233936049#6619293538189096402 "Math Unit Optimizations")
-
 
 The default choice is -mfpmath=387. An experimental option is to specify both sse and 387 (-mfpmath=sse,387), which attempts to use both units.
 
@@ -312,5 +219,5 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYzODYxOTk0NF19
+eyJoaXN0b3J5IjpbMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
 -->
