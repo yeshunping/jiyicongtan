@@ -209,6 +209,7 @@ Math Unit Optimizations
 Some specialized optimizations require explicit definition by the developer. These optimizations are specific to the i386 and x86 architectures. A math unit, for one, can be specified, although in many cases it is automatically defined based on the specification of a target architecture. Possible units for the -mfpmath= option are shown in Table 3.
 
 **Table 3. Math Unit Optimizations**
+TODO(spye): 绘制表格
 ![enter image description here](https://picasaweb.google.com/102168485242400020941/6619293540233936049#6619293538189096402 "Math Unit Optimizations")
 
 
@@ -311,5 +312,5 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTU4NzY1MTY4XX0=
+eyJoaXN0b3J5IjpbLTYzODYxOTk0NF19
 -->
