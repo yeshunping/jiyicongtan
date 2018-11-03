@@ -251,7 +251,7 @@ sse2 | 流式 SIMD 扩展 II (Pentium 4)
 
 对那些使用了标准库函数的应用程序，比如使用了memset, memcpy 或者 strlen，-minline-all-stringops 选项可以通过内联这些字符串操作函数来提高性能。当然这个会增大二进制文件大小。
 
-循环展开是这么一个过程：它通过在每次迭代中做更多的工作来最小化循环次数。
+循环展开是这么一个过程：它通过在每次迭代中做更多的工作来最小化循环次数。该过程会增加程序大小，但是也能提升性能。该选项可以使用 -funroll-loops 来启用。对于难以理解循环迭代次数d（-funroll-loops的先决条件）的情况，可以使用-funroll-all-loops优化来展开所有循环
 Loop unrolling occurs in the process of minimizing the number of loops by doing more work per iteration. This process increases the size of the image, but it also can increase its performance. This option can be enabled using the -funroll-loops option. For cases in which it's difficult to understand the number of loop iterations, a prerequisite for -funroll-loops, all loops can be unrolled using the -funroll-all-loops optimization.
 
 A useful option that has the disadvantage of making an image difficult to debug is -momit-leaf-frame-pointer. This option keeps the frame pointer out of a register, which means less setup and restore of this value. In addition, it makes the register available for the code to use. The optimization -fomit-frame-pointer also can be useful.
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg0MDgzMzk4Miw4NDI0NjM5ODUsMTI1Nz
+eyJoaXN0b3J5IjpbLTg0NjkwOTE4Myw4NDI0NjM5ODUsMTI1Nz
 E4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5NzQ4LC0xNjg3MDMz
 ODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
