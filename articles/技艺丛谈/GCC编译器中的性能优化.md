@@ -285,7 +285,7 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 前文中我们使用 time 命令来测量特定命令的执行时间。这当然有用，但是当我们对应用程序进行性能剖析的时候，我们需要对程序有更多的内在理解。GNU 和 GCC 编译器提供的 gprof 工具就满足这个需求。对 gprof 的全面介绍不在本文范围，清单3 演示了它的使用。
 
-**清单 3. Simple Example of gprof的**
+**清单 3. gprof的简单示例**
 ```cpp
 [mtj@camus]$ gcc -o sort sort.c -pg -O2 -march=pentium2
 [mtj@camus]$ ./sort
@@ -299,6 +299,7 @@ Each sample counts as 0.01 seconds.
   0.00      0.79     0.00        1     0.00     0.00  init_list
 [mtj@camus]$
 ```
+编译程序时，使用 -pg  选项以在程序中插入性能剖析指令。
 The image is compiled with the -pg option to include profiling instructions in the image. Upon execution of the image, a gmon.out file results that can be used with the gprof utility to produce human-readable profiling data. In this use of gprof, we specify the -b and --no-graph options. For brief output (excludes the verbose field explanations), we specify -b. The --no-graph option disables the emission of the function call-graph; it identifies which functions call which others and the time spent on each.
 
 Reading the example from Listing 3, we can see that bubbleSort was called once and took 790ms. The init_list function also was called, but it took less than 10ms to complete (the resolution of the profile sampling), so its value was zero.
@@ -371,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODMzNTEyOTAsLTE1MzcwOTI3OTMsOD
+eyJoaXN0b3J5IjpbLTEwMzA1NzQ4NzUsLTE1MzcwOTI3OTMsOD
 QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
 OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
 RdfQ==
