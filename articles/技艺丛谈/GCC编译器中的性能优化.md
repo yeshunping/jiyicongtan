@@ -327,7 +327,39 @@ objdump -d test.o
 gcc -c -g -Wa,-ahl,-L test.c
 ```
 该命令使用GNU汇编器输出列表。-Wa 选项用于 传递 -ahl 和 -L 选项给汇编器，以输出列表到标准输出，列表中包含高级语言源码和汇编代码。-L 选项则会保留符号表中的局部符号信息。
-译者
+
+（译者注：比如如下代码
+```
+#include <stdio.h>
+
+int add(int a, int b) {
+  return a + b;
+}
+```
+输出的信息包括如下源码和汇编代码交错出现的片段：
+```
+   1:test.cc       **** #include <stdio.h>
+   2:test.cc       ****
+   3:test.cc       **** int add(int a, int b) {
+   9                            .loc 1 3 0
+  10                            .cfi_startproc
+  11 0000 55                    pushq   %rbp
+  12                            .cfi_def_cfa_offset 16
+  13                            .cfi_offset 6, -16
+  14 0001 4889E5                movq    %rsp, %rbp
+  15                            .cfi_def_cfa_register 6
+  16 0004 897DFC                movl    %edi, -4(%rbp)
+  17 0007 8975F8                movl    %esi, -8(%rbp)
+   4:test.cc       ****   return a + b;
+  18                            .loc 1 4 0
+  19 000a 8B45F8                movl    -8(%rbp), %eax
+  20 000d 8B55FC                movl    -4(%rbp), %edx
+  21 0010 01D0                  addl    %edx, %eax
+   5:test.cc       **** }
+```
+
+)
+
 
 ## 结论
 
@@ -340,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMjAyNzEwNjAsODQyNDYzOTg1LDEyNT
+eyJoaXN0b3J5IjpbLTExNzIwNDQxMDMsODQyNDYzOTg1LDEyNT
 cxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAz
 Mzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
