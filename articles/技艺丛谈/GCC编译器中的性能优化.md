@@ -219,8 +219,9 @@ user    0m0.790s
 sys     0m0.010s
 [mtj@camus]$
 ```
-通过指定体系结构（本例中是633MHz 的Celeron处理器），编译器可以生成特定架构的指令，同时启用该平台特有的优化方法。如清单1所示，指定体系结构后，我们看到程序获得了237毫秒的提升（提升23%）。
-从清单1看，性能获得了提升，但是缺点是程序大小也有了小幅度增大。使用size 命令（见清单2），我们来看一看二进制文件各个section的大小。
+通过指定体系结构（本例中是 633MHz 的 Celeron 处理器），编译器可以生成特定架构的指令，同时启用该平台特有的优化方法。如清单1所示，指定体系结构后，程序获得了237毫秒的性能提升（提升23%）。
+
+从清单1看，性能获得了提升，但是缺点是程序大小也有了小幅度增大。使用 size 命令（见清单2），我们来看一看二进制文件各个 section 的大小。
 
 **清单2. 清单1中程序的大小变化**
 ```cpp
@@ -234,7 +235,7 @@ sys     0m0.010s
     870     252       4    1126     466 sort
 [mtj@camus]$
 ```
-从清单2中，我们可以看到程序的指令大小（代码段）增大了28字节。不过在这个例子中，获得性能提升的代价蛮小的。
+清单2中可见，程序的指令大小（代码段）增大了28字节。不过在这个例子中，获得性能提升的代价蛮小的。
 
 ## 数学单元优化
 
@@ -377,8 +378,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjgwODM4NDczLC0xNTM3MDkyNzkzLDg0Mj
-Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
-NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
-0=
+eyJoaXN0b3J5IjpbLTUxNTM2NjI3NSwtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
