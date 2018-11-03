@@ -186,7 +186,7 @@ gcc -O3 -o test test.c
 
 ## 体系结构相关
 
-上文讨论的优化可以zai获得重要的改进，
+上文讨论的优化可以在软件性能和目标文件大小方面获得重要的改进，不过指定目标架构也可以获得一些可观的收益。-march 选项
 The optimizations discussed thus far can yield significant improvements in software performance and object size, but specifying the target architecture also can yield meaningful benefits. The -march option of gcc allows the CPU type to be specified (Table 2).
 
 **Table 2. x86 Architectures**
@@ -344,6 +344,6 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY3NDM0MjA3NCwtMTU4NTcxOTc0OCwtMT
-Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbMzE4MTIwMDM1LC0xNTg1NzE5NzQ4LC0xNj
+g3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
