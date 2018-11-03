@@ -345,7 +345,7 @@ gcc -c -g -Wa,-ahl,-L test.c
 该命令使用 GNU 汇编器输出列表信息。-Wa 选项用于传递 -ahl 和 -L 选项给汇编器，以输出列表到标准输出，列表中包含高级语言源码和汇编代码。-L 选项则会保留符号表中的局部符号信息。
 
 （译者注：比如如下代码片段
-```
+```cpp
 #include <stdio.h>
 
 int add(int a, int b) {
@@ -353,7 +353,7 @@ int add(int a, int b) {
 }
 ```
 输出的信息包括如下源码和汇编代码交错出现的片段：
-```
+```cpp
    1:test.cc       **** #include <stdio.h>
    2:test.cc       ****
    3:test.cc       **** int add(int a, int b) {
@@ -384,7 +384,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2MTE4MjUyMSwtMTUzNzA5Mjc5Myw4ND
+eyJoaXN0b3J5IjpbMTA3MTEyNzk3NywtMTUzNzA5Mjc5Myw4ND
 I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
 NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
 19
