@@ -253,7 +253,7 @@ sse2 | 流式 SIMD 扩展 II (Pentium 4)
 
 循环展开是这么一个过程：它通过在每次迭代中做更多的工作来最小化循环次数。该过程会增加程序大小，但是也能提升性能。该选项可以使用 -funroll-loops 来启用。碰到难以计算循环迭代次数的情况（这是 -funroll-loops 的必要条件），可以使用 -funroll-all-loops 优化选项来展开所有循环。
 
--momit-leaf-frame-pointer 是一个有用的选项，但是却会让程序难以调试的。此选项使得帧指针不再使用寄存器，这意味着更少的进入和恢复
+-momit-leaf-frame-pointer 是一个有用的选项，但是却会让程序难以调试的。此选项使得帧指针不再使用寄存器，这意味着减少了存储和恢复该值的工作。（译者注：一般在函数调用的时候，先将该值保持到stackju bei）
 A useful option that has the disadvantage of making an image difficult to debug is -momit-leaf-frame-pointer. This option keeps the frame pointer out of a register, which means less setup and restore of this value. In addition, it makes the register available for the code to use. The optimization -fomit-frame-pointer also can be useful.
 
 When operating at level -O3 or having -finline-functions specified, the size limit of the functions that may be inlined can be specified through a special parameter interface. The following command illustrates capping the size of the functions to inline at 40 instructions:
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwMDUyODc1Niw4NDI0NjM5ODUsMTI1Nz
+eyJoaXN0b3J5IjpbMTAxNzIxNDk4Myw4NDI0NjM5ODUsMTI1Nz
 E4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5NzQ4LC0xNjg3MDMz
 ODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
