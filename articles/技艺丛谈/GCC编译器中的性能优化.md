@@ -294,9 +294,9 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 ## 测试性能改进
 
-前文中我们使用 time 命令来测量特定命令的执行时间。这当然有用，但是当我们对应用程序进行性能剖析的时候，我们需要对程序有更多的内在理解。GNU 和 GCC 编译器提供的 gprof 工具就满足这个需求。对 gprof 的全面介绍不在本文范围，清单3 演示了它的使用。
+前文中我们使用 time 命令来测量特定命令的执行时间。这当然有用，但是当我们对应用程序进行性能剖析时，我们需要对程序有更多的内在理解。GNU 和 GCC 编译器提供的 gprof 工具就满足这个需求。对 gprof 的全面介绍不在本文范围内，清单3 演示了它的使用。
 
-**清单 3. gprof的简单示例**
+**清单 3. gprof 的简单示例**
 ```cpp
 [mtj@camus]$ gcc -o sort sort.c -pg -O2 -march=pentium2
 [mtj@camus]$ ./sort
@@ -380,7 +380,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MjI5MDQ2NDAsLTE1MzcwOTI3OTMsOD
+eyJoaXN0b3J5IjpbLTIwMzg0NDc3NDQsLTE1MzcwOTI3OTMsOD
 QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
 OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
 RdfQ==
