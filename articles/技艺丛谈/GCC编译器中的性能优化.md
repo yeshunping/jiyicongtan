@@ -226,10 +226,9 @@ sys     0m0.010s
     870     252       4    1126     466 sort
 [mtj@camus]$
 ```
-从清单2中，我们可以看到代码段
-From Listing 2, we can see that the instruction size (text section) of the image increased by 28 bytes. But in this example, it's a small price to pay for the speed benefit.
+从清单2中，我们可以看到程序的指令大小（代码段）增大了28字节。不过在这个例子中，获得性能提升的代价蛮小的。
 
-Math Unit Optimizations
+## Math Unit Optimizations
 
 Some specialized optimizations require explicit definition by the developer. These optimizations are specific to the i386 and x86 architectures. A math unit, for one, can be specified, although in many cases it is automatically defined based on the specification of a target architecture. Possible units for the -mfpmath= option are shown in Table 3.
 
@@ -342,7 +341,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NTQ0MjcxMzQsMTUxODQ0MDU0MCwtMT
-U4NTcxOTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2
-MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNT
+g1NzE5NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYx
+OTk0NF19
 -->
