@@ -25,7 +25,7 @@
 
 ### 优化级别1 (-O1)
 
-第一级的优化目的在于在尽可能快的编译时间内生成优化的代码。这些优化措施一般不会耗费大量的编译时间。O1偶尔也会有两个相互冲突的目标——这些目标是既要降低生成的文件大小，又要提高性能。O1级别的优化措施大部分都可以达到这两个目标。表格1标记为-O1的一列，就是O1 级别的优化选项。
+第一级的优化目的在于，在尽可能快的编译时间内生成优化的代码。这些优化措施一般不会耗费大量的编译时间。O1偶尔也会有两个相互冲突的目标——既要降低生成的文件大小，又要提高性能。O1级别的优化措施大部分都可以达到这两个目标。表格1标记为-O1的一列，就是O1 级别的优化选项。
 
 ![enter image description here](https://www.linuxjournal.com/files/linuxjournal.com/linuxjournal/articles/072/7269/7269t1.jpg)
 表格 1. GCC 优化措施以及对应的打开级别
@@ -372,8 +372,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjc0MDg1MTI2LC0xNTM3MDkyNzkzLDg0Mj
-Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
-NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
-0=
+eyJoaXN0b3J5IjpbLTEzNDgxMDQzMzQsLTE1MzcwOTI3OTMsOD
+QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
+OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
+RdfQ==
 -->
