@@ -275,9 +275,9 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 -ffast-math 优化提供了某种转换，它生成的代码很可能是正确的，但并不严格遵守IEEE标准。使用它们，但是请仔细测试它们。（译者注：比如将a = a * a * a * a * a * a * a * a 转换为 a = (a * a) * (a * a) * (a * a * a * a) , 从而转换为 a *=  a, a *= a, a *= a, 从而7次浮点计算变为3次浮点计算）
 
-当全局公共子表达式消除被启用时 （-fgcse 选项,  -O2 或以上），可以考虑启用另外两个选项，以减少读取和存储操作的次数。-fgcse-lm 和 -fgcse-sm 优化可以将循环内的读取和存储移到循环外，以降低循环内的指令数，提高循环的执行性能。
-When global common sub-expression elimination is enabled (-fgcse, level -O2 and above), two other options may be used to minimize load and store motions. Optimizations -fgcse-lm and -fgcse-sm can migrate loads and stores outside of loops to reduce the number of instructions executed within the loop, therefore increasing the performance of the loop. Both -fgcse-lm (load-motion) and -fgcse-sm (store-motion) should be specified together.
+当全局公共子表达式消除被启用时 （-fgcse 选项,  -O2 或以上），可以考虑启用另外两个选项，以减少读取和存储操作的次数。-fgcse-lm 和 -fgcse-sm 优化可以将循环内的读取和存储移到循环外，以降低循环内的指令数，提高循环的执行性能。-fgcse-lm (读取) 和 -fgcse-sm (存储) 两个选项需要一起设置。
 
+-fforce-addr 优化选项强制编译器将存储器内存
 The -fforce-addr optimization forces the compiler to move addresses into registers before performing any arithmetic on them. This is similar to the -fforce-mem option, which is enabled automatically in optimization levels -O2, -Os and -O3.
 
 A final fringe optimization is -fsched-spec-load, which works with the -fschedule-insns optimization, enabled at -O2 and above. This optimization permits the speculative motion of some load instructions to minimize execution stalls due to data dependencies.
@@ -372,8 +372,8 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU3NTY2ODY5MiwtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbNjY3MTkxMjYwLC0xNTM3MDkyNzkzLDg0Mj
+Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
+NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
+0=
 -->
