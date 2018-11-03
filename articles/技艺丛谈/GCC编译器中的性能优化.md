@@ -154,9 +154,9 @@ gcc -O2 -o test test.c
 ```cpp
 gcc -Os -o test test.c
 ```
-在GCC 3.2.2 版本中，reorder-blocks 在-Os级别中会被打开，但在3.3.2版本中不会打开。
+在GCC 3.2.2 版本中，reorder-blocks 在-Os级别中会被启用，但在3.3.2版本中则不会。
 
-（译者注：在最新的8.2.0版本中，会禁用掉以下选项：
+（译者注：在最新的8.2.0版本中，-Os 会禁用掉以下选项：
 ```cpp
 -falign-functions  -falign-jumps  -falign-loops
 -falign-labels  -freorder-blocks  -freorder-blocks-algorithm=stc
@@ -166,7 +166,7 @@ gcc -Os -o test test.c
 
 ### 优化级别 3 (-O3)
 
-第三级（也是最高级别）优化会启用更多的优化方法（见表格1），相比代码大小，该级别更侧重执行速度。它包括-O2启用的所有优化选项，以及寄存器重命名。函数内联也会在这个级别启用，它会提高执行速度，但是也有可能较大增加目标文件的大小，这取决于被内联函数的情况。第三级优化使用以下方式打开：
+第三级（也是最高级别）优化会启用更多的优化方法（见表格1），相比代码大小，该级别更侧重执行速度。它包括 -O2 启用的所有优化选项，以及寄存器重命名(译者注：主要是消除伪相关，优化CPU流水线)。函数内联也会在这个级别启用，它会提高执行速度，但是也有可能较大地增加目标文件的大小，这取决于被内联函数的情况。第三级优化使用以下方式打开：
 ```cpp
 gcc -O3 -o test test.c
 ```
@@ -377,8 +377,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzUzMzQ2NDYzLC0xNTM3MDkyNzkzLDg0Mj
-Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
-NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
-0=
+eyJoaXN0b3J5IjpbLTk2MjYyODIyNSwtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
