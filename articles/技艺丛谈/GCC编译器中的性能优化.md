@@ -150,11 +150,12 @@ gcc -O2 -o test test.c
 
 ### 优化级别2.5 (-Os)
 
-除了那些会增大代码大小的优化方法，这个特殊的优化级别(-Os 或 size 级别)会打开所有 -O2 级别的优化方法。这个级别更强调优化代码大小而不是速度。除了对齐相关的优化，它包括所有第二级的优化方法。对齐优化跳过了一些空间，以对齐函数、循环、跳转和标签到某个2的幂的倍数的地址，具体取决于对应的体系结构。跳过这些边界会提高执行速度（译者注：主要是Cache是按照字对齐的方式取数据和指令的），但同时也会增大编译生成的代码段大小和数据段大小（译者注：可以参考ELF文件格式），因此这些优化方法在-Os 级别会被禁用。-Os 级别使用以下方式打开：
+除了那些会增大代码大小的优化方法，这个特殊的优化级别(-Os 或 size 级别)会打开所有 -O2 级别的优化方法。这个级别更强调优化代码大小而不是速度。除了对齐相关的优化，它包括所有第二级的优化方法。对齐优化跳过了一些空间，以让函数、循环、跳转和标签对齐到某个2的幂的倍数的地址，具体取决于对应的体系结构。跳过这些边界会提高执行速度（译者注：主要是 Cache 是按照字对齐的方式取数据和指令的，对齐有助于降低取数据的代价），但同时也会增大编译生成的代码段大小和数据段大小（译者注：可以参考 ELF 文件格式），因此这些优化方法在 -Os 级别会被禁用。-Os 级别使用以下方式打开：
 ```cpp
 gcc -Os -o test test.c
 ```
 在GCC 3.2.2 版本中，reorder-blocks 在-Os级别中会被打开，但在3.3.2版本中不会打开。
+
 （译者注：在最新的8.2.0版本中，会禁用掉以下选项：
 ```cpp
 -falign-functions  -falign-jumps  -falign-loops
@@ -376,7 +377,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODM2NjM1MzcwLC0xNTM3MDkyNzkzLDg0Mj
+eyJoaXN0b3J5IjpbMzUzMzQ2NDYzLC0xNTM3MDkyNzkzLDg0Mj
 Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
 NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
 0=
