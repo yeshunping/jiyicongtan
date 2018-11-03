@@ -1,7 +1,7 @@
 原作者：by M. Tim Jones
 译者：叶顺平
 
-```
+```cpp
 性能优化这个事情，主要从几个维度进行：
 1，硬件能力的充分发挥，比如存储器的各个层次结构，比如特定的指令集（SSE，AVX等），比如CPU pipeline的充分利用。
 2，编译器的选择与编译选项的熟练使用。
@@ -29,23 +29,23 @@
 
 O1级别的优化使用以下方式打开：
 
-```
+```cpp
 gcc -O1 -o test test.c
 ```
 
 在任何优化级别之外，任何优化选项都可以使用优化名和 -f 前缀打开。如下：
 
-```
+```cpp
 gcc -fdefer-pop -o test test.c
 ```
 我们也可以打开O1级别，并禁用任意优化策略，方法是使用 -fno- 前缀。比如：
 
-```
+```cpp
 gcc -O1 -fno-defer-pop -o test test.c
 ```
 这句编译命令会打开所有第一级的优化策略，但是禁用其中的 defer-pop 优化策略。
 (译者注： 在最新的8.2.0版本中，-O1级别包含以下编译选项：
-```
+```cpp
 -fauto-inc-dec
 -fbranch-count-reg
 -fcombine-stack-adjustments
@@ -95,12 +95,12 @@ gcc -O1 -fno-defer-pop -o test test.c
 ### 优化级别2 (-O2)
 
 第二级优化执行所有指定平台支持的所有其它优化方法，只是不包括以空间换时间的方法，以取得两个目标（译者注：也就是降低目标文件大小和提高执行速度）之间的平衡。比如，循环展开和函数内联就不会执行，因为它们虽然可能带来代码性能的提升，也会以增大代码大小为代价。第二级优化使用以下方式打开：
-```
+```cpp
 gcc -O2 -o test test.c
 ```
 表格1显示了-O2 级别的优化方法。-O2优化级别包含-O1级别的所有优化方法，并增加了其它不少优化。
 (译者注：在8.2.0 版本中，-O2 级别包括以下编译选项：
-```
+```cpp
 -fthread-jumps
 -falign-functions  -falign-jumps
 -falign-loops  -falign-labels
@@ -144,12 +144,12 @@ gcc -O2 -o test test.c
 ### 优化级别2.5 (-Os)
 
 除了那些会增大代码大小的优化方法，这个特殊的优化级别(-Os, s 是size 的首字母)会打开所有的-O2级别的优化方法。这个级别更强调优化代码大小而不是速度。它包括所有第二级别的优化方法，除了对齐相关的优化。对齐优化跳过了一些空间，以对齐函数、循环、跳转和标签到某个2的幂的倍数的地址，具体取决于对应的体系结构。跳过这些边界会提高执行速度（译者注：主要是Cache是按照字对齐的方式取数据和指令的），但同时也会增大编译生成的代码段大小和数据段大小（译者注：可以参考ELF文件格式），因此这些优化方法在-Os 级别会被禁用。-Os 级别使用以下方式打开：
-```
+```cpp
 gcc -Os -o test test.c
 ```
 在GCC 3.2.2 版本中，reorder-blocks 在-Os级别中会被打开，但在3.3.2版本中不会打开。
 （译者注：在最新的8.2.0版本中，会禁用掉以下选项：
-```
+```cpp
 -falign-functions  -falign-jumps  -falign-loops
 -falign-labels  -freorder-blocks  -freorder-blocks-algorithm=stc
 -freorder-blocks-and-partition  -fprefetch-loop-arrays
@@ -159,13 +159,13 @@ gcc -Os -o test test.c
 ### 优化级别 3 (-O3)
 
 第三级（也是最高级别）优化会启用更多的优化方法（见表格1），相比代码大小，该级别更侧重执行速度。它包括-O2启用的所有优化选项，以及寄存器重命名。函数内联也会在这个级别启用，它会提高执行速度，但是也有可能较大增加目标文件的大小，这取决于被内联函数的情况。第三级优化使用以下方式打开：
-```
+```cpp
 gcc -O3 -o test test.c
 ```
 虽然-O3能生成更快的代码，但是代码大小的增加，也可能对代码性能有相反的作用。比如，代码大小超过可以获得的指令缓存的大小，就可能导致严重的性能下降。因此，也许更保险的方式是使用-O2进行编译，以增大代码大小适合指令缓存的概率。
 
 (在最新的 8.2.0版本中，该级别包含：
-```
+```cpp
 -finline-functions
 -funswitch-loops
 -fpredictive-commoning
@@ -196,7 +196,7 @@ gcc -O3 -o test test.c
 现在让我们看一个例子，以看清如何通过指定目标机器的体系结构提高执行速度。让我们写一个简单的程序，该程序对1万个元素的数组进行冒泡排序。数组元素是倒序的，以让冒泡排序算法的性能最差。编译和计时过程显示如下：
 
 **清单1. 指定体系结构如何影响简单程序的性能**
-```
+```cpp
 [mtj@camus]$ gcc -o sort sort.c -O2
 [mtj@camus]$ time ./sort
 
@@ -215,7 +215,7 @@ sys     0m0.010s
 从清单1看，性能获得了提升，但是缺点是程序大小也有了小幅度增大。使用size 命令（见清单2），我们来看一看二进制文件各个section的大小。
 
 **清单2. 清单1中程序的大小变化**
-```
+```cpp
 [mtj@camus]$ gcc -o sort sort.c -O2
 [mtj@camus]$ size sort
    text    data     bss     dec     hex filename
@@ -341,7 +341,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNT
-g1NzE5NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYx
-OTk0NF19
+eyJoaXN0b3J5IjpbOTAyMjU0NDEzLDEyNTcxODkzNzQsMTUxOD
+Q0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0
+MzU5LC02Mzg2MTk5NDRdfQ==
 -->
