@@ -316,7 +316,7 @@ GCC编译器如同黑盒子。指定优化选项和优化级别后，程序也�
 gcc -c -S test.c
 ```
 告诉编译器进行只源码编译（-c）(译者注：而不进行链接)，但是输出源码对应的汇编代码(-S)。生成的汇编代码在 test.s 文件中。
-
+上述方法的不足之处在于，你可能看到汇编代码，真实指令大小方面的信息并没有提供。为此，我们可以使用 objdump 工具，
 which tells gcc to compile the source only (-c) but also to emit assembly code for the source (-S). The resulting assembly output will be contained in the file test.s.
 
 The disadvantage of the previous approach is you see only assembly code, no aspect of the size of the actual instructions is given. For this, we can use objdump to emit both assembly and native instructions, like so:
@@ -341,7 +341,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQyNzIzOTY3LDEyNTcxODkzNzQsMTUxOD
-Q0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0
-MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbMTA1NjM4MDcxNSwxMjU3MTg5Mzc0LDE1MT
+g0NDA1NDAsLTE1ODU3MTk3NDgsLTE2ODcwMzM4NDYsMTE0Mjk3
+NDM1OSwtNjM4NjE5OTQ0XX0=
 -->
