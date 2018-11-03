@@ -193,9 +193,9 @@ gcc -O3 -o test test.c
 
 默认的体系架构是 i386, GCC 也可以运行在其它 i386/x86 体系架构中，不过在更新的处理器中，可能性能会有所下降。如果你关注二进制文件的可移植性，你应该使用默认参数进行编译。如果你对性能更感兴趣，指定对应的体系架构。
 
-Let's now look at an example of how performance can be improved by focusing on the actual target. Let's build a simple test application that performs a bubble sort over 10,000 elements. The elements in the array have been reversed to force the worst-case scenario. The build and timing process is shown in Listing 1.
+现在让我们看一个例子，以看清如何通过指定目标机器的体系结构提高执行速度。让我们写一个简单的程序，该程序对1万个元素的数组进行冒泡排序。数组元素是倒序的，以让冒泡排序算法的性能最差。编译和计时过程显示如下：
 
-**Listing 1. Effects of Architecture Specification on a Simple Application**
+**清单1. Effects of Architecture Specification on a Simple Application**
 ```
 [mtj@camus]$ gcc -o sort sort.c -O2
 [mtj@camus]$ time ./sort
@@ -342,6 +342,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUxODQ0MDU0MCwtMTU4NTcxOTc0OCwtMT
-Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbLTg2NTQ0NTcwOCwxNTE4NDQwNTQwLC0xNT
+g1NzE5NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYx
+OTk0NF19
 -->
