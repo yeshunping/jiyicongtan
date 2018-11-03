@@ -3,11 +3,11 @@
 
 ```cpp
 性能优化这个事情，主要从几个维度进行：
-1，硬件能力的充分发挥，比如存储器的各个层次结构，特定的指令集（SSE，AVX等），比如CPU pipeline的充分利用。
+1，硬件能力的充分发挥，比如存储器的各个层次结构，特定的指令集（SSE，AVX等），CPU流水线的充分利用等。
 2，编译器的选择与编译选项的熟练使用。
-3，应用程序的熟悉与优化（语言层面，算法层面等）。
+3，应用程序的熟悉与优化（语言层面，算法层面，数据结构的选择等）。
 
-了解编译器提供的优化选项，不仅可以直接使用编译器提供的能力，为你的程序直接进行加速，还可以让你知道通用的程序加速手段。因为很明显，搞编译器的人，更清楚性能角度的common case何在。假如掌握了编译器的一些优化手段，应用程序层面的优化就很好开展了。
+了解编译器提供的优化选项，不仅可以直接使用编译器提供的能力，为你的程序直接进行加速，还可以让你知道通用的程序加速手段。很明显，搞编译器的人，更清楚性能角度的 common case何在。假如掌握了编译器的一些优化手段，应用程序层面的优化就很好开展了。
 
 最近看了篇文章，顺手翻译为中文，一来锻炼下自己翻译水平，二来让自己更加熟悉，三来希望对读者朋友也有所帮助。
 
@@ -369,8 +369,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg0NzY4NjM1NywtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbMjgyMDEzMTc5LC0xNTM3MDkyNzkzLDg0Mj
+Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
+NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
+0=
 -->
