@@ -21,11 +21,12 @@
 
 ## 优化级别
 
-首先让我们来看看GCC如何对不同的优化选项进行归类，看看程序员如何掌控启用什么编译选项，当然有时候如何禁用优化选项更为重要。GCC提供了大量的优化选项。大部分都被归类到三个不同的级别中，不过有一些在各个级别都启用。有一些优化会降低生成的机器代码的大小，而有一些则志在提高执行速度，甚至以增大机器代码为代价。为了保持程序的原始状态（译者注：比如调试信息等），默认的编译级别为0，这个级别并不提供任何优化。0级也可以使用-O 或者 -O0 来显式指定。
+首先让我们来看看GCC如何对不同的优化选项进行归类，程序员如何掌控启用什么编译选项，当然有时候如何禁用一些优化选项更为重要。GCC提供了大量的优化选项。大部分都被归类到三个不同的级别中，不过有一些在各个级别都启用。有一些优化会降低生成的机器代码的大小，而有一些则志在提高执行速度，甚至以增大机器代码为代价。为了保持程序的原始状态（译者注：主要是为了调试方便，和原始代码有一一对应关系），默认的编译级别为0，这个级别并不提供任何优化。0级也可以使用 -O 或者 -O0 来显式指定。
 
 ### 优化级别1 (-O1)
 
 第一级的优化目的在于在尽可能快的编译时间内生成优化的代码。这些优化措施一般不会耗费大量的编译时间。O1偶尔也会有两个相互冲突的目标——这些目标是既要降低生成的文件大小，又要提高性能。O1级别的优化措施大部分都可以达到这两个目标。表格1标记为-O1的一列，就是O1 级别的优化选项。
+
 ![enter image description here](https://www.linuxjournal.com/files/linuxjournal.com/linuxjournal/articles/072/7269/7269t1.jpg)
 表格 1. GCC 优化措施以及对应的打开级别
 
@@ -371,8 +372,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk2NDY5NzE5OSwtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbNjc0MDg1MTI2LC0xNTM3MDkyNzkzLDg0Mj
+Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
+NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
+0=
 -->
