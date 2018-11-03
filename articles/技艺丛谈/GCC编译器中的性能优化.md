@@ -54,7 +54,7 @@ gcc -O2 -o test test.c
 
 ### 优化级别2.5 (-Os)
 
-这个特殊的优化级别(-Os, s 是size d)
+除了那些会增大代码大小的优化方法，这个特殊的优化级别(-Os, s 是size 的首字母)会打开所有的-O2级别的优化方法。这个级别更强调代码大小而不是su
 The special optimization level (-Os or size) enables all -O2 optimizations that do not increase code size; it puts the emphasis on size over speed. This includes all second-level optimizations, except for the alignment optimizations. The alignment optimizations skip space to align functions, loops, jumps and labels to an address that is a multiple of a power of two, in an architecture-dependent manner. Skipping to these boundaries can increase performance as well as the size of the resulting code and data spaces; therefore, these particular optimizations are disabled. The size optimization level is enabled as:
 ```
 gcc -Os -o test test.c
@@ -225,6 +225,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjgxMzA2NzQsLTE2ODcwMzM4NDYsMT
-E0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
+eyJoaXN0b3J5IjpbOTU5NTg3MDAzLC0xNjg3MDMzODQ2LDExND
+I5NzQzNTksLTYzODYxOTk0NF19
 -->
