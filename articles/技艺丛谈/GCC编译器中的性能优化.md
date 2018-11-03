@@ -271,9 +271,9 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 ## 其它可能性
 
-至此，我们已经讨论了很多优化方法和编译器选项，它们要么可以提高性能，要么可以减小程序大小。现在让我们来看一下其它较为少用的优化，它们可能也会让你的程序shou yi。
-We've discussed many optimizations and compiler options that can increase performance or decrease size. Let's now look at some fringe optimizations that may provide a benefit to your application.
+至此，我们已经讨论了很多优化方法和编译器选项，它们要么可以提高性能，要么可以减小程序大小。现在让我们来看一下其它较为少用的优化，它们可能也会让你的程序获益。
 
+-ffast-math 优化提供了某种转换，它生成的代码很可能是正确的，但并不严格遵守IEEE标准。
 The -ffast-math optimization provides transformations likely to result in correct code but it may not adhere strictly to the IEEE standard. Use it, but test carefully.
 
 When global common sub-expression elimination is enabled (-fgcse, level -O2 and above), two other options may be used to minimize load and store motions. Optimizations -fgcse-lm and -fgcse-sm can migrate loads and stores outside of loops to reduce the number of instructions executed within the loop, therefore increasing the performance of the loop. Both -fgcse-lm (load-motion) and -fgcse-sm (store-motion) should be specified together.
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTA3ODQyMjM2LDg0MjQ2Mzk4NSwxMjU3MT
-g5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3NDgsLTE2ODcwMzM4
-NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
+eyJoaXN0b3J5IjpbMTE1ODA4Mjk5Niw4NDI0NjM5ODUsMTI1Nz
+E4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5NzQ4LC0xNjg3MDMz
+ODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
