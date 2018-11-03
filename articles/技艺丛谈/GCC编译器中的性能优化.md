@@ -307,8 +307,7 @@ Each sample counts as 0.01 seconds.
 ```cpp
 objdump -x sort | grep .text
 ```
-从这个简短的清单中，我们可以定位到相关的函数以更好de
-From this short list, we can identify the particular function we're interested in understanding better.
+从这个简短的清单中，我们可以定位到相关的函数以更好地理解它。（译者注：一般直接在源代码中搜索对应的函数即可。除了gperf , 谷歌也开源了一套性能分析工具，可以剖析CPU 和 内存两方面，项目名为 gperftools ， 地址为：https://github.com/gperftools/gperftools）
 
 ## 检查优化结果
 GCC编译器如同黑盒子。指定优化选项和优化级别后，程序也许变快了，也许变慢了。当结果变好了，编译生成的代码究竟用了什么黑科技？我们看到生成的汇编代码，会可以揭晓答案啦。
@@ -369,11 +368,9 @@ int add(int a, int b) {
 GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
-作者介绍：
-M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0NTU5MjU3NiwtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbLTE2MzA5MjEzMDUsLTE1MzcwOTI3OTMsOD
+QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
+OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
+RdfQ==
 -->
