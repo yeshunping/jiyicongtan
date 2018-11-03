@@ -281,7 +281,7 @@ The -fforce-addr optimization forces the compiler to move addresses into registe
 
 A final fringe optimization is -fsched-spec-load, which works with the -fschedule-insns optimization, enabled at -O2 and above. This optimization permits the speculative motion of some load instructions to minimize execution stalls due to data dependencies.
 
-## Testing for Improvements
+## 测试性能改进
 
 Earlier we used the time command to identify how much time was spent in a given command. This can be useful, but when we're profiling our application, we need more insight into the image. The gprof utility provided by GNU and the GCC compiler meets this need. Full coverage of gprof is outside the scope of this article, but Listing 3 illustrates its use.
 
@@ -309,8 +309,8 @@ objdump -x sort | grep .text
 ```
 From this short list, we can identify the particular function we're interested in understanding better.
 
-## Examining Optimizations
-
+## 评测性能
+GCC编译器如同黑盒子。zhi ding
 The GCC optimizer is essentially a black box. Options and optimization flags are specified, and the resulting code may or may not improve. When they do improve, what exactly happened within the resulting code? This question can be answered by looking at the resulting code.
 
 To emit target instructions from the compiler, the -S option can be specified, such as:
@@ -341,7 +341,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzcwNDk4NTk3LDEyNTcxODkzNzQsMTUxOD
+eyJoaXN0b3J5IjpbNzIzODMxMTEyLDEyNTcxODkzNzQsMTUxOD
 Q0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0
 MzU5LC02Mzg2MTk5NDRdfQ==
 -->
