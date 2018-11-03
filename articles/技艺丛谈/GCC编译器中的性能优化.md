@@ -211,8 +211,7 @@ user    0m0.790s
 sys     0m0.010s
 [mtj@camus]$
 ```
-通过指定体系结构（本例中是633MHz 的Celeron处理器），本
-By specifying the architecture, in this case a 633MHz Celeron, the compiler can generate instructions for the particular target as well as enable other optimizations available only to that target. As shown in Listing 1, by specifying the architecture we see a time benefit of 237ms (23% improvement).
+通过指定体系结构（本例中是633MHz 的Celeron处理器），编译器可以生成特定架构的指令，同时启用该平台特有的优化方法。如清单1所示，指定体系结构后，我们看到程序获得了237毫秒的提升（提升23%）。
 
 Although Listing 1 shows an improvement in speed, the drawback is that the image is slightly larger. Using the size command (Listing 2), we can identify the sizes of the various sections of the image.
 
@@ -343,7 +342,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUwNDc2Nzc3MSwxNTE4NDQwNTQwLC0xNT
+eyJoaXN0b3J5IjpbMTc0OTU1NDcyMCwxNTE4NDQwNTQwLC0xNT
 g1NzE5NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYx
 OTk0NF19
 -->
