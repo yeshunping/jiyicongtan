@@ -54,11 +54,11 @@ gcc -O2 -o test test.c
 
 ### 优化级别2.5 (-Os)
 
-除了那些会增大代码大小的优化方法，这个特殊的优化级别(-Os, s 是size 的首字母)会打开所有的-O2级别的优化方法。这个级别更强调优化代码大小而不是速度。它包括所有第二级别的优化方法，除了对齐相关的优化。对齐优化跳过了一些空间，以对齐函数、循环、跳转和标签到某个2的幂的倍数的地址，具体取决于对应的体系结构。跳过这些边界会提高执行速度（译者注：主要是Cache是按照字对齐的方式取数据和指令的），但同时也会增大编译生成的代码段大小和数据段大小，
-The special optimization level (-Os or size) enables all -O2 optimizations that do not increase code size; it puts the emphasis on size over speed. This includes all second-level optimizations, except for the alignment optimizations. The alignment optimizations skip space to align functions, loops, jumps and labels to an address that is a multiple of a power of two, in an architecture-dependent manner. Skipping to these boundaries can increase performance as well as the size of the resulting code and data spaces; therefore, these particular optimizations are disabled. The size optimization level is enabled as:
+除了那些会增大代码大小的优化方法，这个特殊的优化级别(-Os, s 是size 的首字母)会打开所有的-O2级别的优化方法。这个级别更强调优化代码大小而不是速度。它包括所有第二级别的优化方法，除了对齐相关的优化。对齐优化跳过了一些空间，以对齐函数、循环、跳转和标签到某个2的幂的倍数的地址，具体取决于对应的体系结构。跳过这些边界会提高执行速度（译者注：主要是Cache是按照字对齐的方式取数据和指令的），但同时也会增大编译生成的代码段大小和数据段大小（译者注：可以参考ELF文件格式），因此这些优化方法在-Os 级别会被禁用。-Os 级别使用以下方式打开：
 ```
 gcc -Os -o test test.c
 ```
+在GCC 3.2.2 版本中，
 In gcc 3.2.2, reorder-blocks is enabled at -Os, but in gcc 3.3.2 reorder-blocks is disabled.
 
 ### Level 3 (-O3)
@@ -225,6 +225,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMzODk1Nzg3MCwtMTY4NzAzMzg0NiwxMT
-QyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbMzk2NTc1MzYsLTE2ODcwMzM4NDYsMTE0Mj
+k3NDM1OSwtNjM4NjE5OTQ0XX0=
 -->
