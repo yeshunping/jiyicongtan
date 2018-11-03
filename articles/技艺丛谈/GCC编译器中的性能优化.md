@@ -155,6 +155,19 @@ The third and highest level enables even more optimizations (Table 1) by putting
 gcc -O3 -o test test.c
 ```
 Although -O3 can produce fast code, the increase in the size of the image can have adverse effects on its speed. For example, if the size of the image exceeds the size of the available instruction cache, severe performance penalties can be observed. Therefore, it may be better simply to compile at -O2 to increase the chances that the image fits in the instruction cache.
+(在最新的 8.2.0版本中，该级别包含：
+```
+-finline-functions
+-funswitch-loops
+-fpredictive-commoning
+-fgcse-after-reload
+-ftree-loop-vectorize
+-ftree-loop-distribution
+-ftree-loop-distribute-patterns
+-floop-interchange
+-floop-unroll-and-jam
+-fsplit-paths -ftree-slp-vectorize -fvect-cost-model -ftree-partial-pre -fpeel-loops -fipa-cp-clone
+```)
 
 ## Architecture Specification
 
@@ -312,6 +325,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTkyNzU5MDcsLTE1ODU3MTk3NDgsLTE2OD
-cwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
+eyJoaXN0b3J5IjpbMjY0MjU4MjUzLC0xNTg1NzE5NzQ4LC0xNj
+g3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
