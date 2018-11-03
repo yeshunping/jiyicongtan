@@ -98,6 +98,8 @@ gcc -O1 -fno-defer-pop -o test test.c
 gcc -O2 -o test test.c
 ```
 表格1显示了-O2 级别的优化方法。-O2优化级别包含-O1级别的所有优化方法，并增加了其它不少优化。
+(译者注：在8.2.0 版本中，-O2 级别包括以下编译选项：
+)
 
 ### 优化级别2.5 (-Os)
 
@@ -271,6 +273,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjIzOTU5NjYyLC0xNTg1NzE5NzQ4LC0xNj
-g3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
+eyJoaXN0b3J5IjpbMTAwNzIyNzYzNiwtMTU4NTcxOTc0OCwtMT
+Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
