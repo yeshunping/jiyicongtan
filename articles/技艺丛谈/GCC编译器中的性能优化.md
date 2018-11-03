@@ -273,8 +273,9 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 至此，我们已经讨论了很多优化方法和编译器选项，它们要么可以提高性能，要么可以减小程序大小。现在让我们来看一下其它较为少用的优化，它们可能也会让你的程序获益。
 
--ffast-math 优化提供了某种转换，它生成的代码很可能是正确的，但并不严格遵守IEEE标准。使用它们，但是请仔细测试它们。（译者注：比如将a = a * a * a * a * a * a * a * a 转换为 a = (a * a) * (a * a) * (a * a * a * a) , 从而转换为 a = a * a, a ）
+-ffast-math 优化提供了某种转换，它生成的代码很可能是正确的，但并不严格遵守IEEE标准。使用它们，但是请仔细测试它们。（译者注：比如将a = a * a * a * a * a * a * a * a 转换为 a = (a * a) * (a * a) * (a * a * a * a) , 从而转换为 a *=  a, a *= a, a *= a, 从而7次浮点计算变为3次浮点计算）
 
+当全局公共子表达式消除被启用时，
 When global common sub-expression elimination is enabled (-fgcse, level -O2 and above), two other options may be used to minimize load and store motions. Optimizations -fgcse-lm and -fgcse-sm can migrate loads and stores outside of loops to reduce the number of instructions executed within the loop, therefore increasing the performance of the loop. Both -fgcse-lm (load-motion) and -fgcse-sm (store-motion) should be specified together.
 
 The -fforce-addr optimization forces the compiler to move addresses into registers before performing any arithmetic on them. This is similar to the -fforce-mem option, which is enabled automatically in optimization levels -O2, -Os and -O3.
@@ -371,8 +372,8 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMyMDA1NzgyNiwtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbLTE0MDAzMTYxMDcsLTE1MzcwOTI3OTMsOD
+QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
+OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
+RdfQ==
 -->
