@@ -322,7 +322,7 @@ gcc -c -g test.c
 objdump -d test.o
 ```
 我们指定了 -c 进行编译，但是我们也想在目标文件中包含调试信息，这可以使用 -g 选项。
-使用objdump工具，我们指定 -d 参数以反汇编目标文件中的指令。最后，我们
+使用objdump工具，我们指定 -d 参数以反汇编目标文件中的指令。最后，我们可以使用汇编和源码交错
 For gcc, we specify compile with only -c, but we also want to include debug information in the object (-g). Using objdump, we specify the -d option to disassemble the instructions in the object. Finally, we can get assembly-interspersed source listings with:
 ```cpp
 gcc -c -g -Wa,-ahl,-L test.c
@@ -340,7 +340,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODQyNDYzOTg1LDEyNTcxODkzNzQsMTUxOD
-Q0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0
-MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbLTE0ODkyMTgxMyw4NDI0NjM5ODUsMTI1Nz
+E4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5NzQ4LC0xNjg3MDMz
+ODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
