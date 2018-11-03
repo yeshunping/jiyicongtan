@@ -318,15 +318,17 @@ Each sample counts as 0.01 seconds.
 ```cpp
 objdump -x sort | grep .text
 ```
-从这个简短的清单中，我们可以定位到相关的函数以更好地理解它。（译者注：一般直接在源代码中搜索对应的函数即可。除了gperf , 谷歌也开源了一套性能分析工具，可以剖析CPU 和 内存两方面，项目名为 gperftools ， 地址为：https://github.com/gperftools/gperftools）
+从这个简短的清单中，我们可以定位到相关的函数，以更好地理解它。（译者注：一般直接在源代码中搜索对应的函数即可。除了 gperf , 谷歌也开源了一套性能分析工具，可以剖析 CPU 和内存两方面，项目名为 gperftools ， 地址为：https://github.com/gperftools/gperftools）
 
 ## 检查优化结果
-GCC编译器如同黑盒子。指定优化选项和优化级别后，程序也许变快了，也许变慢了。当结果变好了，编译生成的代码究竟用了什么黑科技？我们看到生成的汇编代码，会可以揭晓答案啦。
+GCC 编译器如同黑盒子。指定优化选项和优化级别后，程序也许变快了，也许变慢了。当结果变好了，编译生成的代码究竟用了什么黑科技？让我们看看生成的汇编代码，就可以揭晓答案啦。
+
 指定 -S 编译选项，就可以让编译器输出目标机器的指令了，比如：
 ```cpp
 gcc -c -S test.c
 ```
 告诉编译器进行只源码编译（-c）(译者注：而不进行链接)，但是输出源码对应的汇编代码(-S)。生成的汇编代码在 test.s 文件中。
+
 上述方法的不足之处在于，你可能看到汇编代码，真实指令大小方面的信息并没有提供（译者注：因为一些平台的指令是变长的，因此指令个数和指令大小不完全相同。也有一些体系结构的指令的定长的，比如MIPS）。为此，我们可以使用 objdump 工具，以输出汇编和原始指令，比如：
 ```cpp
 gcc -c -g test.c
@@ -380,7 +382,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzg0NDc3NDQsLTE1MzcwOTI3OTMsOD
+eyJoaXN0b3J5IjpbLTIwODA0MTU0MDEsLTE1MzcwOTI3OTMsOD
 QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
 OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
 RdfQ==
