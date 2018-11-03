@@ -336,13 +336,13 @@ objdump -d test.o
 ```
 我们指定了 -c 进行编译，但是我们也想在目标文件中包含调试信息，这可以使用 -g 选项。
 
-使用 objdump工具，我们指定 -d 参数以反汇编目标文件中的指令。最后，我们可以使用汇编和源码交错的文件列表：
+使用 objdump工具，我们指定 -d 参数以反汇编目标文件中的指令。最后，我们可以生成汇编和源码交错的文件列表：
 ```cpp
 gcc -c -g -Wa,-ahl,-L test.c
 ```
-该命令使用GNU汇编器输出列表。-Wa 选项用于 传递 -ahl 和 -L 选项给汇编器，以输出列表到标准输出，列表中包含高级语言源码和汇编代码。-L 选项则会保留符号表中的局部符号信息。
+该命令使用 GNU 汇编器输出列表信息。-Wa 选项用于传递 -ahl 和 -L 选项给汇编器，以输出列表到标准输出，列表中包含高级语言源码和汇编代码。-L 选项则会保留符号表中的局部符号信息。
 
-（译者注：比如如下代码
+（译者注：比如如下代码片段
 ```
 #include <stdio.h>
 
@@ -373,18 +373,17 @@ int add(int a, int b) {
 ```
 )
 
-
 ## 结论
 
-应用程序都互不相同，所以并不存在神奇的优化配置和选项开关能生成最好的结果。达到较好的性能的最简单方式是使用-O2级别的优化。如果你对可移植性不感兴趣，可以使用 -march= 指定特定的体系架构。对空间受限的应用，应该首先考虑使用-Os 优化级别。如果你一定要将你的程序的性能优化到极致，那你可以考虑尝试不同的优化级别，然后使用不同的工具来检测生成代码的性能。打开或禁用特定的优化，也可以帮助优化器得到最佳性能表现。
+应用程序互不相同，所以并不存在神奇的优化配置和选项开关能生成最好的结果。达到较好的性能的最简单方式是使用-O2级别的优化。如果你对可移植性不感兴趣，可以使用 -march= 指定特定的体系架构。对空间受限的应用，应该首先考虑使用-Os 优化级别。如果你一定要将你的程序的性能优化到极致，那你可以考虑尝试不同的优化级别，然后使用不同的工具来检测生成代码的性能。打开或禁用特定的优化，也可以帮助优化器得到最佳性能表现。
 
 ## 本文相关资料：
 GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUyNjIzNTU4MCwtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbLTE4NTA3Mjk0NDMsLTE1MzcwOTI3OTMsOD
+QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
+OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
+RdfQ==
 -->
