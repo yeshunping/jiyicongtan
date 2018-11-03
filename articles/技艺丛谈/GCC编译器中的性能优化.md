@@ -284,7 +284,7 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 至此，我们已经讨论了很多优化方法和编译器选项，它们要么可以提高性能，要么可以减小程序大小。现在让我们来看一下其它较为少用的优化，它们可能也会让你的程序获益。
 
--ffast-math 优化提供了某种转换，它生成的代码很可能是正确的，但并不严格遵守IEEE标准。使用它们，但是请仔细测试它们。（译者注：比如将a = a * a * a * a * a * a * a * a 转换为 a =( (a * a) * (a * a)) * ((a * a) * (a * a)) , 从而转换为 a *=  a,  a *= a, a *= a, 从而 7 次浮点计算变为 3 次浮点计算）
+-ffast-math 优化提供了某种转换，它生成的代码很可能是正确的，但并不严格遵守IEEE标准。使用它们，但是请仔细测试它们。（译者注：比如将a = a * a * a * a * a * a * a * a 转换为 a =( (a * a) * (a * a)) * ((a * a) * (a * a)) , 从而转换为 a *=  a,  a *= a, a *= a, 从而 7 次浮点计算变为 3 次浮点计算，数学上可以这样转换，但是浮点计算顺序变了，计算结果可能稍有不同）
 
 当全局公共子表达式消除被启用时 （-fgcse 选项,  -O2 或以上），可以考虑启用另外两个选项，以减少读取和存储操作的次数。-fgcse-lm 和 -fgcse-sm 优化可以将循环内的读取和存储移到循环外，以降低循环内的指令数，提高循环的执行性能。-fgcse-lm (读取) 和 -fgcse-sm (存储) 两个选项需要一起设置。
 
@@ -380,7 +380,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNjQ1Njk2MiwtMTUzNzA5Mjc5Myw4ND
+eyJoaXN0b3J5IjpbLTI5ODQyODQwNSwtMTUzNzA5Mjc5Myw4ND
 I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
 NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
 19
