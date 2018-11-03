@@ -230,7 +230,7 @@ sys     0m0.010s
 
 ## 数学单元优化
 
-有一些特殊的优化需要开发者显式指定。这些优化是i386和x86 体系结构特有的。（译者注：其它系统结构也有SIMD指令集，比如ARM的neon）
+有一些特殊的优化需要开发者显式指定。这些优化是i386和x86 体系结构特有的。（译者注：其它系统结构也有SIMD指令集，比如ARM的neon）数学计算单元可以手工指定，但是在很多时候，它可以通过指定目标体系结构来自动设定。-fpmatch= 选项可能的数学单元
 Some specialized optimizations require explicit definition by the developer. These optimizations are specific to the i386 and x86 architectures. A math unit, for one, can be specified, although in many cases it is automatically defined based on the specification of a target architecture. Possible units for the -mfpmath= option are shown in Table 3.
 
 **表格3. 数学相关优化**
@@ -342,7 +342,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI0ODQ0MDIyOCwxMjU3MTg5Mzc0LDE1MT
+eyJoaXN0b3J5IjpbMTY4ODc3NDY5MCwxMjU3MTg5Mzc0LDE1MT
 g0NDA1NDAsLTE1ODU3MTk3NDgsLTE2ODcwMzM4NDYsMTE0Mjk3
 NDM1OSwtNjM4NjE5OTQ0XX0=
 -->
