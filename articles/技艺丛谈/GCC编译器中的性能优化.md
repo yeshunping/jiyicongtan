@@ -157,6 +157,7 @@ gcc -Os -o test test.c
 
 ### 优化级别 3 (-O3)
 
+第三级（也是最高级别）优化会启用更多的优化方法（见表格1），
 The third and highest level enables even more optimizations (Table 1) by putting emphasis on speed over size. This includes optimizations enabled at -O2 and rename-register. The optimization inline-functions also is enabled here, which can increase performance but also can drastically increase the size of the object, depending upon the functions that are inlined. The third level is enabled as:
 ```
 gcc -O3 -o test test.c
@@ -341,6 +342,6 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMjgyOTU0MCwtMTU4NTcxOTc0OCwtMT
+eyJoaXN0b3J5IjpbMTkxNTQyODk5NywtMTU4NTcxOTc0OCwtMT
 Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
