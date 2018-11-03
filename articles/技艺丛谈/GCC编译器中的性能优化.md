@@ -290,7 +290,7 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 -fforce-addr 优化选项强制编译器将存储器内存先拷贝到寄存器，然后再执行任何数学运算。 -fforce-mem 也类似，它在优化级别 -O2, -Os 和 -O3 中自动开启。
 
-最后一个不常用的优化是 -fsched-spec-load， 它和 -fschedule-insns 优化一起工作，在 -O2 以上级别启用。该优化通过预测读取指令，最小化因为数据依赖引起的执行停顿。(译者注：也就是进行指令调度，调整指令的顺序，以更好地利用CPU pipeline，对于 load 指令，gcc 也提供了数据预取功能，作用类似。硬件层面也提供了指令调度功能，比如乱序执行。深度学习中常用的矩阵运算库，很多算法的实现就往往通过shou xie)
+最后一个不常用的优化是 -fsched-spec-load， 它和 -fschedule-insns 优化一起工作，在 -O2 以上级别启用。该优化通过预测读取指令，最小化因为数据依赖引起的执行停顿。(译者注：也就是进行指令调度，调整指令的顺序，以更好地利用CPU pipeline，对于 load 指令，gcc 也提供了数据预取功能，作用类似。硬件层面也提供了指令调度功能，比如乱序执行。深度学习中常用的矩阵运算库，很多算法的实现就往往通过手写汇编代码来实现，以达到比编译器生成的指令更好的执行顺序，最大化发挥 CPU 流行线作用)
 
 ## 测试性能改进
 
@@ -380,7 +380,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwOTAzNDMwMjUsLTE1MzcwOTI3OTMsOD
+eyJoaXN0b3J5IjpbLTE2MjI5MDQ2NDAsLTE1MzcwOTI3OTMsOD
 QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
 OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
 RdfQ==
