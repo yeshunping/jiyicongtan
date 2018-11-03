@@ -28,7 +28,7 @@
 第一级的优化目的在于，在尽可能快的编译时间内生成优化的代码。这些优化措施一般不会耗费大量的编译时间。O1偶尔也会有两个相互冲突的目标——既要降低生成的文件大小，又要提高性能。O1级别的优化措施大部分都可以达到这两个目标。表格1标记为-O1的一列，就是O1 级别的优化选项。
 
 ![enter image description here](https://www.linuxjournal.com/files/linuxjournal.com/linuxjournal/articles/072/7269/7269t1.jpg)
-表格 1. GCC 优化措施以及对应的打开级别
+<center>表格 1. GCC 优化措施以及对应的打开级别</center>
 
 O1级别的优化使用以下方式打开：
 
@@ -36,7 +36,7 @@ O1级别的优化使用以下方式打开：
 gcc -O1 -o test test.c
 ```
 
-在任何优化级别之外，任何优化选项都可以使用优化名和 -f 前缀打开。如下：
+除了指定优化级别，任何优化选项都可以使用优化名和 -f 前缀打开。如下：
 
 ```cpp
 gcc -fdefer-pop -o test test.c
@@ -372,8 +372,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNDgxMDQzMzQsLTE1MzcwOTI3OTMsOD
-QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
-OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
-RdfQ==
+eyJoaXN0b3J5IjpbLTE3MTMwODY5NywtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
