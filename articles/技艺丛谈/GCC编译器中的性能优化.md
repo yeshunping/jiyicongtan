@@ -191,7 +191,7 @@ gcc -O3 -o test test.c
 **表格2. x86 体系架构**
 ![enter image description here](https://github.com/yeshunping/jiyicongtan/raw/master/articles/images/x86_arch.png)
 
-默认的体系架构是 i386, GCC 也可以运行在其它 i386/x86 体系架构中，不过
+默认的体系架构是 i386, GCC 也可以运行在其它 i386/x86 体系架构中，不过在更新的处理器中，可能性能会有所下降。如果你关注二进制文件的可移植性，你应该使用默认参数进行编译。如果你对性能更感兴趣，挑选适合的
 The default architecture is i386. GCC runs on all other i386/x86 architectures, but it can result in degraded performance on more recent processors. If you're concerned about portability of an image, you should compile it with the default. If you're more interested in performance, pick the architecture that matches your own.
 
 Let's now look at an example of how performance can be improved by focusing on the actual target. Let's build a simple test application that performs a bubble sort over 10,000 elements. The elements in the array have been reversed to force the worst-case scenario. The build and timing process is shown in Listing 1.
@@ -343,6 +343,6 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyMDI5NDE0OCwtMTU4NTcxOTc0OCwtMT
-Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbOTk4NDU4NzM0LC0xNTg1NzE5NzQ4LC0xNj
+g3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
