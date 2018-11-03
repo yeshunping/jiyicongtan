@@ -263,11 +263,11 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 ## 代码大小优化
 
-默认的栈对齐大小为4字或者16字。对于空间受限的系统，默认值可以调整到8字节，使用 -mpreferred-stack-boundary=2 选项即可。定义常量（如字符串或浮点值）时，这些独立值通常在内存中占用唯一的地址。与其让它们使用不同的地址，相同的常量可以合并到一起，以降低存储它们的空间。这个优化可以使用
-The default stack alignment is 4, or 16 words. For space-constrained systems, the default can be minimized to 8 bytes by using the option -mpreferred-stack-boundary=2. When constants are defined, such as strings or floating-point values, these independent values commonly occupy unique locations in memory. Rather than allow each to be unique, identical constants can be merged together to reduce the space that's required to hold them. This particular optimization can be enabled with -fmerge-constants.
+默认的栈对齐大小为4字或者16字。对于空间受限的系统，默认值可以调整到8字节，使用 -mpreferred-stack-boundary=2 选项即可。定义常量（如字符串或浮点值）时，这些独立值通常在内存中占用唯一的地址。与其让它们使用不同的地址，相同的常量可以合并到一起，以降低存储它们的空间。这个优化可以使用 -fmerge-constants 启用。
 
 ## 显卡硬件优化
 
+依赖于特定的体系结构，一些其它的扩展会被启用。这些扩展也可以被显式启用或禁用。
 Depending on the specified target architecture, certain other extensions are enabled. These also can be enabled or disabled explicitly. Options such as -mmmx and -m3dnow are enabled automatically for architectures that support them.
 
 ## 其它可能性
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTM0Nzg2ODUsODQyNDYzOTg1LDEyNT
-cxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAz
-Mzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbMTk5NTM1MzYzMyw4NDI0NjM5ODUsMTI1Nz
+E4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5NzQ4LC0xNjg3MDMz
+ODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
