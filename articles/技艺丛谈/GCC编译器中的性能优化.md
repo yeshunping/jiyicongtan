@@ -228,8 +228,9 @@ sys     0m0.010s
 ```
 从清单2中，我们可以看到程序的指令大小（代码段）增大了28字节。不过在这个例子中，获得性能提升的代价蛮小的。
 
-## Math Unit Optimizations
+## 数学单元优化
 
+有一些特殊的优化需要开发者显shi yang
 Some specialized optimizations require explicit definition by the developer. These optimizations are specific to the i386 and x86 architectures. A math unit, for one, can be specified, although in many cases it is automatically defined based on the specification of a target architecture. Possible units for the -mfpmath= option are shown in Table 3.
 
 **表格3. 数学相关优化**
@@ -256,7 +257,7 @@ Loop unrolling occurs in the process of minimizing the number of loops by doing 
 A useful option that has the disadvantage of making an image difficult to debug is -momit-leaf-frame-pointer. This option keeps the frame pointer out of a register, which means less setup and restore of this value. In addition, it makes the register available for the code to use. The optimization -fomit-frame-pointer also can be useful.
 
 When operating at level -O3 or having -finline-functions specified, the size limit of the functions that may be inlined can be specified through a special parameter interface. The following command illustrates capping the size of the functions to inline at 40 instructions:
-```
+```cpp
 gcc -o sort sort.c --param max-inline-insns=40
 ```
 This can be useful to control the size by which an image is increased using -finline-functions.
@@ -286,7 +287,7 @@ A final fringe optimization is -fsched-spec-load, which works with the -fschedul
 Earlier we used the time command to identify how much time was spent in a given command. This can be useful, but when we're profiling our application, we need more insight into the image. The gprof utility provided by GNU and the GCC compiler meets this need. Full coverage of gprof is outside the scope of this article, but Listing 3 illustrates its use.
 
 **Listing 3. Simple Example of gprof**
-```
+```cpp
 [mtj@camus]$ gcc -o sort sort.c -pg -O2 -march=pentium2
 [mtj@camus]$ ./sort
 [mtj@camus]$ gprof --no-graph -b ./sort gmon.out
@@ -304,7 +305,7 @@ The image is compiled with the -pg option to include profiling instructions in t
 Reading the example from Listing 3, we can see that bubbleSort was called once and took 790ms. The init_list function also was called, but it took less than 10ms to complete (the resolution of the profile sampling), so its value was zero.
 
 If we're more interested in changes in the size of the object than speed, we can use the size command. For more specific information, we can use the objdump utility. To see a list of the functions in our object, we can search for the .text sections, as in:
-```
+```cpp
 objdump -x sort | grep .text
 ```
 From this short list, we can identify the particular function we're interested in understanding better.
@@ -314,18 +315,18 @@ From this short list, we can identify the particular function we're interested i
 The GCC optimizer is essentially a black box. Options and optimization flags are specified, and the resulting code may or may not improve. When they do improve, what exactly happened within the resulting code? This question can be answered by looking at the resulting code.
 
 To emit target instructions from the compiler, the -S option can be specified, such as:
-```
+```cpp
 gcc -c -S test.c
 ```
 which tells gcc to compile the source only (-c) but also to emit assembly code for the source (-S). The resulting assembly output will be contained in the file test.s.
 
 The disadvantage of the previous approach is you see only assembly code, no aspect of the size of the actual instructions is given. For this, we can use objdump to emit both assembly and native instructions, like so:
-```
+```cpp
 gcc -c -g test.c
 objdump -d test.o
 ```
 For gcc, we specify compile with only -c, but we also want to include debug information in the object (-g). Using objdump, we specify the -d option to disassemble the instructions in the object. Finally, we can get assembly-interspersed source listings with:
-```
+```cpp
 gcc -c -g -Wa,-ahl,-L test.c
 ```
 This command uses the GNU assembler to emit the listing. The -Wa option is used to pass the -ahl and -L options to the assembler to emit a listing to standard-out that contains the high-level source and assembly. The -L option retains the local symbols in the symbol table.
@@ -341,7 +342,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTAyMjU0NDEzLDEyNTcxODkzNzQsMTUxOD
+eyJoaXN0b3J5IjpbLTY4NTE3MTA0LDEyNTcxODkzNzQsMTUxOD
 Q0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0
 MzU5LC02Mzg2MTk5NDRdfQ==
 -->
