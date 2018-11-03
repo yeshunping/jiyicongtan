@@ -332,13 +332,13 @@ This command uses the GNU assembler to emit the listing. The -Wa option is used 
 
 ## 结论
 
-所有的应用程序
+应用程序都互不相同，所有并不存在神奇的优化配置和选项开关能生成最好的结果。
 All applications are different, so there's no magic configuration of optimization and option switches that yield the best result. The simplest way to achieve good performance is to rely on the -O2 optimization level; if you're not interested in portability, specify the target architecture using -march=. For space-constrained applications, the -Os optimization level should be considered first. If you're interested in squeezing the most performance out of your application, your best bet is to try out the different levels and then use the various utilities to check the resulting code. Enabling and/or disabling certain optimizations also may help exploit the optimizer to receive the best performance.
 
 **Resources for this article:**  [www.linuxjournal.com/article/7971](http://www.linuxjournal.com/article/7971).
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzIwOTA3Nzc5LC0xNTg1NzE5NzQ4LC0xNj
-g3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
+eyJoaXN0b3J5IjpbLTE1MTUzMTg3MzMsLTE1ODU3MTk3NDgsLT
+E2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
 -->
