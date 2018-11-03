@@ -157,11 +157,11 @@ gcc -Os -o test test.c
 
 ### 优化级别 3 (-O3)
 
-第三级（也是最高级别）优化会启用更多的优化方法（见表格1），相比代码大小，该级别更侧重执行速度。它包括-O2启用的所有优化选项，以及寄存器重命名。函数内联也会在这个级别启用，它会zeng
-The third and highest level enables even more optimizations (Table 1) by putting emphasis on speed over size. This includes optimizations enabled at -O2 and rename-register. The optimization inline-functions also is enabled here, which can increase performance but also can drastically increase the size of the object, depending upon the functions that are inlined. The third level is enabled as:
+第三级（也是最高级别）优化会启用更多的优化方法（见表格1），相比代码大小，该级别更侧重执行速度。它包括-O2启用的所有优化选项，以及寄存器重命名。函数内联也会在这个级别启用，它会提高执行速度，但是也有可能较大增加目标文件的大小，这取决于被内联函数的情况。第三级优化使用以下方式打开：
 ```
 gcc -O3 -o test test.c
 ```
+虽然-O3能sheng che
 Although -O3 can produce fast code, the increase in the size of the image can have adverse effects on its speed. For example, if the size of the image exceeds the size of the available instruction cache, severe performance penalties can be observed. Therefore, it may be better simply to compile at -O2 to increase the chances that the image fits in the instruction cache.
 (在最新的 8.2.0版本中，该级别包含：
 ```
@@ -342,6 +342,6 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTczOTgwMzY3NCwtMTU4NTcxOTc0OCwtMT
-Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbLTc5MTA5NTY1LC0xNTg1NzE5NzQ4LC0xNj
+g3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
