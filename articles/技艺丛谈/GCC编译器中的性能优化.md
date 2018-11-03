@@ -262,7 +262,7 @@ sse2 | 流式 SIMD 扩展 II (Pentium 4)
 
 循环展开是这么一个过程：它通过在每次迭代中做更多的工作来最小化循环次数。该过程会增加程序大小，但是也能提升性能。该选项可以使用 -funroll-loops 来启用。碰到难以计算循环迭代次数的情况（这是 -funroll-loops 的必要条件），可以使用 -funroll-all-loops 优化选项来展开所有循环。
 
--momit-leaf-frame-pointer 是一个有用的选项，但是却会让程序难以调试。此选项使得帧指针不再使用寄存器，这意味着减少了存储和恢复该值的工作。（译者注：一般在函数调用的时候，先将该值保持到stack局部地址中，退出函数的时候恢复该值）。此外，这样做会使得该寄存器可以为代码所用（译者注：相当于多了一个可用寄存器）。-fomit-frame-pointer 选项也同样有用。
+-momit-leaf-frame-pointer 是一个有用的选项，但是却会让程序难以调试。此选项使得帧指针不再使用寄存器，这意味着减少了存储和恢复该值的工作。（译者注：一般在函数调用的时候，先将 FP 保持到 stack局部地址中，退出函数时，恢复该值到 FP 寄存器）。此外，这样做会使得该寄存器可以为代码所用（译者注：相当于多了一个可用寄存器）。-fomit-frame-pointer 选项也同样有用。
 
 当使用 -O3 优化级别，或者是手动指定 -finline-functions 时，被内联的函数的大小限制可以使用特殊的参数来设定。以下命令展示了将内联函数的大小限制在40条指令以内。
 ```cpp
@@ -378,8 +378,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjYzNTM5OTIsLTE1MzcwOTI3OTMsOD
-QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
-OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
-RdfQ==
+eyJoaXN0b3J5IjpbMjE0MDgyNjY5MCwtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
