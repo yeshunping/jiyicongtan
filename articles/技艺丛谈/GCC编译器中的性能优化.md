@@ -11,7 +11,7 @@
 
 最近看了篇文章，这里把它翻译过来，一来锻炼下自己翻译水平，二来让自己对这些内容更加熟悉，三来希望对读者朋友也有所帮助。
 
-后面的文章中，我会专文介绍编译器中几个典型的优化方法和思路。
+后面的文章中，我会专文介绍编译器中几个典型的优化方法，从而揭开各个主要的优化选项背后的实现方法。
 
 以下是译文部分，要阅读英文原文，请点击文末“阅读原文”。
 ```
@@ -384,7 +384,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYxNzgzNTA1NiwtMTUzNzA5Mjc5Myw4ND
+eyJoaXN0b3J5IjpbMTI2MTE4MjUyMSwtMTUzNzA5Mjc5Myw4ND
 I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
 NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
 19
