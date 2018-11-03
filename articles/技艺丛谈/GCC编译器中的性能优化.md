@@ -303,11 +303,11 @@ Each sample counts as 0.01 seconds.
 
 从清单3可见，bubbleSort 函数被调用了一次，花费了790毫秒。init_list 函数也被调用了，但是使用了不到10毫秒（性能剖析采样的基本时长），所以其数值为0。
 
-如果我们对程序文件大小（而非速度）的改变更感兴趣，我们可以使用 size 命令。如果想查看更详细的信息，我们可以使用 objdump 工具。如果要看目标文件中的函数列表，
-If we're more interested in changes in the size of the object than speed, we can use the size command. For more specific information, we can use the objdump utility. To see a list of the functions in our object, we can search for the .text sections, as in:
+如果我们对程序文件大小（而非速度）的改变更感兴趣，我们可以使用 size 命令。如果想查看更详细的信息，我们可以使用 objdump 工具。如果要看目标文件中的函数列表，可以搜索 .text 段，比如 
 ```cpp
 objdump -x sort | grep .text
 ```
+从这个简短的清单中，我们可以定位到相关的函数以更好de
 From this short list, we can identify the particular function we're interested in understanding better.
 
 ## 检查优化结果
@@ -372,8 +372,8 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDA2NzYxMDQ2LC0xNTM3MDkyNzkzLDg0Mj
-Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
-NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
-0=
+eyJoaXN0b3J5IjpbMTU0NTU5MjU3NiwtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
