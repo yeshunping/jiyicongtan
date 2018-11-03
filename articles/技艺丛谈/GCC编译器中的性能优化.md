@@ -271,7 +271,7 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 ## 其它可能性
 
-至此，我们已经讨论了很多优化方法和编译器xuan
+至此，我们已经讨论了很多优化方法和编译器选项，它们要么可以提高性能，要么可以减小程序大小。现在让我们来看一下其它较为少用的优化，它们可能也会让你的程序shou yi。
 We've discussed many optimizations and compiler options that can increase performance or decrease size. Let's now look at some fringe optimizations that may provide a benefit to your application.
 
 The -ffast-math optimization provides transformations likely to result in correct code but it may not adhere strictly to the IEEE standard. Use it, but test carefully.
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MTgzMDEyMjcsODQyNDYzOTg1LDEyNT
-cxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAz
-Mzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbNTA3ODQyMjM2LDg0MjQ2Mzk4NSwxMjU3MT
+g5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3NDgsLTE2ODcwMzM4
+NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
 -->
