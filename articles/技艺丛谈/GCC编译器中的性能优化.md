@@ -14,7 +14,7 @@
 以下是译文部分，要阅读英文原文，请点击文末“阅读原文”。
 ```
 
-本文中，我们将一起来看看GCC编译工具链提供的性能优化的不同级别，包括各个级别包括的优化选项。我们也会指出需要显式添加的优化选项，其中有一些依赖于特定的体系结构。本文讨论以GCC 3.2.2 版本为例（2003年2月发版），不过这也适用于当前的发行版本3.3.2.（译者注：目前GCC版本比这个高多了，不过不妨碍我们了解编译器的常用优化选项）
+本文中，我们将一起来看看GCC编译工具链提供的性能优化的不同级别，包括各个级别包含的优化选项。我们也会指出需要显式添加的优化选项，其中有一些依赖于特定的体系结构。本文讨论以 GCC 3.2.2 版本为例（2003年2月发版），不过这也适用于当前的发行版本3.3.2.（译者注：目前GCC最新版本为8.2.0，比这个高多了，不过不妨碍我们了解编译器的常用优化选项和优化手段。我在译文中也添加了一些最新版本大的xiang gua信息）
 
 
 ## 优化级别
@@ -369,8 +369,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1MDM0Mjg1LC0xNTM3MDkyNzkzLDg0Mj
-Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
-NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
-0=
+eyJoaXN0b3J5IjpbMTgzNDI1NDE4NCwtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
