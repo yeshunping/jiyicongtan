@@ -299,7 +299,7 @@ Each sample counts as 0.01 seconds.
   0.00      0.79     0.00        1     0.00     0.00  init_list
 [mtj@camus]$
 ```
-编译程序时，使用 -pg  选项以在程序中插入性能剖析指令。程序执行后，会生成一个 gmon.out 文件，使用该文件和 gprof 工具，可以输出可读性很好的性能剖析数据。在shang
+编译程序时，使用 -pg  选项以在程序中插入性能剖析指令。程序执行后，会生成一个 gmon.out 文件，使用该文件和 gprof 工具，可以输出可读性很好的性能剖析数据。在上面的 gprof 例子中，我们使用了  -b 和 --no-graph 参数。为了获取简洁的输出信息（去除冗长的字段解释），我们指定 -b 参数。
 The image is compiled with the -pg option to include profiling instructions in the image. Upon execution of the image, a gmon.out file results that can be used with the gprof utility to produce human-readable profiling data. In this use of gprof, we specify the -b and --no-graph options. For brief output (excludes the verbose field explanations), we specify -b. The --no-graph option disables the emission of the function call-graph; it identifies which functions call which others and the time spent on each.
 
 Reading the example from Listing 3, we can see that bubbleSort was called once and took 790ms. The init_list function also was called, but it took less than 10ms to complete (the resolution of the profile sampling), so its value was zero.
@@ -372,8 +372,8 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY2NTk1MTkxMCwtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbLTIwNjMyNTE1ODUsLTE1MzcwOTI3OTMsOD
+QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
+OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
+RdfQ==
 -->
