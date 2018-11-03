@@ -195,7 +195,7 @@ gcc -O3 -o test test.c
 
 现在让我们看一个例子，以看清如何通过指定目标机器的体系结构提高执行速度。让我们写一个简单的程序，该程序对1万个元素的数组进行冒泡排序。数组元素是倒序的，以让冒泡排序算法的性能最差。编译和计时过程显示如下：
 
-**清单1. Effects of Architecture Specification on a Simple Application**
+**清单1. 指定体系结构如何影响简单程序的性能**
 ```
 [mtj@camus]$ gcc -o sort sort.c -O2
 [mtj@camus]$ time ./sort
@@ -211,6 +211,7 @@ user    0m0.790s
 sys     0m0.010s
 [mtj@camus]$
 ```
+通过指定体系结构（本例中是633MHz 的Celeron处理器），本
 By specifying the architecture, in this case a 633MHz Celeron, the compiler can generate instructions for the particular target as well as enable other optimizations available only to that target. As shown in Listing 1, by specifying the architecture we see a time benefit of 237ms (23% improvement).
 
 Although Listing 1 shows an improvement in speed, the drawback is that the image is slightly larger. Using the size command (Listing 2), we can identify the sizes of the various sections of the image.
@@ -342,7 +343,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg2NTQ0NTcwOCwxNTE4NDQwNTQwLC0xNT
+eyJoaXN0b3J5IjpbLTUwNDc2Nzc3MSwxNTE4NDQwNTQwLC0xNT
 g1NzE5NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYx
 OTk0NF19
 -->
