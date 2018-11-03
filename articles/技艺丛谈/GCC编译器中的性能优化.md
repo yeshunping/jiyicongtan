@@ -2,7 +2,16 @@
 译者：叶顺平
 
 ```
+性能优化这个事情，主要从几个维度进行：
+1，硬件能力的充分发挥，比如存储器的各个层次结构，比如特定的指令集（SSE，AVX等），比如CPU pipeline的充分利用。
+2，编译器的选择与编译选项的熟练使用。
+3，应用程序的熟悉与优化（语言层面，算法层面等）。
 
+了解编译器提供的优化选项，不仅可以直接使用编译器提供的能力，为你的程序直接进行加速，还可以让你知道通用的程序加速手段。因为很明显，搞编译器的人，更清楚性能角度的common case何在。假如掌握了编译器的一些优化手段，应用程序层面的优化就很好开展了。
+
+最近看了篇文章，顺手翻译为中文，一来锻炼下自己翻译水平，二来让自己更加熟悉，三来希望对读者朋友也有所帮助。
+
+以下是译文部分，要阅读英文原文，请点击文末“阅读原文”的链接。
 ```
 
 本文中，我们将一起来看看GCC编译工具链提供的性能优化的不同级别，包括各个级别包括的优化选项。我们也会指出需要显式添加的优化选项，其中有一些依赖于特定的体系结构。本文讨论以GCC 3.2.2 版本为例（2003年2月发版），不过这也适用于当前的发行版本3.3.2.（译者注：目前GCC版本比这个高多了，不过不妨碍我们了解编译器的常用优化选项）
@@ -225,7 +234,7 @@ Math Unit Optimizations
 
 Some specialized optimizations require explicit definition by the developer. These optimizations are specific to the i386 and x86 architectures. A math unit, for one, can be specified, although in many cases it is automatically defined based on the specification of a target architecture. Possible units for the -mfpmath= option are shown in Table 3.
 
-**Table 3. Math Unit Optimizations**
+**表格3. 数学相关优化**
 选项 | 描述 
 ------------ | ------
 387 | Standard 387 Floating Point Coprocessor
@@ -334,6 +343,6 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODE0NjgwMDAzLC0xNTg1NzE5NzQ4LC0xNj
+eyJoaXN0b3J5IjpbNDc0MjEyOTg5LC0xNTg1NzE5NzQ4LC0xNj
 g3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
