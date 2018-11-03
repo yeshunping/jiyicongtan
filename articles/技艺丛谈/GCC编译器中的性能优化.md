@@ -161,8 +161,8 @@ gcc -Os -o test test.c
 ```
 gcc -O3 -o test test.c
 ```
-虽然-O3能生成更快的代码，但是代码大小的增加，也可能对代码性能有相反的作用。比如，代码大小超过可以获得的指令缓存的大小，
-Although -O3 can produce fast code, the increase in the size of the image can have adverse effects on its speed. For example, if the size of the image exceeds the size of the available instruction cache, severe performance penalties can be observed. Therefore, it may be better simply to compile at -O2 to increase the chances that the image fits in the instruction cache.
+虽然-O3能生成更快的代码，但是代码大小的增加，也可能对代码性能有相反的作用。比如，代码大小超过可以获得的指令缓存的大小，就可能导致严重的性能下降。因此，也许更保险的方式是使用-O2进行编译，以增大代码大小适合指令缓存的概率。
+
 (在最新的 8.2.0版本中，该级别包含：
 ```
 -finline-functions
@@ -342,6 +342,6 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2OTkyOTMzNywtMTU4NTcxOTc0OCwtMT
+eyJoaXN0b3J5IjpbLTc1ODA2MTg3NiwtMTU4NTcxOTc0OCwtMT
 Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
