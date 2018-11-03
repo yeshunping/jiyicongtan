@@ -58,10 +58,9 @@ gcc -O2 -o test test.c
 ```
 gcc -Os -o test test.c
 ```
-在GCC 3.2.2 版本中，
-In gcc 3.2.2, reorder-blocks is enabled at -Os, but in gcc 3.3.2 reorder-blocks is disabled.
+在GCC 3.2.2 版本中，reorder-blocks 在-Os级别中会被打开，但在3.3.2版本中不会打开。
 
-### Level 3 (-O3)
+### 优化级别 3 (-O3)
 
 The third and highest level enables even more optimizations (Table 1) by putting emphasis on speed over size. This includes optimizations enabled at -O2 and rename-register. The optimization inline-functions also is enabled here, which can increase performance but also can drastically increase the size of the object, depending upon the functions that are inlined. The third level is enabled as:
 ```
@@ -225,6 +224,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzk2NTc1MzYsLTE2ODcwMzM4NDYsMTE0Mj
-k3NDM1OSwtNjM4NjE5OTQ0XX0=
+eyJoaXN0b3J5IjpbLTE1ODU3MTk3NDgsLTE2ODcwMzM4NDYsMT
+E0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
 -->
