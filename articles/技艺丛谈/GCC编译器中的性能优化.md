@@ -43,6 +43,7 @@ gcc -fdefer-pop -o test test.c
 gcc -O1 -fno-defer-pop -o test test.c
 ```
 这句编译命令会打开所有第一级的优化策略，但是禁用其中的 defer-pop 优化策略。
+(译者注： 在)
 
 ### 优化级别2 (-O2)
 
@@ -224,6 +225,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODU3MTk3NDgsLTE2ODcwMzM4NDYsMT
-E0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
+eyJoaXN0b3J5IjpbMjAyNzQ3OTg5NSwtMTU4NTcxOTc0OCwtMT
+Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
