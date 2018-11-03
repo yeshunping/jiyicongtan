@@ -277,13 +277,14 @@ gcc -o sort sort.c --param max-inline-insns=40
 ## 显卡硬件优化
 
 依赖于特定的体系结构，一些其它的扩展会被启用。这些扩展也可以被显式启用或禁用。诸如 -mmmx 和 -m3dnow 的选项，会在支持它们的平台中自动启用。
-（译者注：类似于 SIMD，GPU 在数据并行方面做到了极致，这也是深度学习兴起后，GPU 服务器广为使用的原因。计算机的性能优化的一个主线是并行的思想，其中一个是 ILP，一个是DLP，前者比如CPU流水线技术，后者比如 SIMD 和 GPU 体系结构。另外就是线程级并行（多线程），和机器级别并行了（ji suan ji集群））
+
+（译者注：类似于 SIMD，GPU 在数据并行方面做到了极致，这也是深度学习兴起后，GPU 服务器广为使用的原因。计算机的性能优化的一个主线是并行的思想，其中一个是 ILP，一个是DLP，前者比如CPU流水线技术，后者比如 SIMD 和 GPU 体系结构。另外就是线程级并行（多线程），和机器级别并行了（计算机集群））
 
 ## 其它可能性
 
 至此，我们已经讨论了很多优化方法和编译器选项，它们要么可以提高性能，要么可以减小程序大小。现在让我们来看一下其它较为少用的优化，它们可能也会让你的程序获益。
 
--ffast-math 优化提供了某种转换，它生成的代码很可能是正确的，但并不严格遵守IEEE标准。使用它们，但是请仔细测试它们。（译者注：比如将a = a * a * a * a * a * a * a * a 转换为 a = (a * a) * (a * a) * (a * a * a * a) , 从而转换为 a *=  a, a *= a, a *= a, 从而7次浮点计算变为3次浮点计算）
+-ffast-math 优化提供了某种转换，它生成的代码很可能是正确的，但并不严格遵守IEEE标准。使用它们，但是请仔细测试它们。（译者注：比如将a = a * a * a * a * a * a * a * a 转换为 a =( (a * a) * (a * a)) * ((a * a) * (a * a)) , 从而转换为 a *=  a,  a *= a, a *= a, 从而 7 次浮点计算变为 3 次浮点计算）
 
 当全局公共子表达式消除被启用时 （-fgcse 选项,  -O2 或以上），可以考虑启用另外两个选项，以减少读取和存储操作的次数。-fgcse-lm 和 -fgcse-sm 优化可以将循环内的读取和存储移到循环外，以降低循环内的指令数，提高循环的执行性能。-fgcse-lm (读取) 和 -fgcse-sm (存储) 两个选项需要一起设置。
 
@@ -379,8 +380,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjI2Nzc3NTE0LC0xNTM3MDkyNzkzLDg0Mj
-Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
-NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
-0=
+eyJoaXN0b3J5IjpbLTExNjQ1Njk2MiwtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
