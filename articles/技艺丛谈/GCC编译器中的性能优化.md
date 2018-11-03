@@ -254,15 +254,15 @@ sse2 | 流式 SIMD 扩展 II (Pentium 4)
 
 在第二级优化中，我们已经看到，有一些优化方法会提高性能，但是也会增加程序大小。该体系结构还有特殊的三个其它对齐优化。-malign-int 选项会让数据类型对齐到 32 比特。如果你的程序运行在 16 比特机器，则可以使用 -mno-align-int。-malign-double 选项用于控制 doubles, long doubles 和 long-longs 是否对齐到双字边界（禁用的话则使用 -mno-align-double）。对齐双精度浮点数在奔腾处理器上能获得更好的性能，但是会耗费更多的内存。
 
-栈也可以进行对齐，使用 -mpreferred-stack-boundary 选项即可。开发者可以指定2的幂作为对齐大小。比如，开发者指定 -mpreferred-stack-boundary=4, 栈会对齐到16 字节（这是默认大小）。在奔腾和奔腾Pro 处理器上，栈上的双精度会对齐到8字节边界，但是奔腾III 处理器使用16字节对齐表现更好。
+栈也可以进行对齐，使用 -mpreferred-stack-boundary 选项即可。开发者可以指定2的幂作为对齐大小。比如，开发者指定 -mpreferred-stack-boundary=4, 栈会对齐到 16 字节（这是默认大小）。在奔腾和奔腾Pro 处理器上，栈上的双精度会对齐到 8 字节边界，但是奔腾III 处理器使用 16 字节对齐表现更好。
 
 ## 速度优化
 
-对那些使用了标准库函数的应用程序，比如使用了memset, memcpy 或者 strlen，-minline-all-stringops 选项可以通过内联这些字符串操作函数来提高性能。当然这个会增大二进制文件大小。
+对那些使用了标准库函数的应用程序，比如使用了 memset, memcpy 或者 strlen，-minline-all-stringops 选项可以通过内联这些字符串操作函数来提高性能。当然这会增大二进制文件大小。
 
 循环展开是这么一个过程：它通过在每次迭代中做更多的工作来最小化循环次数。该过程会增加程序大小，但是也能提升性能。该选项可以使用 -funroll-loops 来启用。碰到难以计算循环迭代次数的情况（这是 -funroll-loops 的必要条件），可以使用 -funroll-all-loops 优化选项来展开所有循环。
 
--momit-leaf-frame-pointer 是一个有用的选项，但是却会让程序难以调试的。此选项使得帧指针不再使用寄存器，这意味着减少了存储和恢复该值的工作。（译者注：一般在函数调用的时候，先将该值保持到stack局部地址中，退出函数的时候恢复该值）。此外，这样做会使得该寄存器可以为代码所用（译者注：相当于多了一个可用寄存器）。-fomit-frame-pointer 选项也同样有用。
+-momit-leaf-frame-pointer 是一个有用的选项，但是却会让程序难以调试。此选项使得帧指针不再使用寄存器，这意味着减少了存储和恢复该值的工作。（译者注：一般在函数调用的时候，先将该值保持到stack局部地址中，退出函数的时候恢复该值）。此外，这样做会使得该寄存器可以为代码所用（译者注：相当于多了一个可用寄存器）。-fomit-frame-pointer 选项也同样有用。
 
 当使用 -O3 优化级别，或者是手动指定 -finline-functions 时，被内联的函数的大小限制可以使用特殊的参数来设定。以下命令展示了将内联函数的大小限制在40条指令以内。
 ```cpp
@@ -378,7 +378,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDE4MDU1NzQsLTE1MzcwOTI3OTMsOD
+eyJoaXN0b3J5IjpbLTE3NjYzNTM5OTIsLTE1MzcwOTI3OTMsOD
 QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
 OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
 RdfQ==
