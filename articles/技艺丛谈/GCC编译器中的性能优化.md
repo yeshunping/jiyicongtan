@@ -243,9 +243,9 @@ sse2 | 流式 SIMD 扩展 II (Pentium 4)
 
 ## 对齐优化
 
-在第二级优化中，我们已经看到，有一些优化方法会提高性能，但是也会增加程序大小。该体系结构还有特殊的三个其它对齐优化。-malign-int 选项会让数据类型对齐到32比特。如果你的程序允许在16比特机器，则可以使用-mno-align-int。-malign-double选项用于控制doubles, long doubles 和 long-longs是否对齐到双字边界（禁用的话则使用 -mno-align-double）。对齐双精度浮点数
-In the second optimization level, we saw that a number of alignment optimizations were introduced that had the effect of increasing performance but also increasing the size of the resulting image. Three additional alignment optimizations specific to this architecture are available. The -malign-int option allows types to be aligned on 32-bit boundaries. If you're running on a 16-bit aligned target, -mno-align-int can be used. The -malign-double controls whether doubles, long doubles and long-longs are aligned on two-word boundaries (disabled with -mno-align-double). Aligning doubles provides better performance on Pentium architectures at the expense of additional memory.
+在第二级优化中，我们已经看到，有一些优化方法会提高性能，但是也会增加程序大小。该体系结构还有特殊的三个其它对齐优化。-malign-int 选项会让数据类型对齐到32比特。如果你的程序允许在16比特机器，则可以使用-mno-align-int。-malign-double选项用于控制doubles, long doubles 和 long-longs是否对齐到双字边界（禁用的话则使用 -mno-align-double）。对齐双精度浮点数在奔腾处理器上能获得更好的性能，但是会耗费更多的内存。
 
+栈也可以进行对齐，使用 -mpreferred-stack-boundary 选项即可。开发者可以指定2的幂作为对齐d
 Stacks also can be aligned by using the option -mpreferred-stack-boundary. The developer specifies a power of two for alignment. For example, if the developer specified  -mpreferred-stack-boundary=4, the stack would be aligned on a 16-byte boundary (the default). On the Pentium and Pentium Pro targets, stack doubles should be aligned on 8-byte boundaries, but the Pentium III performs better with 16-byte alignment.
 
 ## Speed Optimizations
@@ -342,7 +342,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAyNzkzNjg0MiwxMjU3MTg5Mzc0LDE1MT
-g0NDA1NDAsLTE1ODU3MTk3NDgsLTE2ODcwMzM4NDYsMTE0Mjk3
-NDM1OSwtNjM4NjE5OTQ0XX0=
+eyJoaXN0b3J5IjpbMjU5NzE0MDY5LDEyNTcxODkzNzQsMTUxOD
+Q0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0
+MzU5LC02Mzg2MTk5NDRdfQ==
 -->
