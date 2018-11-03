@@ -327,15 +327,16 @@ GCC 编译器如同黑盒子。指定优化选项和优化级别后，程序也�
 ```cpp
 gcc -c -S test.c
 ```
-告诉编译器进行只源码编译（-c）(译者注：而不进行链接)，但是输出源码对应的汇编代码(-S)。生成的汇编代码在 test.s 文件中。
+告诉编译器只进行源码编译（-c）(译者注：而不进行链接)，并输出源码对应的汇编代码(-S)。生成的汇编代码在 test.s 文件中。
 
-上述方法的不足之处在于，你可能看到汇编代码，真实指令大小方面的信息并没有提供（译者注：因为一些平台的指令是变长的，因此指令个数和指令大小不完全相同。也有一些体系结构的指令的定长的，比如MIPS）。为此，我们可以使用 objdump 工具，以输出汇编和原始指令，比如：
+上述方法的不足之处在于，你可能看到汇编代码，真实指令大小方面的信息并没有提供（译者注：因为一些平台的指令是变长的，因此指令个数和指令大小不完全成正比。也有一些体系结构的指令是定长的，比如 MIPS）。为此，我们可以使用 objdump 工具，以输出汇编和原始指令，比如：
 ```cpp
 gcc -c -g test.c
 objdump -d test.o
 ```
 我们指定了 -c 进行编译，但是我们也想在目标文件中包含调试信息，这可以使用 -g 选项。
-使用objdump工具，我们指定 -d 参数以反汇编目标文件中的指令。最后，我们可以使用汇编和源码交错的文件列表：
+
+使用 objdump工具，我们指定 -d 参数以反汇编目标文件中的指令。最后，我们可以使用汇编和源码交错的文件列表：
 ```cpp
 gcc -c -g -Wa,-ahl,-L test.c
 ```
@@ -382,8 +383,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwODA0MTU0MDEsLTE1MzcwOTI3OTMsOD
-QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
-OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
-RdfQ==
+eyJoaXN0b3J5IjpbLTUyNjIzNTU4MCwtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
