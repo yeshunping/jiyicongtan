@@ -301,9 +301,9 @@ Each sample counts as 0.01 seconds.
 ```
 编译程序时，使用 -pg  选项以在程序中插入性能剖析指令。程序执行后，会生成一个 gmon.out 文件，使用该文件和 gprof 工具，可以输出可读性很好的性能剖析数据。在上面的 gprof 例子中，我们使用了  -b 和 --no-graph 参数。为了获取简洁的输出信息（去除冗长的字段解释），我们指定 -b 参数。--no-graph 参数禁止输出函数调用图——它说明了函数之间的调用关系，以及各个函数耗费的时间。
 
-从清单3可见，bubbleSort 函数被调用了一次，花费了790毫秒。init_list 函数也被调用了，但是使用了不到10毫秒（性能剖析采样数据的分析结果），。
-Reading the example from Listing 3, we can see that bubbleSort was called once and took 790ms. The init_list function also was called, but it took less than 10ms to complete (the resolution of the profile sampling), so its value was zero.
+从清单3可见，bubbleSort 函数被调用了一次，花费了790毫秒。init_list 函数也被调用了，但是使用了不到10毫秒（性能剖析采样的基本时长），所以其数值为0。
 
+如果我们对程序文件大小的改变geng gan xing we
 If we're more interested in changes in the size of the object than speed, we can use the size command. For more specific information, we can use the objdump utility. To see a list of the functions in our object, we can search for the .text sections, as in:
 ```cpp
 objdump -x sort | grep .text
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODQ3MTM2NjAsLTE1MzcwOTI3OTMsOD
+eyJoaXN0b3J5IjpbLTE2ODQ1MTI2MzgsLTE1MzcwOTI3OTMsOD
 QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
 OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
 RdfQ==
