@@ -36,7 +36,7 @@ O1级别的优化使用以下方式打开：
 gcc -O1 -o test test.c
 ```
 
-除了指定优化级别，任何优化选项都可以使用优化名和 -f 前缀打开。如下：
+除了通过指定优化级别，任何优化选项都可以使用优化名和 -f 前缀打开。如下：
 
 ```cpp
 gcc -fdefer-pop -o test test.c
@@ -46,7 +46,8 @@ gcc -fdefer-pop -o test test.c
 ```cpp
 gcc -O1 -fno-defer-pop -o test test.c
 ```
-这句编译命令会打开所有第一级的优化策略，但是禁用其中的 defer-pop 优化策略。
+这句编译命令会启用所有第一级的优化策略，但是禁用其中的 defer-pop 优化策略。
+
 (译者注： 在最新的8.2.0版本中，-O1级别包含以下编译选项：
 ```cpp
 -fauto-inc-dec
@@ -97,12 +98,14 @@ gcc -O1 -fno-defer-pop -o test test.c
 
 ### 优化级别2 (-O2)
 
-第二级优化执行所有指定平台支持的所有其它优化方法，只是不包括以空间换时间的方法，以取得两个目标（译者注：也就是降低目标文件大小和提高执行速度）之间的平衡。比如，循环展开和函数内联就不会执行，因为它们虽然可能带来代码性能的提升，也会以增大代码大小为代价。第二级优化使用以下方式打开：
+第二级优化执行指定平台支持的所有其它优化方法，只是不包括以空间换时间的方法，以取得两个目标（译者注：也就是降低目标文件大小和提高执行速度）之间的平衡。比如，循环展开和函数内联就不会执行，因为它们虽然可能带来代码性能的提升，也会以增大代码大小为代价。第二级优化使用以下方式打开：
 ```cpp
 gcc -O2 -o test test.c
 ```
+
 表格1显示了-O2 级别的优化方法。-O2优化级别包含-O1级别的所有优化方法，并增加了其它不少优化。
 (译者注：在8.2.0 版本中，-O2 级别包括以下编译选项：
+
 ```cpp
 -fthread-jumps
 -falign-functions  -falign-jumps
@@ -372,7 +375,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MTMwODY5NywtMTUzNzA5Mjc5Myw4ND
+eyJoaXN0b3J5IjpbMTYwNzIyMTM2NywtMTUzNzA5Mjc5Myw4ND
 I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
 NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
 19
