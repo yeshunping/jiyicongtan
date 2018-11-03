@@ -46,7 +46,7 @@ gcc -O1 -fno-defer-pop -o test test.c
 
 ### 优化级别2 (-O2)
 
-第二级优化执行所有指定平台支持的所有其它优化方法（bu b），
+第二级优化执行所有指定平台支持的所有其它优化方法（不包括以空间换时间的方法），
 The second level of optimization performs all other supported optimizations within the given architecture that do not involve a space-speed trade-off, a balance between the two objectives. For example, loop unrolling and function inlining, which have the effect of increasing code size while also potentially making the code faster, are not performed. The second level is enabled as:
 ```
 gcc -O2 -o test test.c
@@ -225,6 +225,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyMDI2OTUzOSwtMTY4NzAzMzg0NiwxMT
+eyJoaXN0b3J5IjpbLTk0MDcwNjMxMSwtMTY4NzAzMzg0NiwxMT
 QyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
