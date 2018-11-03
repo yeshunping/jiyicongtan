@@ -259,10 +259,10 @@ sse2 | 流式 SIMD 扩展 II (Pentium 4)
 ```cpp
 gcc -o sort sort.c --param max-inline-insns=40
 ```
-这在使用 -finline-functions shi
-This can be useful to control the size by which an image is increased using -finline-functions.
+如果使用 -finline-functions 时程序却增大了，这时使用这个参数来控制程序大小就会很有用。
 
 ## 代码大小优化
+
 
 The default stack alignment is 4, or 16 words. For space-constrained systems, the default can be minimized to 8 bytes by using the option -mpreferred-stack-boundary=2. When constants are defined, such as strings or floating-point values, these independent values commonly occupy unique locations in memory. Rather than allow each to be unique, identical constants can be merged together to reduce the space that's required to hold them. This particular optimization can be enabled with -fmerge-constants.
 
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc5OTY3MTYxNyw4NDI0NjM5ODUsMTI1Nz
+eyJoaXN0b3J5IjpbMTgyNDk1MTk0Myw4NDI0NjM5ODUsMTI1Nz
 E4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5NzQ4LC0xNjg3MDMz
 ODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
