@@ -277,6 +277,7 @@ gcc -o sort sort.c --param max-inline-insns=40
 ## 显卡硬件优化
 
 依赖于特定的体系结构，一些其它的扩展会被启用。这些扩展也可以被显式启用或禁用。诸如 -mmmx 和 -m3dnow 的选项，会在支持它们的平台中自动启用。
+（译者注：类似于 SIMD，GPU 在数据并行方面做到了极致，这也是深度学习兴起后，GPU 服务器广为使用的原因。计算机的x）
 
 ## 其它可能性
 
@@ -378,8 +379,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDkyNTA5MDQsLTE1MzcwOTI3OTMsOD
-QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
-OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
-RdfQ==
+eyJoaXN0b3J5IjpbMTc0MDE0NTIxLC0xNTM3MDkyNzkzLDg0Mj
+Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
+NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
+0=
 -->
