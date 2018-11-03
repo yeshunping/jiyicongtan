@@ -267,11 +267,11 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 ## 显卡硬件优化
 
-依赖于特定的体系结构，一些其它的扩展会被启用。这些扩展也可以被显式启用或禁用。
-Depending on the specified target architecture, certain other extensions are enabled. These also can be enabled or disabled explicitly. Options such as -mmmx and -m3dnow are enabled automatically for architectures that support them.
+依赖于特定的体系结构，一些其它的扩展会被启用。这些扩展也可以被显式启用或禁用。诸如 -mmmx 和 -m3dnow 的选项，会在支持它们的平台中自动启用。
 
 ## 其它可能性
 
+至此，我们已经讨论了很多优化方法和编译器xuan
 We've discussed many optimizations and compiler options that can increase performance or decrease size. Let's now look at some fringe optimizations that may provide a benefit to your application.
 
 The -ffast-math optimization provides transformations likely to result in correct code but it may not adhere strictly to the IEEE standard. Use it, but test carefully.
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5NTM1MzYzMyw4NDI0NjM5ODUsMTI1Nz
-E4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5NzQ4LC0xNjg3MDMz
-ODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
+eyJoaXN0b3J5IjpbLTE3MTgzMDEyMjcsODQyNDYzOTg1LDEyNT
+cxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAz
+Mzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
