@@ -103,7 +103,8 @@ gcc -O1 -fno-defer-pop -o test test.c
 gcc -O2 -o test test.c
 ```
 
-表格1显示了-O2 级别的优化方法。-O2优化级别包含-O1级别的所有优化方法，并增加了其它不少优化。
+表格1显示了-O2 级别的优化方法。-O2优化级别包含 -O1 级别的所有优化方法，并增加了其它不少优化。
+
 (译者注：在8.2.0 版本中，-O2 级别包括以下编译选项：
 
 ```cpp
@@ -149,7 +150,7 @@ gcc -O2 -o test test.c
 
 ### 优化级别2.5 (-Os)
 
-除了那些会增大代码大小的优化方法，这个特殊的优化级别(-Os, s 是size 的首字母)会打开所有的-O2级别的优化方法。这个级别更强调优化代码大小而不是速度。它包括所有第二级别的优化方法，除了对齐相关的优化。对齐优化跳过了一些空间，以对齐函数、循环、跳转和标签到某个2的幂的倍数的地址，具体取决于对应的体系结构。跳过这些边界会提高执行速度（译者注：主要是Cache是按照字对齐的方式取数据和指令的），但同时也会增大编译生成的代码段大小和数据段大小（译者注：可以参考ELF文件格式），因此这些优化方法在-Os 级别会被禁用。-Os 级别使用以下方式打开：
+除了那些会增大代码大小的优化方法，这个特殊的优化级别(-Os 或 size 级别)会打开所有 -O2 级别的优化方法。这个级别更强调优化代码大小而不是速度。除了对齐相关的优化，它包括所有第二级的优化方法。对齐优化跳过了一些空间，以对齐函数、循环、跳转和标签到某个2的幂的倍数的地址，具体取决于对应的体系结构。跳过这些边界会提高执行速度（译者注：主要是Cache是按照字对齐的方式取数据和指令的），但同时也会增大编译生成的代码段大小和数据段大小（译者注：可以参考ELF文件格式），因此这些优化方法在-Os 级别会被禁用。-Os 级别使用以下方式打开：
 ```cpp
 gcc -Os -o test test.c
 ```
@@ -375,8 +376,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYwNzIyMTM2NywtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbODM2NjM1MzcwLC0xNTM3MDkyNzkzLDg0Mj
+Q2Mzk4NSwxMjU3MTg5Mzc0LDE1MTg0NDA1NDAsLTE1ODU3MTk3
+NDgsLTE2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX
+0=
 -->
