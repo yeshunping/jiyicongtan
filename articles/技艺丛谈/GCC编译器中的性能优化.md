@@ -248,13 +248,13 @@ sys     0m0.010s
 sse | 流式 SIMD 扩展 (Pentium III, Athlon 4/XP/MP)
 sse2 | 流式 SIMD 扩展 II (Pentium 4)
 
-默认选择是 -mfpmath=387。一个实验性的选择是，指定 SSE 和 387 (-mfpmath=sse,387),，这将尝试使用两个计算单元。
+默认选择是 -mfpmath=387。一个可供尝试的选择是，指定 SSE 和 387 (-mfpmath=sse,387)，这将尝试使用两个计算单元。
 
 ## 对齐优化
 
-在第二级优化中，我们已经看到，有一些优化方法会提高性能，但是也会增加程序大小。该体系结构还有特殊的三个其它对齐优化。-malign-int 选项会让数据类型对齐到32比特。如果你的程序允许在16比特机器，则可以使用-mno-align-int。-malign-double选项用于控制doubles, long doubles 和 long-longs是否对齐到双字边界（禁用的话则使用 -mno-align-double）。对齐双精度浮点数在奔腾处理器上能获得更好的性能，但是会耗费更多的内存。
+在第二级优化中，我们已经看到，有一些优化方法会提高性能，但是也会增加程序大小。该体系结构还有特殊的三个其它对齐优化。-malign-int 选项会让数据类型对齐到 32 比特。如果你的程序运行在 16 比特机器，则可以使用 -mno-align-int。-malign-double 选项用于控制 doubles, long doubles 和 long-longs 是否对齐到双字边界（禁用的话则使用 -mno-align-double）。对齐双精度浮点数在奔腾处理器上能获得更好的性能，但是会耗费更多的内存。
 
-栈也可以进行对齐，使用 -mpreferred-stack-boundary 选项即可。开发者可以指定2的幂作为对齐大小。比如，开发者指定 -mpreferred-stack-boundary=4, 栈会对齐到16字节（这是默认大小）。在奔腾和奔腾Pro 处理器上，栈上的双精度会对齐到8字节边界，但是奔腾III 处理器使用16字节对齐表现更好。
+栈也可以进行对齐，使用 -mpreferred-stack-boundary 选项即可。开发者可以指定2的幂作为对齐大小。比如，开发者指定 -mpreferred-stack-boundary=4, 栈会对齐到16 字节（这是默认大小）。在奔腾和奔腾Pro 处理器上，栈上的双精度会对齐到8字节边界，但是奔腾III 处理器使用16字节对齐表现更好。
 
 ## 速度优化
 
@@ -378,8 +378,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY3MzU3MTAyNiwtMTUzNzA5Mjc5Myw4ND
-I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
-NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
-19
+eyJoaXN0b3J5IjpbLTE1MDE4MDU1NzQsLTE1MzcwOTI3OTMsOD
+QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
+OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
+RdfQ==
 -->
