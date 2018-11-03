@@ -3,7 +3,7 @@
 
 ```cpp
 性能优化这个事情，主要从几个维度进行：
-1，硬件能力的充分发挥，比如存储器的各个层次结构，比如特定的指令集（SSE，AVX等），比如CPU pipeline的充分利用。
+1，硬件能力的充分发挥，比如存储器的各个层次结构，特定的指令集（SSE，AVX等），比如CPU pipeline的充分利用。
 2，编译器的选择与编译选项的熟练使用。
 3，应用程序的熟悉与优化（语言层面，算法层面等）。
 
@@ -369,8 +369,8 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MzA5MjEzMDUsLTE1MzcwOTI3OTMsOD
-QyNDYzOTg1LDEyNTcxODkzNzQsMTUxODQ0MDU0MCwtMTU4NTcx
-OTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5ND
-RdfQ==
+eyJoaXN0b3J5IjpbMTg0NzY4NjM1NywtMTUzNzA5Mjc5Myw4ND
+I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
+NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
+19
 -->
