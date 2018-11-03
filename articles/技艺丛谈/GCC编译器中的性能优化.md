@@ -279,7 +279,7 @@ gcc -o sort sort.c --param max-inline-insns=40
 
 -fforce-addr 优化选项强制编译器将存储器内存先拷贝到寄存器，然后再执行任何数学运算。 -fforce-mem 也类似，它在优化级别-O2, -Os 和 -O3中自动开启。
 
-最后一个不常用的优化是 -fsched-spec-load， 它和 -fschedule-insns 优化一起工作，在 -O2 以上级别启用。该优化通过预测读取指令，最小化因为数据依赖引起的执行停顿。(译者注：)
+最后一个不常用的优化是 -fsched-spec-load， 它和 -fschedule-insns 优化一起工作，在 -O2 以上级别启用。该优化通过预测读取指令，最小化因为数据依赖引起的执行停顿。(译者注：也就是进行指令调度，调整指令的顺序，以更好地利用CPU pipeline，对于 load 指令，gcc 也提供了数据预取功能，作用类似)
 A final fringe optimization is -fsched-spec-load, which works with the -fschedule-insns optimization, enabled at -O2 and above. This optimization permits the speculative motion of some load instructions to minimize execution stalls due to data dependencies.
 
 ## 测试性能改进
@@ -372,7 +372,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQyNTA1MzQ2MCwtMTUzNzA5Mjc5Myw4ND
+eyJoaXN0b3J5IjpbLTU1NTM1NDE2OCwtMTUzNzA5Mjc5Myw4ND
 I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
 NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
 19
