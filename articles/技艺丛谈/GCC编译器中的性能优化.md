@@ -47,13 +47,12 @@ gcc -O1 -fno-defer-pop -o test test.c
 ### 优化级别2 (-O2)
 
 第二级优化执行所有指定平台支持的所有其它优化方法，只是不包括以空间换时间的方法，以取得两个目标（译者注：也就是降低目标文件大小和提高执行速度）之间的平衡。比如，循环展开和函数内联就不会执行，因为它们虽然可能带来代码性能的提升，也会以增大代码大小为代价。第二级优化使用以下方式打开：
-The second level of optimization performs all other supported optimizations within the given architecture that do not involve a space-speed trade-off, a balance between the two objectives. For example, loop unrolling and function inlining, which have the effect of increasing code size while also potentially making the code faster, are not performed. The second level is enabled as:
 ```
 gcc -O2 -o test test.c
 ```
-Table 1 shows the level -O2 optimizations. The level -O2 optimizations include all of the -O1 optimizations, plus a large number of others.
+表格1显示了-O2 级别的优化方法。-O2优化级别包含-O1级别的所有优化方法，并增加了其它不少优化。
 
-### Level 2.5 (-Os)
+### 优化级别2.5 (-Os)
 
 The special optimization level (-Os or size) enables all -O2 optimizations that do not increase code size; it puts the emphasis on size over speed. This includes all second-level optimizations, except for the alignment optimizations. The alignment optimizations skip space to align functions, loops, jumps and labels to an address that is a multiple of a power of two, in an architecture-dependent manner. Skipping to these boundaries can increase performance as well as the size of the resulting code and data spaces; therefore, these particular optimizations are disabled. The size optimization level is enabled as:
 ```
@@ -225,6 +224,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxNTkwMDQxMywtMTY4NzAzMzg0NiwxMT
-QyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
+eyJoaXN0b3J5IjpbLTE3NTg2Njc4NTMsLTE2ODcwMzM4NDYsMT
+E0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
 -->
