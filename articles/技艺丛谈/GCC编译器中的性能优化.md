@@ -235,11 +235,11 @@ sys     0m0.010s
     870     252       4    1126     466 sort
 [mtj@camus]$
 ```
-清单2中可见，程序的指令大小（代码段）增大了28字节。不过在这个例子中，获得性能提升的代价蛮小的。
+由清单2可见，程序的指令大小（代码段）增大了28字节。不过在这个例子中，获得性能提升的代价蛮小的。
 
 ## 数学单元优化
 
-有一些特殊的优化需要开发者显式指定。这些优化是i386和x86 体系结构特有的。（译者注：其它系统结构也有SIMD指令集，比如ARM的neon）数学计算单元可以手工指定，但是在很多时候，它可以通过指定目标体系结构来自动设定。-fpmatch= 选项可能的数学单元如表格3所示：
+有一些特殊的优化需要开发者显式指定。这些优化是 i386 和 x86 体系结构特有的。（译者注：其它体系结构也有 SIMD 指令集，比如 ARM 的 neon 指令集）数学计算单元可以手工指定，但是在很多时候，它可以通过指定目标体系结构来自动设定。-fpmatch= 选项可以选择的数学单元如表格3所示：
 
 **表格3. 数学相关优化**
 选项 | 描述 
@@ -248,7 +248,7 @@ sys     0m0.010s
 sse | 流式 SIMD 扩展 (Pentium III, Athlon 4/XP/MP)
 sse2 | 流式 SIMD 扩展 II (Pentium 4)
 
-默认选择是-mfpmath=387。一个实验性的选择是，指定SSE 和 387 (-mfpmath=sse,387),，这将尝试使用两个计算单元。
+默认选择是 -mfpmath=387。一个实验性的选择是，指定 SSE 和 387 (-mfpmath=sse,387),，这将尝试使用两个计算单元。
 
 ## 对齐优化
 
@@ -378,7 +378,7 @@ GCC 项目首页:  http://gcc.gnu.org/
 GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUxNTM2NjI3NSwtMTUzNzA5Mjc5Myw4ND
+eyJoaXN0b3J5IjpbMTY3MzU3MTAyNiwtMTUzNzA5Mjc5Myw4ND
 I0NjM5ODUsMTI1NzE4OTM3NCwxNTE4NDQwNTQwLC0xNTg1NzE5
 NzQ4LC0xNjg3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF
 19
