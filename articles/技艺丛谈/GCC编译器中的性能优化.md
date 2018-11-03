@@ -334,12 +334,13 @@ This command uses the GNU assembler to emit the listing. The -Wa option is used 
 
 应用程序都互不相同，所以并不存在神奇的优化配置和选项开关能生成最好的结果。达到较好的性能的最简单方式是使用-O2级别的优化。如果你对可移植性不感兴趣，可以使用 -march= 指定特定的体系架构。对空间受限的应用，应该首先考虑使用-Os 优化级别。如果你一定要将你的程序的性能优化到极致，那你可以考虑尝试不同的优化级别，然后使用不同的工具来检测生成代码的性能。打开或禁用特定的优化，也可以帮助优化器得到最佳性能表现。
 
-本文相关  [www.linuxjournal.com/article/7971]GCC Home page:  [gcc.gnu.org](http://gcc.gnu.org/)
+## 本文相关资料：
+GCC 项目首页:  http://gcc.gnu.org/
+GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 
-Using the GNU Compiler Collection (GCC):  [gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc](http://gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc)
-
+作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NzYzNDczMjAsLTE1ODU3MTk3NDgsLT
-E2ODcwMzM4NDYsMTE0Mjk3NDM1OSwtNjM4NjE5OTQ0XX0=
+eyJoaXN0b3J5IjpbLTIxMjgyOTU0MCwtMTU4NTcxOTc0OCwtMT
+Y4NzAzMzg0NiwxMTQyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
