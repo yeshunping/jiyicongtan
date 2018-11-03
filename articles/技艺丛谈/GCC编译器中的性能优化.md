@@ -311,11 +311,11 @@ From this short list, we can identify the particular function we're interested i
 
 ## 检查优化结果
 GCC编译器如同黑盒子。指定优化选项和优化级别后，程序也许变快了，也许变慢了。当结果变好了，编译生成的代码究竟用了什么黑科技？我们看到生成的汇编代码，会可以揭晓答案啦。
-指定 -S 编译选项，就可以让编译器shu chu
-To emit target instructions from the compiler, the -S option can be specified, such as:
+指定 -S 编译选项，就可以让编译器输出目标机器的指令了，比如：
 ```cpp
 gcc -c -S test.c
 ```
+告诉编译器进行只源码编译
 which tells gcc to compile the source only (-c) but also to emit assembly code for the source (-S). The resulting assembly output will be contained in the file test.s.
 
 The disadvantage of the previous approach is you see only assembly code, no aspect of the size of the actual instructions is given. For this, we can use objdump to emit both assembly and native instructions, like so:
@@ -340,7 +340,7 @@ GCC 在线文档:  gcc.gnu.org/onlinedocs/gcc-3.2.2/gcc
 作者介绍：
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU4MDA5MTY1OSwxMjU3MTg5Mzc0LDE1MT
-g0NDA1NDAsLTE1ODU3MTk3NDgsLTE2ODcwMzM4NDYsMTE0Mjk3
-NDM1OSwtNjM4NjE5OTQ0XX0=
+eyJoaXN0b3J5IjpbODU5MDEyMDEzLDEyNTcxODkzNzQsMTUxOD
+Q0MDU0MCwtMTU4NTcxOTc0OCwtMTY4NzAzMzg0NiwxMTQyOTc0
+MzU5LC02Mzg2MTk5NDRdfQ==
 -->
