@@ -147,6 +147,13 @@ gcc -O2 -o test test.c
 gcc -Os -o test test.c
 ```
 在GCC 3.2.2 版本中，reorder-blocks 在-Os级别中会被打开，但在3.3.2版本中不会打开。
+（译者注：在最新的8.2.0版本中，会禁用掉以下选项：
+```
+-falign-functions  -falign-jumps  -falign-loops
+-falign-labels  -freorder-blocks  -freorder-blocks-algorithm=stc
+-freorder-blocks-and-partition  -fprefetch-loop-arrays
+```
+）
 
 ### 优化级别 3 (-O3)
 
@@ -166,8 +173,14 @@ Although -O3 can produce fast code, the increase in the size of the image can ha
 -ftree-loop-distribute-patterns
 -floop-interchange
 -floop-unroll-and-jam
--fsplit-paths -ftree-slp-vectorize -fvect-cost-model -ftree-partial-pre -fpeel-loops -fipa-cp-clone
-```)
+-fsplit-paths
+-ftree-slp-vectorize
+-fvect-cost-model
+-ftree-partial-pre
+-fpeel-loops
+-fipa-cp-clone
+```
+)
 
 ## Architecture Specification
 
@@ -317,14 +330,15 @@ gcc -c -g -Wa,-ahl,-L test.c
 ```
 This command uses the GNU assembler to emit the listing. The -Wa option is used to pass the -ahl and -L options to the assembler to emit a listing to standard-out that contains the high-level source and assembly. The -L option retains the local symbols in the symbol table.
 
-## Conclusion
+## 结论
 
+所有的应用程序
 All applications are different, so there's no magic configuration of optimization and option switches that yield the best result. The simplest way to achieve good performance is to rely on the -O2 optimization level; if you're not interested in portability, specify the target architecture using -march=. For space-constrained applications, the -Os optimization level should be considered first. If you're interested in squeezing the most performance out of your application, your best bet is to try out the different levels and then use the various utilities to check the resulting code. Enabling and/or disabling certain optimizations also may help exploit the optimizer to receive the best performance.
 
 **Resources for this article:**  [www.linuxjournal.com/article/7971](http://www.linuxjournal.com/article/7971).
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjY0MjU4MjUzLC0xNTg1NzE5NzQ4LC0xNj
+eyJoaXN0b3J5IjpbMzIwOTA3Nzc5LC0xNTg1NzE5NzQ4LC0xNj
 g3MDMzODQ2LDExNDI5NzQzNTksLTYzODYxOTk0NF19
 -->
