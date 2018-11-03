@@ -13,12 +13,12 @@
 以下是译文部分，要阅读英文原文，请点击文末“阅读原文”的链接。
 ```
 
-本文中，我们将一起来看看GCC编译工具链提供的性能优化的不同级别，包括各个级别包括的优化选项。我们也会指出需要显式添加的优化选项，其中有一些依赖于特定的体系结构。本文讨论以GCC 3.2.2 版本为例（2003年2月发版），不过这也适用于当前的发行版本3.3.2.（注：目前GCC版本比这个高多了，不过不妨碍我们了解编译器的常用优化选项）
+本文中，我们将一起来看看GCC编译工具链提供的性能优化的不同级别，包括各个级别包括的优化选项。我们也会指出需要显式添加的优化选项，其中有一些依赖于特定的体系结构。本文讨论以GCC 3.2.2 版本为例（2003年2月发版），不过这也适用于当前的发行版本3.3.2.（译者注：目前GCC版本比这个高多了，不过不妨碍我们了解编译器的常用优化选项）
 
 
 ## 优化级别
 
-首先让我们来看看GCC对不同的优化选项进行归类，看看程序员如何来控制启用什么编译选项，当然有时候如何禁用否则优化选项更为重要。GCC提供了大量的优化选项。大部分都被归类到三个不同的级别中，不过有一些在各个级别都启用。有一些优化会降低生成的机器代码的大小，而有一些则志在提高执行速度，甚至以增大机器代码为代价。为了保持程序的原始状态（注：比如调试信息等），默认的编译级别为0，这个级别并不提供任何优化。0级也可以使用-O 或者 -O0 来显式指定。
+首先让我们来看看GCC对不同的优化选项进行归类，看看程序员如何来控制启用什么编译选项，当然有时候如何禁用否则优化选项更为重要。GCC提供了大量的优化选项。大部分都被归类到三个不同的级别中，不过有一些在各个级别都启用。有一些优化会降低生成的机器代码的大小，而有一些则志在提高执行速度，甚至以增大机器代码为代价。为了保持程序的原始状态（译者注：比如调试信息等），默认的编译级别为0，这个级别并不提供任何优化。0级也可以使用-O 或者 -O0 来显式指定。
 
 ### 优化级别1 (-O1)
 
@@ -46,7 +46,7 @@ gcc -O1 -fno-defer-pop -o test test.c
 
 ### 优化级别2 (-O2)
 
-第二级优化执行所有指定平台支持的所有其它优化方法（不包括以空间换时间的方法），
+第二级优化执行所有指定平台支持的所有其它优化方法，只是不包括以空间换时间的方法，以取得两个目标（译者注：也就是降低目标文件大小和提高执行速度）之间的平衡。比如，循环展开和函数lian
 The second level of optimization performs all other supported optimizations within the given architecture that do not involve a space-speed trade-off, a balance between the two objectives. For example, loop unrolling and function inlining, which have the effect of increasing code size while also potentially making the code faster, are not performed. The second level is enabled as:
 ```
 gcc -O2 -o test test.c
@@ -225,6 +225,6 @@ All applications are different, so there's no magic configuration of optimizatio
 
 M. Tim Jones ([mtj@mtjones.com](mailto:mtj@mtjones.com)) is a senior principal engineer with Emulex Corp. in Longmont, Colorado. In addition to being an embedded firmware engineer, Tim recently finished writing the book  _BSD Sockets Programming from a Multilanguage Perspective_. He has written kernels for communications and research satellites and now develops embedded firmware for networking products.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0MDcwNjMxMSwtMTY4NzAzMzg0NiwxMT
+eyJoaXN0b3J5IjpbLTEyOTU4MjYwMywtMTY4NzAzMzg0NiwxMT
 QyOTc0MzU5LC02Mzg2MTk5NDRdfQ==
 -->
