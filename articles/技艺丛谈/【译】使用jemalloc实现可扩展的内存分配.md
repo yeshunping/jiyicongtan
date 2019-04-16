@@ -39,11 +39,11 @@ C 和 C++ 编程语言依赖于一个非常基础的类型无关的分配器API�
 
 jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc 用的是64位系统的默认配置）
 
--   **小:** [8], [16, 32, 48, ..., 128], [192, 256, 320, ..., 512], [768, 1024, 1280, ..., 3840]
--   **大:** [4 KiB, 8 KiB, 12 KiB, ..., 4072 KiB]
--   **超大:** [4 MiB, 8 MiB, 12 MiB, ...]
+-   **小:**   [8], [16, 32, 48, ..., 128], [192, 256, 320, ..., 512], [768, 1024, 1280, ..., 3840]
+-   **大:**   [4 KiB, 8 KiB, 12 KiB, ..., 4072 KiB]
+-   **超大:**   [4 MiB, 8 MiB, 12 MiB, ...]
 
-虚拟内存子在逻辑上被分区为大小为2的指数的块（默认为4M）。因此可以在常数时间内，为小/大对象，通过指针操作查找到分配器的metadata（内部指针）,而通过全局红黑树，则可以在对数时间内查找到超大对象的metadata。 （译注：前两类，根据申请的内存大小，计算最接近的size class ，然后直接通过索引来查找即可。超大对象的话，使用红黑树来存储，key 为 size, 查找时间是log(N)，下文会解释Facebook 内部优化了红黑树的查找和删除操作，想必就是优化超大对象的内存分配）
+虚拟内存在逻辑上被分区为大小为2的幂的块（默认为4M）。因此可以在常数时间内，为小/大对象，通过指针操作查找到分配器的元数据（内部指针），而通过全局红黑树，则可以在对数时间内查找到超大对象的元数据。 （译注：前两类，根据申请的内存大小，计算最接近的size class ，然后直接通过索引来查找即可。超大对象的话，使用红黑树来存储，key 为 size, 查找时间是log(N)，下文会解释 Facebook 内部优化了红黑树的查找和删除操作，想必就是优化超大对象的内存分配）
 
 首次分配小/大对象时，应用程序线程通过轮询的方式来分配 arenas。Arenas 彼此之间相互独立。他们维护自己的块，在块中它们为小/大对象们分配 page runs (译注：翻译为连续的页面不知道准确不准确)。释放的内存则总是返还到分配它的 arena，不管是哪个线程执行了释放操作。
 
@@ -109,7 +109,8 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5MDY3MjE5NCw1ODcyNTM1NTEsNDQ3OT
-E5Nzc0LDE0MDAyMTA4NCwtMTE3MTM5OTE1OCwxOTc2MzY0NjY1
-LC0yNDc5MzcxOTEsLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbLTIwODE4MzQ5NzMsNTg3MjUzNTUxLDQ0Nz
+kxOTc3NCwxNDAwMjEwODQsLTExNzEzOTkxNTgsMTk3NjM2NDY2
+NSwtMjQ3OTM3MTkxLC05NzQxNzg2NTUsLTE1ODg5OTQ4MTVdfQ
+==
 -->
