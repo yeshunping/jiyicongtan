@@ -99,8 +99,7 @@ jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如
 
 TOOD：图片
 
-glibc derives its allocator from ptmalloc, so their performance similarity is no surprise. The Hoard allocator appears to spend a great deal of time contending on a spinlock, possibly as a side effect of its blowup avoidance algorithms. The concur allocator appears to scale well, but it does not implement thread caching, so it incurs a substantial synchronization cost even though contention is low. tcmalloc under-performs jemalloc by about 4.5%.
-glibc 源自ptmalloc，所以它们的性能表现相近并不让人意外。Hoard 分配器似乎花费大量时间争夺自旋锁，可能是其爆炸避免算法的副作用（译注：应该是规避最糟糕情况引入的算法）。concur 分配器看起来扩展性很好，但是yin wei t
+glibc 源自ptmalloc，所以它们的性能表现相近并不让人意外。Hoard 分配器似乎花费大量时间争夺自旋锁，可能是其爆炸避免算法的副作用（译注：应该是规避最糟糕情况引入的算法）。concur 分配器看起来扩展性很好，但是因为它没有实现线程缓存，因此也会产生很大的同步成本，即使争用率很低。tcmalloc 比 jemalloc 表现略差 4.5%。
 
 The main point of this experiment was to show the huge impact that allocator quality can have, as in glibc versus jemalloc, but we have performed numerous experiments at larger scales, using various hardware and  client request loads, in order to quantify the performance advantage of jemalloc over tcmalloc. In general we found that as the number of CPUs increases, the performance gap widens. We interpret this to indicate that jemalloc will continue to scale as we deploy  
 new hardware with ever-increasing CPU core counts.
@@ -113,6 +112,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNDUxOTcxMywtMjQ3OTM3MTkxLC05Nz
-QxNzg2NTUsLTE1ODg5OTQ4MTVdfQ==
+eyJoaXN0b3J5IjpbODM4NjE0MjgzLC0yNDc5MzcxOTEsLTk3ND
+E3ODY1NSwtMTU4ODk5NDgxNV19
 -->
