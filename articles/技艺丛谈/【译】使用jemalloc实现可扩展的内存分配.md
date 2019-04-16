@@ -103,7 +103,7 @@ and [jemalloc] 2.1.0. Note that newer versions of
 glibc exist (we used the default for [CentOS] 5.2), and that the  
 newest version of tcmalloc is 1.6, but we encountered undiagnosed application instability when using versions 1.5 and 1.6.
 
-众所周知，内存分配器微基准测试结果难以推断到真实世界的应用程序
+众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。
 
 ### Web 服务吞吐量
 
@@ -120,5 +120,5 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4ODI4NTc2MiwtMTU4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbLTU5NzIzNDQ1OSwtMTU4ODk5NDgxNV19
 -->
