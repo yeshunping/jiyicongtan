@@ -94,9 +94,9 @@ as a practical endeavor. That hasn't stopped us from continuing to try new thing
 
 jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc的一致的表现，允许我们进行更精确的内存利用率的预测，这帮助了服务运维，以及长期的基础架构规划。总而言之，jemalloc 有一个显著的好处：它够快。
 
-We used a set of six identical machines, each with 8 CPU cores, to compare total server throughput. The machines served similar, though not identical, requests,  over the course of one hour. We sampled at four-minute intervals (15 samples total), measured throughput as inversely related to CPU consumption, and computed relative averages. For one machine we used the default malloc implementation that is part of [glibc] 2.5,  and for the other five machines we used the LD_PRELOAD environment variable to load[ptmalloc3], [Hoard] 3.8, [concur] 1.0.2, [tcmalloc] 1.4,  and [jemalloc] 2.1.0. Note that newer versions of  glibc exist (we used the default for [CentOS] 5.2), and that the  newest version of tcmalloc is 1.6, but we encountered undiagnosed application instability when using versions 1.5 and 1.6.
+ Note that newer versions of  glibc exist (we used the default for [CentOS] 5.2), and that the  newest version of tcmalloc is 1.6, but we encountered undiagnosed application instability when using versions 1.5 and 1.6.
 
-众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。我们使用了六台相同的机器，每台8核CPU，以此进行服务吞吐量的比较。这些机器在一小时内响应了类似（虽然不完全相同）的请求。我们每四分钟采样一次（总共15次采样），测量吞吐量/CPU消耗的值，并计算相对平均值。一台机器使用 glibc 2.5提供的默认的 malloc 实现，另外五台机器，我们使用 LD_PRELOAD 环境变量去加载 ptmalloc3， Hoard 3.8, concur 1.0.2, tcmalloc 1.4,  以及 jemalloc 2.1.0。
+众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。我们使用了六台相同的机器，每台8核CPU，以此进行服务吞吐量的比较。这些机器在一小时内响应了类似（虽然不完全相同）的请求。我们每四分钟采样一次（总共15次采样），测量吞吐量/CPU消耗的值，并计算相对平均值。一台机器使用 glibc 2.5提供的默认的 malloc 实现，另外五台机器，我们使用 LD_PRELOAD 环境变量去加载 ptmalloc3， Hoard 3.8, concur 1.0.2, tcmalloc 1.4,  以及 jemalloc 2.1.0。需要注意的是，新版本的 glibc 是有的(我们使用 CentOS 5.2 默认提供的版本)，
 
 
 ### Web 服务吞吐量
@@ -114,5 +114,5 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzOTIzMjc0OCwtMTU4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
 -->
