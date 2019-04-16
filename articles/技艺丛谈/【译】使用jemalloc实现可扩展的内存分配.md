@@ -1,5 +1,3 @@
-【译】使用jemalloc实现可扩展的内存分配
-
 原作者：Jason Evans
 译者：叶顺平
 原文链接：https://www.facebook.com/notes/facebook-engineering/scalable-memory-allocation-using-jemalloc/480222803919
@@ -89,9 +87,7 @@ Research and development of untried algorithms is in general a risky proposition
 
 -   我们使用的一些数据集非常庞大，远远超出了单机内存。随着最近固态磁盘（SSD）可用性的增强，使用SSD而不是内存将数据集进一步扩展，将是很有吸引力的。为此，我们添加了**显式映射一个或多个文件的能力**，而不是使用匿名mmap() 函数。到目前为止，我们的实验表明，对于适合放在内存的数据集的应用来说，这是一种很有前景的方法，但我们仍在分析是否可以更好地利用这种方法，以让花在SSD上的成本物有所值。
 
--   Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the jemalloc manual page . We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
-
-过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有posix_memalign() 是标准化的，当尝试重新分配对齐的内存时，它的限制变得明显（译注：应该指的是 _alignment_ 参数必须是2的幂，并且是 sizeof(void *)的倍数）。相似的问题存在于对齐/补零/伸展/收缩的不同组合，不管是不是重新分配。我们**开发了一套新的 *allocm() 接口**，支持所有上述合理的组合。API 的详细信息，请参考 jemalloc 的手册。我们目前正在将此功能用于优化的 C++ 字符串类，该类依赖于重新分配，只有在可以完成的情况下才能成功。近期我们还计划，在哈希表实现中使用它进行对齐重新分配，这将简化现有的应用程序逻辑。
+-   过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有posix_memalign() 是标准化的，当尝试重新分配对齐的内存时，它的限制变得明显（译注：应该指的是 _alignment_ 参数必须是2的幂，并且是 sizeof(void *)的倍数）。相似的问题存在于对齐/补零/伸展/收缩的不同组合，不管是不是重新分配。我们**开发了一套新的 *allocm() 接口**，支持所有上述合理的组合。API 的详细信息，请参考 jemalloc 的手册。我们目前正在将此功能用于优化的 C++ 字符串类，该类依赖于重新分配，只有在可以完成的情况下才能成功。近期我们还计划，在哈希表实现中使用它进行对齐重新分配，这将简化现有的应用程序逻辑。（译注：应该是在 rehash 的时候进行的，降低在 rehash 期间的内存分配代价）
 
 ## Facebook内部的成功应用
 
@@ -115,7 +111,7 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNzI0MTk3NDQsLTExNzEzOTkxNTgsMT
-k3NjM2NDY2NSwtMjQ3OTM3MTkxLC05NzQxNzg2NTUsLTE1ODg5
-OTQ4MTVdfQ==
+eyJoaXN0b3J5IjpbMTQwMDIxMDg0LC0xMTcxMzk5MTU4LDE5Nz
+YzNjQ2NjUsLTI0NzkzNzE5MSwtOTc0MTc4NjU1LC0xNTg4OTk0
+ODE1XX0=
 -->
