@@ -94,7 +94,7 @@ as a practical endeavor. That hasn't stopped us from continuing to try new thing
 
 Some of jemalloc's practical benefits for Facebook are difficult to quantify. For example, we have on numerous occasions used heap profiling on production systems to diagnose memory issues before they could cause  service disruptions, not to mention all the uses of heap profiling for development/optimization purposes. More generally, jemalloc's consistent behavior has allowed us to make more accurate memory utilization projections, which aids operations as well as long  
 term infrastructure planning. All that said, jemalloc does have one very tangible benefit: it is fast.
-jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc的一致的表现，yun
+jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc的一致的表现，允许我们进行更精确的内存利用率的预测，这帮助了服务运维，以及长期的基础架构规划。总而言之，jemalloc 
 
 Memory allocator microbenchmark results are notoriously difficult to extrapolate to real-world applications (though that doesn't stop people from trying). Facebook devotes a significant portion of its infrastructure  
 to machines that use [HipHop](http://www.facebook.com/note.php?note_id=280583813919) to serve Web pages to users. Although this is just one of many ways in which jemalloc is used  
@@ -120,5 +120,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODM5NzU4Njg5LC0xNTg4OTk0ODE1XX0=
+eyJoaXN0b3J5IjpbLTE3ODUwNTAzMDYsLTE1ODg5OTQ4MTVdfQ
+==
 -->
