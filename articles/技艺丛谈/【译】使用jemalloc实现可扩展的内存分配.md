@@ -92,6 +92,8 @@ Research and development of untried algorithms is in general a risky proposition
 -   The venerable malloc API is quite limited: malloc(), calloc(), realloc(), andfree(). Over the years, various extensions have been bolted on, like valloc(),memalign(), posix_memalign(), recalloc(),  
     and malloc_usable_size(), just to name a few. Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the jemalloc manual page . We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
 
+过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，如 valloc()，memalign（），posix_memalign（），recalloc（），
+
 ## Facebook内部的成功应用
 
 jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc的一致的表现，允许我们进行更精确的内存利用率的预测，这帮助了服务运维，以及长期的基础架构规划。总而言之，jemalloc 有一个显著的好处：它够快。
@@ -114,6 +116,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjYwMzkzMjE4LDE5NzYzNjQ2NjUsLTI0Nz
+eyJoaXN0b3J5IjpbLTMxNjA2NzM4LDE5NzYzNjQ2NjUsLTI0Nz
 kzNzE5MSwtOTc0MTc4NjU1LC0xNTg4OTk0ODE1XX0=
 -->
