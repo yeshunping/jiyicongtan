@@ -9,7 +9,7 @@
 >
 >考虑以后找个时间写一两篇介绍谷歌 tcmalloc 的文章。目前我们公司内部使用 tcmalloc 更多一些，我本人也详细阅读过 tcmalloc 的源代码，并根据项目需求，做过一定的改造，以解决一些难搞的内存问题。
 >
->值得一提的是，tcmalloc 的作者，就是和 Jeff Dean 齐名的谷歌大神 Sanjay Ghemawat，最近有几篇文章讲他们的传奇故事的。jeaf dean 的代码，可以看看开源的 leveldb, Sanjay的代码，我搜索了下，似乎就只有tcmalloc 是开源的了。
+>值得一提的是，tcmalloc 的作者，就是和 Jeff Dean 齐名的谷歌大神 Sanjay Ghemawat，最近有几篇文章讲他们的传奇故事的。jeaf dean 的代码，可以看看开源的 leveldb, Sanjay的代码，我搜索了下，似乎就只有tcmalloc 是开源的了。如果读者们也膜拜这两位工业界的大神，不妨找来他们的开源项目，读读代码。后续有时间的话，我会写篇文章介绍下他们两位开源的项目，在谷歌内部广为人知的项目，以及他们发表的一些论文和对外分享的 PPT。
 
 Facebook 网站包括不同类型的服务，这些服务大部分运行在8核CPU和8G内存以上的特定服务器中。这些服务程序一般使用POSIX线程来实现并发，通过最大化利用CPU和内存来实现最大化吞吐的目标。这样的运行环境给内存分配带来的很大的挑战，特别是以下几点：
 
@@ -109,7 +109,7 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM3MTU5MTE4NCw0NDc5MTk3NzQsMTQwMD
-IxMDg0LC0xMTcxMzk5MTU4LDE5NzYzNjQ2NjUsLTI0NzkzNzE5
-MSwtOTc0MTc4NjU1LC0xNTg4OTk0ODE1XX0=
+eyJoaXN0b3J5IjpbLTE2MTc2Nzg5MjcsNDQ3OTE5Nzc0LDE0MD
+AyMTA4NCwtMTE3MTM5OTE1OCwxOTc2MzY0NjY1LC0yNDc5Mzcx
+OTEsLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
 -->
