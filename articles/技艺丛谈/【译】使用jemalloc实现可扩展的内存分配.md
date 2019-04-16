@@ -17,9 +17,9 @@ Facebook 网站包括不同类型的服务，这些服务大部分运行在8核C
 
 -   活跃的内存和内存使用总量必须有**稳定**的关系。（译注：使用tcmalloc的术语就是，in use by application 不变的情况下，total memory 需要保持基本不变，否则内存分配器本身的 overhead 就越来越大了，或者是碎片越来越多）。换言之，内存分配器引入的内存碎片的实际代价是非常重要的。想象一下，如果内存碎片使得内存使用每天增加1G，一个程序在设计的时候预留不多内存的话，将会在几天内就挂了。（译注：比如预计是4G，机器才8G，4天就会因为内存不够而挂了）
 
--   **内存剖析**(heap profiling)是非常重要的功能。如果一切都照计划进行，那么检测内存泄露并解决之，是一个常规的开发任务。但是即便如此，动态输入也可能会带来异常的内存使用峰值，而这只能通过在线服务的行为来分析。（译注：也就是只能做 online profiling，因为问题往往不容易离线复现，这就要求 heap profiling 需要足够轻量级，否则会严重影响在线服务。举个例子，目前 ARM 平台上就因为 unwind 没有很好的高性能实现，而导致 heap profiling 带来的性能下降非常严重，）
+-   **内存剖析**(heap profiling)是非常重要的功能。如果一切都照计划进行，那么检测内存泄露并解决之，是一个常规的开发任务。但是即便如此，动态输入也可能会带来异常的内存使用峰值，而这只能通过在线服务的行为来分析。（译注：也就是只能做 online profiling，因为问题往往不容易离线复现，这就要求 heap profiling 需要足够轻量级，否则会严重影响在线服务。举个例子，目前 ARM 平台上就因为 unwind 没有很好的高性能实现，而导致 heap profiling 带来的性能下降非常严重，导致做实时profiling几乎不可能）
 
-2009年那会，现有的内存分配器最多满足上面三条中的两条，因此我们给jemalloc添加了内存剖析的功能，并做了大量的优化，因此jemmlloc 目前已经很好地解决了上面的三个问题。下文先是调查了jemalloc的核心算法和数据结构，然后再介绍了Facebook贡献的众多改进细节，最后附上了一份跑分记录，在在线的Web服务器负载下，比较了六个内存分配器的表现。
+2009年那会，现有的内存分配器最多满足上面三条中的两条，因此我们给 jemalloc 添加了内存剖析的功能，并做了大量的优化，因此 jemalloc 目前已经很好地解决了上面的三个问题。下文先是调查了 jemalloc 的核心算法和数据结构，然后再介绍了 Facebook 贡献的众多改进细节，最后附上了一份跑分记录，在在线的Web服务器负载下，比较了六个内存分配器的表现。
 
 ## 核心算法与数据结构
 
@@ -111,7 +111,7 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQyNTQ2ODgyNiw0NDc5MTk3NzQsMTQwMD
+eyJoaXN0b3J5IjpbLTE5MDYzOTczMyw0NDc5MTk3NzQsMTQwMD
 IxMDg0LC0xMTcxMzk5MTU4LDE5NzYzNjQ2NjUsLTI0NzkzNzE5
 MSwtOTc0MTc4NjU1LC0xNTg4OTk0ODE1XX0=
 -->
