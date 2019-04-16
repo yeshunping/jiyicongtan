@@ -86,13 +86,13 @@ jemalloc 一直都会在程序退出的时候，以可读的格式，打印详�
 
 -   我们使用的一些数据集非常庞大，远远超出了单机的内存上限。随着最近固态磁盘（SSD）可用性的增强，使用 SSD（而不是内存）使数据集进一步扩展，将是很有吸引力的。为此，我们添加了**显式映射一个或多个文件的能力**，而不是使用匿名 mmap() 函数。到目前为止，我们的实验表明，对于适合放在内存的数据集的应用来说，这是一种很有前景的方法，但我们仍在分析是否可以更好地利用这种方法，以让花在 SSD 上的成本物有所值。
 
--   过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有 posix_memalign() 是标准化的，当尝试重新分配对齐的内存时，它的限制变得明显（译注：应该指的是 _alignment_ 参数必须是2的幂，并且是 sizeof(void *)的倍数）。相似的问题存在于对齐/补零/伸展/收缩的不同组合，不管是不是重新分配。我们**开发了一套新的 \*allocm() 接口**，支持所有上述合理的组合。API 的详细信息，请参考 jemalloc 的手册。我们目前正在将此功能用于优化的 C++ 字符串类，该类依赖于重新分配，只有在可以完成的情况下才能成功。近期我们还计划，在哈希表实现中使用它进行对齐重新分配，这将简化现有的应用程序逻辑。（译注：应该是在 rehash 的时候进行的，降低在 rehash 期间的内存分配代价）
+-   过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有 posix_memalign() 是标准化的，当尝试重新分配对齐的内存时，它的限制变得明显（译注：应该指的是 _alignment_ 参数必须是2的幂，并且是 sizeof(void *)的倍数）。相似的问题存在于对齐/补零/伸展/收缩的不同组合，不管是不是重新分配。我们**开发了一套新的 \*allocm() 接口**，支持所有上述合理的组合。API 的详细信息，请参考 jemalloc 的手册。我们目前正在将此功能用于优化的 C++ 字符串类，该类依赖于重新分配，只有在可以完成的情况下才能成功。近期我们还计划，在哈希表实现中使用它进行对齐重新分配，这将简化现有的应用程序逻辑。（译注：猜测是在 rehash 的时候进行的，降低在 rehash 期间的内存分配代价）
 
 ## Facebook内部的成功应用
 
-jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc的一致的表现，允许我们进行更精确的内存利用率的预测，这帮助了服务运维，以及长期的基础架构规划。总而言之，jemalloc 有一个显著的好处：它够快。
+jemalloc 给 Facebook 带来的实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc 的一致的表现，允许我们进行更精确的内存利用率的预测，这帮助了服务运维，以及长期的基础架构规划。总而言之，jemalloc 有一个显著的好处：它够快。
 
-众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。我们使用了六台相同的机器，每台8核CPU，以此进行服务吞吐量的比较。这些机器在一小时内响应了类似（虽然不完全相同）的请求。我们每四分钟采样一次（总共15次采样），测量吞吐量/CPU消耗的值，并计算相对平均值。一台机器使用 glibc 2.5提供的默认的 malloc 实现，另外五台机器，我们使用 LD_PRELOAD 环境变量去加载 ptmalloc3， Hoard 3.8, concur 1.0.2, tcmalloc 1.4,  以及 jemalloc 2.1.0。需要注意的是，新版本的 glibc 是有的(我们使用 CentOS 5.2 默认提供的版本)，另外， 最新版的  tcmalloc 是 1.6 版本，但是在使用版本 1.5 和 1.6 时，我们遇到了应用程序不稳定的问题，该问题还未确诊原因。
+众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook 投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。我们使用了六台相同的机器，每台8核CPU，以此进行服务吞吐量的比较。这些机器在一小时内响应了类似（虽然不完全相同）的请求。我们每四分钟采样一次（总共15次采样），测量吞吐量/CPU消耗的值，并计算相对平均值。一台机器使用 glibc 2.5提供的默认的 malloc 实现，另外五台机器，我们使用 LD_PRELOAD 环境变量去加载 ptmalloc3， Hoard 3.8, concur 1.0.2, tcmalloc 1.4,  以及 jemalloc 2.1.0。需要注意的是，新版本的 glibc 是有的(我们使用 CentOS 5.2 默认提供的版本)，另外， 最新版的  tcmalloc 是 1.6 版本，但是在使用版本 1.5 和 1.6 时，我们遇到了应用程序不稳定的问题，该问题还未确诊原因。
 
 TOOD：图片3
 
@@ -110,8 +110,8 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0Mzc0NjE3OSwtMTU0NTAwOTQ2OSw1OD
-cyNTM1NTEsNDQ3OTE5Nzc0LDE0MDAyMTA4NCwtMTE3MTM5OTE1
-OCwxOTc2MzY0NjY1LC0yNDc5MzcxOTEsLTk3NDE3ODY1NSwtMT
-U4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbMjc5OTE5NjAsLTE1NDUwMDk0NjksNTg3Mj
+UzNTUxLDQ0NzkxOTc3NCwxNDAwMjEwODQsLTExNzEzOTkxNTgs
+MTk3NjM2NDY2NSwtMjQ3OTM3MTkxLC05NzQxNzg2NTUsLTE1OD
+g5OTQ4MTVdfQ==
 -->
