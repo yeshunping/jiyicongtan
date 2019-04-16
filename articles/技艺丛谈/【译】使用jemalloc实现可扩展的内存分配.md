@@ -84,9 +84,9 @@ jemalloc 一直都会在程序退出的时候，以可读的格式，打印详�
 
 研究和开发未经验证的算法通常是一个冒险的想法。大多数实验都以失败告终。事实上，尽管其性质是一种努力，但是 jemalloc 在过去经历了无数次的失败尝试。不过这并不能阻止我们继续尝试新的方法。特别值得一提的是，我们开发了两项创新功能，这些功能比我们目前的应用也许具有更广泛的实用性。
 
--   我们使用的一些数据集非常庞大，远远超出了单机的内存上限。随着最近固态磁盘（SSD）可用性的增强，使用 SSD（而不是内存）使数据集进一步扩展，将是很有吸引力的。为此，我们添加了**显式映射一个或多个文件的能力**，而不是使用匿名mmap() 函数。到目前为止，我们的实验表明，对于适合放在内存的数据集的应用来说，这是一种很有前景的方法，但我们仍在分析是否可以更好地利用这种方法，以让花在SSD上的成本物有所值。
+-   我们使用的一些数据集非常庞大，远远超出了单机的内存上限。随着最近固态磁盘（SSD）可用性的增强，使用 SSD（而不是内存）使数据集进一步扩展，将是很有吸引力的。为此，我们添加了**显式映射一个或多个文件的能力**，而不是使用匿名 mmap() 函数。到目前为止，我们的实验表明，对于适合放在内存的数据集的应用来说，这是一种很有前景的方法，但我们仍在分析是否可以更好地利用这种方法，以让花在 SSD 上的成本物有所值。
 
--   过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有posix_memalign() 是标准化的，当尝试重新分配对齐的内存时，它的限制变得明显（译注：应该指的是 _alignment_ 参数必须是2的幂，并且是 sizeof(void *)的倍数）。相似的问题存在于对齐/补零/伸展/收缩的不同组合，不管是不是重新分配。我们**开发了一套新的 *allocm() 接口**，支持所有上述合理的组合。API 的详细信息，请参考 jemalloc 的手册。我们目前正在将此功能用于优化的 C++ 字符串类，该类依赖于重新分配，只有在可以完成的情况下才能成功。近期我们还计划，在哈希表实现中使用它进行对齐重新分配，这将简化现有的应用程序逻辑。（译注：应该是在 rehash 的时候进行的，降低在 rehash 期间的内存分配代价）
+-   过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有 posix_memalign() 是标准化的，当尝试重新分配对齐的内存时，它的限制变得明显（译注：应该指的是 _alignment_ 参数必须是2的幂，并且是 sizeof(void *)的倍数）。相似的问题存在于对齐/补零/伸展/收缩的不同组合，不管是不是重新分配。我们**开发了一套新的 *allocm() 接口**，支持所有上述合理的组合。API 的详细信息，请参考 jemalloc 的手册。我们目前正在将此功能用于优化的 C++ 字符串类，该类依赖于重新分配，只有在可以完成的情况下才能成功。近期我们还计划，在哈希表实现中使用它进行对齐重新分配，这将简化现有的应用程序逻辑。（译注：应该是在 rehash 的时候进行的，降低在 rehash 期间的内存分配代价）
 
 ## Facebook内部的成功应用
 
@@ -110,7 +110,8 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTAxODU5NjQ3LDU4NzI1MzU1MSw0NDc5MT
-k3NzQsMTQwMDIxMDg0LC0xMTcxMzk5MTU4LDE5NzYzNjQ2NjUs
-LTI0NzkzNzE5MSwtOTc0MTc4NjU1LC0xNTg4OTk0ODE1XX0=
+eyJoaXN0b3J5IjpbLTE1NDUwMDk0NjksNTg3MjUzNTUxLDQ0Nz
+kxOTc3NCwxNDAwMjEwODQsLTExNzEzOTkxNTgsMTk3NjM2NDY2
+NSwtMjQ3OTM3MTkxLC05NzQxNzg2NTUsLTE1ODg5OTQ4MTVdfQ
+==
 -->
