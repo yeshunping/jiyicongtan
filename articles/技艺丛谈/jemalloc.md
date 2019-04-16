@@ -55,7 +55,7 @@ jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc �
 ## Arena和线程缓存布局
 
 Each thread maintains a cache of small objects, as well as large objects up to a limited size (32 KiB by default). Thus, the vast majority of allocation requests first check for a cached available object before accessing  an arena. Allocation via a thread cache requires no locking whatsoever, whereas allocation via an arena requires locking an arena bin (one per small size class) and/or the arena as a whole.
-每个线程维护一个小对象的缓存，以及最大到一定大小的大对象（默认是32K）。因此大部分分配请求，首先检测是否有可获取的缓存对象，然后再访问 arena。通过线程缓存的分配，
+每个线程维护一个小对象的缓存，以及最大到一定大小的大对象（默认是32K）。因此大部分分配请求，首先检测是否有可获取的缓存对象，然后再访问 arena。通过线程缓存的分配，是不需要任何锁的，而通过arena 来分配是需要锁住一个arena bin（每个小的大小类别一个锁），
 
 The main goal of thread caches is to reduce the volume of synchronization events. Therefore, the maximum number of cached objects for each size class is capped at a level that allows for a 10-100X synchronization  reduction in practice. Higher caching limits would further speed up allocation for some applications, but at an unacceptable fragmentation cost in the general case. To further limit fragmentation, thread caches perform incremental "garbage collection" (GC),  where time is measured in terms of allocation requests. Cached objects that go unused for one or more GC passes are progressively flushed to their respective arenas using an exponential decay approach.
 
@@ -127,6 +127,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODA0MDcyMzEsLTU2OTA2ODEyMCwxMT
-Q0NTUyMjAxXX0=
+eyJoaXN0b3J5IjpbMjAwMzM2NjUyMywtNTY5MDY4MTIwLDExND
+Q1NTIyMDFdfQ==
 -->
