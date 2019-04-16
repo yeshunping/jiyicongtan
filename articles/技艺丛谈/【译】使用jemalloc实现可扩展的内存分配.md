@@ -89,10 +89,9 @@ Research and development of untried algorithms is in general a risky proposition
 
 -   我们使用的一些数据集非常庞大，远远超出了单机内存。随着最近固态磁盘（SSD）可用性的增强，使用SSD而不是内存将数据集进一步扩展，将是很有吸引力的。为此，我们添加了**显式映射一个或多个文件的能力**，而不是使用匿名mmap() 函数。到目前为止，我们的实验表明，对于适合放在内存的数据集的应用来说，这是一种很有前景的方法，但我们仍在分析是否可以更好地利用这种方法，以让花在SSD上的成本物有所值。
 
--   The venerable malloc API is quite limited: malloc(), calloc(), realloc(), andfree(). Over the years, various extensions have been bolted on, like valloc(),memalign(), posix_memalign(), recalloc(),  
-    and malloc_usable_size(), just to name a few. Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the jemalloc manual page . We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
+-   Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the jemalloc manual page . We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
 
-过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，如 valloc()，memalign（），posix_memalign（），recalloc（），
+过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有posix_memalign() 是标准化的，
 
 ## Facebook内部的成功应用
 
@@ -116,6 +115,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMxNjA2NzM4LDE5NzYzNjQ2NjUsLTI0Nz
+eyJoaXN0b3J5IjpbMjc3ODY0NTc2LDE5NzYzNjQ2NjUsLTI0Nz
 kzNzE5MSwtOTc0MTc4NjU1LC0xNTg4OTk0ODE1XX0=
 -->
