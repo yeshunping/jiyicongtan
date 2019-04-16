@@ -96,7 +96,8 @@ jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如
 
 We used a set of six identical machines, each with 8 CPU cores, to compare total server throughput. The machines served similar, though not identical, requests,  over the course of one hour. We sampled at four-minute intervals (15 samples total), measured throughput as inversely related to CPU consumption, and computed relative averages. For one machine we used the default malloc implementation that is part of [glibc] 2.5,  and for the other five machines we used the LD_PRELOAD environment variable to load[ptmalloc3], [Hoard] 3.8, [concur] 1.0.2, [tcmalloc] 1.4,  and [jemalloc] 2.1.0. Note that newer versions of  glibc exist (we used the default for [CentOS] 5.2), and that the  newest version of tcmalloc is 1.6, but we encountered undiagnosed application instability when using versions 1.5 and 1.6.
 
-众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。我们使用了六台相同的机器，每台8核CPU，以此进行服务吞吐量的比较。这些机器在一小时内响应了类似（虽然不完全相同）的请求。我们每四分钟采样一次（总共15次采样），
+众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。我们使用了六台相同的机器，每台8核CPU，以此进行服务吞吐量的比较。这些机器在一小时内响应了类似（虽然不完全相同）的请求。我们每四分钟采样一次（总共15次采样），测量吞吐量/CPU消耗的值，并计算相对平均值。一台机器
+
 
 ### Web 服务吞吐量
 
@@ -113,6 +114,5 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MTY0NzM5MTEsLTE1ODg5OTQ4MTVdfQ
-==
+eyJoaXN0b3J5IjpbLTQ2OTM3NzQ0MSwtMTU4ODk5NDgxNV19
 -->
