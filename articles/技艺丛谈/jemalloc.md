@@ -58,7 +58,7 @@ jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc �
 
 The main goal of thread caches is to reduce the volume of synchronization events. Therefore, the maximum number of cached objects for each size class is capped at a level that allows for a 10-100X synchronization  reduction in practice. Higher caching limits would further speed up allocation for some applications, but at an unacceptable fragmentation cost in the general case. To further limit fragmentation, thread caches perform incremental "garbage collection" (GC),  where time is measured in terms of allocation requests. Cached objects that go unused for one or more GC passes are progressively flushed to their respective arenas using an exponential decay approach.
 
-线程缓存的主要目的在于降低同步事件的数量。因此，每个大小类别所缓存的对象最大数量，应该限制在一个允许在实践中减少同步事件10-100倍的水平。更高的缓存限制也许能为某些应用带来进一步的分配加速，但是一般会带来不可接受的内存碎片代价。为了进一步限制内存碎片，线程缓存会进行增量的“垃圾回收”（GC），其执行时间间隔是使用分配请求次数来衡量的。
+线程缓存的主要目的在于降低同步事件的数量。因此，每个大小类别所缓存的对象最大数量，应该限制在一个允许在实践中减少同步事件10-100倍的水平。更高的缓存限制也许能为某些应用带来进一步的分配加速，但是一般会带来不可接受的内存碎片代价。为了进一步限制内存碎片，线程缓存会进行增量的“垃圾回收”（GC），其执行时间间隔是使用分配请求次数来衡量的。在一次到多次GC操作中未被回收的缓存对象，将使用指数衰减方法，逐渐fang hui到到各自的场地。
 
 # Facebook的原创改进
 
@@ -128,6 +128,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA1NzUwNzg2MiwtNTY5MDY4MTIwLDExND
-Q1NTIyMDFdfQ==
+eyJoaXN0b3J5IjpbMTI3MDc5Mjc3LC01NjkwNjgxMjAsMTE0ND
+U1MjIwMV19
 -->
