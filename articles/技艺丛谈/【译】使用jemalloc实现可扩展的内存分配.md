@@ -95,14 +95,15 @@ as a practical endeavor. That hasn't stopped us from continuing to try new thing
 jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc的一致的表现，允许我们进行更精确的内存利用率的预测，这帮助了服务运维，以及长期的基础架构规划。总而言之，jemalloc 有一个显著的好处：它够快。
 
 Memory allocator microbenchmark results are notoriously difficult to extrapolate to real-world applications (though that doesn't stop people from trying). Facebook devotes a significant portion of its infrastructure  
-to machines that use [HipHop](http://www.facebook.com/note.php?note_id=280583813919) to serve Web pages to users. Although this is just one of many ways in which jemalloc is used  
+to machines that use [HipHop]  to serve Web pages to users. Although this is just one of many ways in which jemalloc is used  
 at Facebook, it provides a striking real-world example of how much allocator performance can matter. We used a set of six identical machines, each with 8 CPU cores, to compare total server throughput. The machines served similar, though not identical, requests,  
 over the course of one hour. We sampled at four-minute intervals (15 samples total), measured throughput as inversely related to CPU consumption, and computed relative averages. For one machine we used the default malloc implementation that is part of [glibc] 2.5,  
-and for the other five machines we used the LD_PRELOAD environment variable to load[ptmalloc3](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.malloc.de%2Fen%2F&h=1AQHW9CeR&s=1), [Hoard](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.hoard.org%2F&h=tAQGBgjNu&s=1) 3.8, [concur](http://www.facebook.com/l.php?u=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fconcur%2F&h=lAQFTULHF&s=1) 1.0.2, [tcmalloc](http://www.facebook.com/l.php?u=http%3A%2F%2Fcode.google.com%2Fp%2Fgoogle-perftools%2F&h=RAQFrSg9n&s=1) 1.4,  
-and [jemalloc](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.canonware.com%2Fjemalloc%2F&h=KAQFbRdsr&s=1) 2.1.0. Note that newer versions of  
-glibc exist (we used the default for [CentOS](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.centos.org%2F&h=cAQGiRnEM&s=1) 5.2), and that the  
+and for the other five machines we used the LD_PRELOAD environment variable to load[ptmalloc3], [Hoard] 3.8, [concur] 1.0.2, [tcmalloc] 1.4,  
+and [jemalloc] 2.1.0. Note that newer versions of  
+glibc exist (we used the default for [CentOS] 5.2), and that the  
 newest version of tcmalloc is 1.6, but we encountered undiagnosed application instability when using versions 1.5 and 1.6.
 
+众所周知，内存分配器微基准测试结果难以推断到真实世界的应用程序
 
 ### Web 服务吞吐量
 
@@ -119,5 +120,5 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDI3NTE0MjgsLTE1ODg5OTQ4MTVdfQ==
+eyJoaXN0b3J5IjpbLTg4ODI4NTc2MiwtMTU4ODk5NDgxNV19
 -->
