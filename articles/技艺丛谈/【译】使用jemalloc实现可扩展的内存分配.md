@@ -48,11 +48,11 @@ jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc �
 
 首次分配小/大对象时，应用程序线程通过轮询的方式来分配 arenas。Arenas 彼此之间相互独立。他们维护自己的块，在块中它们为小/大对象们分配 page runs (译注：翻译为连续的页面不知道准确不准确)。释放的内存则总是返还到分配它的 arena，不管是哪个线程执行了释放操作。
 
-### Arena 块布局
+TODO：图片
 
 每个 arena 块包含元数据（主要是页面映射），后面是一到多个连续页（译注：page runs，找不到合适的翻译词，这里翻译为连续页)。小对象被组织到一起，在每个连续页的起始地址存放额外的元数据。而大对象是彼此独立的，他们的元数据完全存放在 arena 块的头部。每个 arena 块使用红黑树来记录未使用完的小对象连续页（每个大小的列表使用一棵红黑树），当有内存分配请求的时候，优先使用该大小的类别对应的未使用完的连续页，从低地址开始。每个 arena 使用两棵红黑树来追踪可使用的连续页——一个记录干净的/未被使用的连续页，一个记录脏的/被使用过的连续页。连续页优先从脏树中分配，使用浪费最小的最佳匹配（译注：也就是挑选大小最合适的，以避免浪费）。
 
-### Arena和线程缓存布局
+TODO：图片
 
 每个线程维护一个小对象的缓存，以及最大到一定大小的大对象（默认是32K）。因此大部分分配请求，首先检测是否有可获取的缓存对象，然后再访问 arena。通过线程缓存的分配，是不需要任何锁的，而通过arena 来分配是需要锁住一个 arena 箱子（每个小的大小类别一个箱子），和（或）arena 整体。
 
@@ -88,7 +88,7 @@ as a practical endeavor. That hasn't stopped us from continuing to try new thing
 -   Some of the datasets we work with are huge, far beyond what can fit in RAM on a single machine. With the recent increased availability of solid state disks (SSDs), it is tempting to expand datasets to scale with SSD rather than RAM. To this end we added   the **ability to explicitly map one or more files**, rather than using anonymous mmap(). Our experiments thus far indicate that this is a promising approach for applications with working sets that fit in RAM, but we are still analyzing  whether we can take sufficient advantage of this approach to justify the cost of SSD.
 
 -   The venerable malloc API is quite limited: malloc(), calloc(), realloc(), andfree(). Over the years, various extensions have been bolted on, like valloc(),memalign(), posix_memalign(), recalloc(),  
-    and malloc_usable_size(), just to name a few. Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the [jemalloc manual page](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.canonware.com%2Fdownload%2Fjemalloc%2Fjemalloc-latest%2Fdoc%2Fjemalloc.html&h=QAQEamCGj&s=1). We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
+    and malloc_usable_size(), just to name a few. Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the jemalloc manual page . We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
 
 ## Facebook内部的成功应用
 
@@ -111,6 +111,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MTAwMzYwMTksLTk3NDE3ODY1NSwtMT
+eyJoaXN0b3J5IjpbLTE4NjI0NTIzMzYsLTk3NDE3ODY1NSwtMT
 U4ODk5NDgxNV19
 -->
