@@ -96,7 +96,7 @@ jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如
 
  Note that newer versions of  glibc exist (we used the default for [CentOS] 5.2), and that the  newest version of tcmalloc is 1.6, but we encountered undiagnosed application instability when using versions 1.5 and 1.6.
 
-众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。我们使用了六台相同的机器，每台8核CPU，以此进行服务吞吐量的比较。这些机器在一小时内响应了类似（虽然不完全相同）的请求。我们每四分钟采样一次（总共15次采样），测量吞吐量/CPU消耗的值，并计算相对平均值。一台机器使用 glibc 2.5提供的默认的 malloc 实现，另外五台机器，我们使用 LD_PRELOAD 环境变量去加载 ptmalloc3， Hoard 3.8, concur 1.0.2, tcmalloc 1.4,  以及 jemalloc 2.1.0。需要注意的是，新版本的 glibc 是有的(我们使用 CentOS 5.2 默认提供的版本)，
+众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。我们使用了六台相同的机器，每台8核CPU，以此进行服务吞吐量的比较。这些机器在一小时内响应了类似（虽然不完全相同）的请求。我们每四分钟采样一次（总共15次采样），测量吞吐量/CPU消耗的值，并计算相对平均值。一台机器使用 glibc 2.5提供的默认的 malloc 实现，另外五台机器，我们使用 LD_PRELOAD 环境变量去加载 ptmalloc3， Hoard 3.8, concur 1.0.2, tcmalloc 1.4,  以及 jemalloc 2.1.0。需要注意的是，新版本的 glibc 是有的(我们使用 CentOS 5.2 默认提供的版本)，另外， 最新版的  tcmalloc 是 1.6 版本，但是在使用版本 1.5 和 1.6 时，我们遇到了应用程序不稳定的问题，gai。
 
 
 ### Web 服务吞吐量
@@ -114,5 +114,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbLTE3OTAzMjUyOTQsLTk3NDE3ODY1NSwtMT
+U4ODk5NDgxNV19
 -->
