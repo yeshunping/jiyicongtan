@@ -104,6 +104,7 @@ glibc 源自ptmalloc，所以它们的性能表现相近并不让人意外。Hoa
 The main point of this experiment was to show the huge impact that allocator quality can have, as in glibc versus jemalloc, but we have performed numerous experiments at larger scales, using various hardware and  client request loads, in order to quantify the performance advantage of jemalloc over tcmalloc. In general we found that as the number of CPUs increases, the performance gap widens. We interpret this to indicate that jemalloc will continue to scale as we deploy  
 new hardware with ever-increasing CPU core counts.
 
+
 ## 未完成的工作
 
 jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部分涉及到arenas 如何分配给线程。比如，某个程序创建了一个线程池去构造一个很大的静态数据结构，然后使用单线程进行后续操作。除非程序采取特殊的动作来控制 arenas 怎么分配（或者仅仅是简单地限制arenas的数量），那么初始化阶段很容易留下不少利用率很差的arenas（也就是说，内存碎片率高）。解决办法是有的，但是我们指出这个和其他问题，因为它们是由于不可预见的程序行为来出现的。（译注：这里说的问题其实是，开始的时候使用了大量的线程，那个线程都有thread cache，但是后续却无法快速释放内存，因为线程池还在，对应的thread cache还无法回收。一个解决办法是，降低thread pool size，或者是初始化的时候使用线程池，初始化完毕，删除线程池，这样线程退出后，对应的thread cache也就能够及时释放。如果是tcmalloc, 因为实现了borrow 内存的策略，所以只要后续的线程使用固定的线程，而不是每次从线程池中随机Pop一个线程来处理，那么也可以较快释放非活跃线程的内存）。
@@ -112,6 +113,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODM4NjE0MjgzLC0yNDc5MzcxOTEsLTk3ND
-E3ODY1NSwtMTU4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbMTk3NjM2NDY2NSwtMjQ3OTM3MTkxLC05Nz
+QxNzg2NTUsLTE1ODg5OTQ4MTVdfQ==
 -->
