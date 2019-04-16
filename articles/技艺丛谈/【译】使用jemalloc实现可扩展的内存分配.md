@@ -91,7 +91,7 @@ Research and development of untried algorithms is in general a risky proposition
 
 -   Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the jemalloc manual page . We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
 
-过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有posix_memalign() 是标准化的，当尝试重新分配对齐的内存时，它的螺栓固定限制变得明显
+过去的  malloc API是相当有限的，包括：malloc(), calloc(), realloc(), 和 free()。多年来，催生了各种不同的扩展，举几个例子如 valloc()，memalign()，posix_memalign()，recalloc() 和 malloc_usable_size()。这些API中，只有posix_memalign() 是标准化的，当尝试重新分配对齐的内存时，它的限制变得明显（译注：比如 _alignment_ 参数必须是2的幂，并且是 sizeof(void *)的倍数.）
 
 ## Facebook内部的成功应用
 
@@ -115,6 +115,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU4MjA1Mjc1MiwxOTc2MzY0NjY1LC0yND
-c5MzcxOTEsLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbLTExNzEzOTkxNTgsMTk3NjM2NDY2NSwtMj
+Q3OTM3MTkxLC05NzQxNzg2NTUsLTE1ODg5OTQ4MTVdfQ==
 -->
