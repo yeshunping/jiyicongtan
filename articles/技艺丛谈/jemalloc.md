@@ -85,8 +85,7 @@ jemalloc 一直都会在程序退出的时候，以可读的格式，打印详�
 Research and development of untried algorithms is in general a risky proposition; the majority of experiments fail. Indeed, a vast graveyard of failed experiments bears witness to jemalloc's past, despite its nature  
 as a practical endeavor. That hasn't stopped us from continuing to try new things though. Specifically, we developed two innovations that have the potential for broader usefulness than our current applications.
 
--   Some of the datasets we work with are huge, far beyond what can fit in RAM on a single machine. With the recent increased availability of solid state disks (SSDs), it is tempting to expand datasets to scale with SSD rather than RAM. To this end we added  
-    the **ability to explicitly map one or more files**, rather than using anonymous mmap(). Our experiments thus far indicate that this is a promising approach for applications with working sets that fit in RAM, but we are still analyzing  whether we can take sufficient advantage of this approach to justify the cost of SSD.
+-   Some of the datasets we work with are huge, far beyond what can fit in RAM on a single machine. With the recent increased availability of solid state disks (SSDs), it is tempting to expand datasets to scale with SSD rather than RAM. To this end we added   the **ability to explicitly map one or more files**, rather than using anonymous mmap(). Our experiments thus far indicate that this is a promising approach for applications with working sets that fit in RAM, but we are still analyzing  whether we can take sufficient advantage of this approach to justify the cost of SSD.
 
 -   The venerable malloc API is quite limited: malloc(), calloc(), realloc(), andfree(). Over the years, various extensions have been bolted on, like valloc(),memalign(), posix_memalign(), recalloc(),  
     and malloc_usable_size(), just to name a few. Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the [jemalloc manual page](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.canonware.com%2Fdownload%2Fjemalloc%2Fjemalloc-latest%2Fdoc%2Fjemalloc.html&h=QAQEamCGj&s=1). We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
@@ -120,6 +119,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2NDE4NzI3MSwtNTY5MDY4MTIwLDExND
+eyJoaXN0b3J5IjpbLTYxMDIwMjUzMywtNTY5MDY4MTIwLDExND
 Q1NTIyMDFdfQ==
 -->
