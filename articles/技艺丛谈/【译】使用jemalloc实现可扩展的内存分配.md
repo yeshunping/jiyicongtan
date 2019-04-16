@@ -104,7 +104,7 @@ glibc 源自ptmalloc，所以它们的性能表现相近并不让人意外。Hoa
 The main point of this experiment was to show the huge impact that allocator quality can have, as in glibc versus jemalloc, but we have performed numerous experiments at larger scales, using various hardware and  client request loads, in order to quantify the performance advantage of jemalloc over tcmalloc. In general we found that as the number of CPUs increases, the performance gap widens. We interpret this to indicate that jemalloc will continue to scale as we deploy  
 new hardware with ever-increasing CPU core counts.
 
-这个实验的主要目的是展示分配器的好坏可能产生的巨大影响，如gblic 和 jemalloc 对比数据所示。不过我们在更大规模下，进行了大量的实验，使用不同的硬件和不同的客户端请求负载，目的在于量化 jemalloc 相比 tcmalloc 的性能优势。
+这个实验的主要目的是展示分配器的好坏可能产生的巨大影响，如gblic 和 jemalloc 对比数据所示。不过我们在更大规模下，进行了大量的实验，使用不同的硬件和不同的客户端请求负载，目的在于量化 jemalloc 相比 tcmalloc 的性能优势。一般地，我们发现随着CPU核数的增加，性能差距加大。由此可见，jemalloc 将在我们部署时继续扩展 具有不断增加的CPU核心数量的新硬件。
 
 ## 未完成的工作
 
@@ -114,6 +114,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3OTk4ODQwMTgsMTk3NjM2NDY2NSwtMj
-Q3OTM3MTkxLC05NzQxNzg2NTUsLTE1ODg5OTQ4MTVdfQ==
+eyJoaXN0b3J5IjpbLTU1NzExMzE2LDE5NzYzNjQ2NjUsLTI0Nz
+kzNzE5MSwtOTc0MTc4NjU1LC0xNTg4OTk0ODE1XX0=
 -->
