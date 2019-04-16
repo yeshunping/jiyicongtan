@@ -20,7 +20,7 @@ Facebook 网站包括不同类型的服务，这些服务大部分运行在8核C
 
 2009年那会，现有的内存分配器最多满足上面三条中的两条，因此我们给jemalloc添加了内存剖析的功能，并做了大量的优化，因此jemmlloc 目前已经很好地解决了上面的三个问题。下文先是调查了jemalloc的核心算法和数据结构，然后再介绍了Facebook贡献的众多改进细节，最后附上了一份跑分记录，在在线的Web服务器负载下，比较了六个内存分配器的表现。
 
-# 核心算法与数据结构
+## 核心算法与数据结构
 
 C 和 C++ 编程语言依赖于一个非常基础的类型无关的分配器API，它只有包括五个函数：malloc(), posix_memalign(), calloc(),realloc(), 和 free()。 不少 malloc 的实现也提供了一些简单的内省能力（译注：也就是查看内存的内部详细使用状态等），比如函数malloc_usable_size()。虽然 API 本身很简单，但是高并发下的高吞吐量和规避内存碎片，却需要相当复杂的内部实现。jemalloc 采用了一些原创的想法，而更多的想法则被其它内存分配器先验证过的。以下是那些想法的概述，以及内存分配哲学，正是它们构成了jemalloc。
 
@@ -48,21 +48,21 @@ jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc �
 
 首次分配小/大对象时，应用程序线程通过轮询的方式来分配 arenas。Arenas 彼此之间相互独立。他们维护自己的块，在块中它们为小/大对象们分配 page runs (译注：翻译为连续的页面不知道准确不准确)。释放的内存则总是返还到分配它的 arena，不管是哪个线程执行了释放操作。
 
-## Arena 块布局
+### Arena 块布局
 
 每个 arena 块包含元数据（主要是页面映射），后面是一到多个连续页（译注：page runs，找不到合适的翻译词，这里翻译为连续页)。小对象被组织到一起，在每个连续页的起始地址存放额外的元数据。而大对象是彼此独立的，他们的元数据完全存放在 arena 块的头部。每个 arena 块使用红黑树来记录未使用完的小对象连续页（每个大小的列表使用一棵红黑树），当有内存分配请求的时候，优先使用该大小的类别对应的未使用完的连续页，从低地址开始。每个 arena 使用两棵红黑树来追踪可使用的连续页——一个记录干净的/未被使用的连续页，一个记录脏的/被使用过的连续页。连续页优先从脏树中分配，使用浪费最小的最佳匹配（译注：也就是挑选大小最合适的，以避免浪费）。
 
-## Arena和线程缓存布局
+### Arena和线程缓存布局
 
 每个线程维护一个小对象的缓存，以及最大到一定大小的大对象（默认是32K）。因此大部分分配请求，首先检测是否有可获取的缓存对象，然后再访问 arena。通过线程缓存的分配，是不需要任何锁的，而通过arena 来分配是需要锁住一个 arena 箱子（每个小的大小类别一个箱子），和（或）arena 整体。
 
 线程缓存的主要目的在于降低同步事件的数量。因此，每个大小类别所缓存的对象最大数量，应该限制在一个允许在实践中减少同步事件10-100倍的水平。更高的缓存限制也许能为某些应用带来进一步的分配加速，但是一般会带来不可接受的内存碎片代价。为了进一步限制内存碎片，线程缓存会进行增量的“垃圾回收”（GC），其执行时间间隔是使用分配请求次数来衡量的。在一次到多次GC操作中未被回收的缓存对象，将使用指数衰减方法，逐渐放回到各自的 arena。
 
-# Facebook的原创改进
+## Facebook的原创改进
 
 2009年那会，一位Facebook的工程师可能会这么总结jemalloc的优缺点：“jemalloc的一致性和可靠性都很赞，但是不够快，另外我们需要更好的方法去监控程序到底在干什么”
 
-## 速度
+### 速度
 
 我们做了很多改进，解决了性能问题。以下是一些比较重要的改进：
 
@@ -74,13 +74,13 @@ jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc �
     
 -  我们**开发了一个新的红黑树实现**，该实现有着同样的低内存代价（每个节点两个指针），但是插入和删除操作大概快了30%左右。这个固定比例的改进对我们的一两个应用有着蛮大的作用。（译注：后面省略一部分，是关于红黑树实现的性能分析和改进思路的，这部分比较专业，并且和内存分配器的实现关系不大，翻译了反而影响整体阅读。感兴趣的朋友可以阅读英文原文）
 
-## 自我检查
+### 自我检查
 
 jemalloc 一直都会在程序退出的时候，以可读的格式，打印详细的内部统计信息，但是这对于长期运行的服务程序来说是用处有限了，所以我们新增了malloc_stats_print() 这个函数，它可以在程序中被任意次调用。（译注：tcmalloc更进一步，改写了malloc_stats() 这个函数的实现）不足的是，这个函数的输出，对使用者来说还需要进行解析（以拿到各个字段），因此我们添加了themallctl*() 系列 API（接口参考参考BSD的 sysctl() 系统调用）用于获取各个统计信息。（译注：tcmalloc也提供了类似的接口）我们根据 mallctl*()重新实现了malloc_stats_print() 函数，以确保完全覆盖这些信息，随着时间的推移，我们也扩展了这个工具函数，以提供不同的控制，比如线程缓存刷新和强制性脏页清除等。
 
 诊断内存泄露是一个很大的挑战，尤其是在线服务需要输出泄露信息。谷歌的tcmalloc 提供了很出色的内存剖析工具，可以用于生产环境，我们发现这个工具的作用简直是无价的。然而，在一些应用上，我们不断碰到这样的困境：只有jemalloc能够重复控制内存使用，但是只有tcmalloc 提供了适当的工具同于理解内部的内存占用情况（译注：一般用于定位离线很难付现的内存泄露）。因此，我们在jemalloc中实现了兼容的内存剖析工具。这样我们就可以利用tcmalloc内置的后处理工具了。（译注：gperftools 实现的heap profiling 是和tcmalloc实现绑定的，官方说有计划独立出去，但是至今还没有接耦，因此jemalloc 只能在 jemalloc 项目内部实现一个heap profiling 工具）
 
-## 实验
+### 实验
 
 Research and development of untried algorithms is in general a risky proposition; the majority of experiments fail. Indeed, a vast graveyard of failed experiments bears witness to jemalloc's past, despite its nature  
 as a practical endeavor. That hasn't stopped us from continuing to try new things though. Specifically, we developed two innovations that have the potential for broader usefulness than our current applications.
@@ -90,7 +90,7 @@ as a practical endeavor. That hasn't stopped us from continuing to try new thing
 -   The venerable malloc API is quite limited: malloc(), calloc(), realloc(), andfree(). Over the years, various extensions have been bolted on, like valloc(),memalign(), posix_memalign(), recalloc(),  
     and malloc_usable_size(), just to name a few. Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the [jemalloc manual page](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.canonware.com%2Fdownload%2Fjemalloc%2Fjemalloc-latest%2Fdoc%2Fjemalloc.html&h=QAQEamCGj&s=1). We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
 
-# Facebook内部的成功应用
+## Facebook内部的成功应用
 
 Some of jemalloc's practical benefits for Facebook are difficult to quantify. For example, we have on numerous occasions used heap profiling on production systems to diagnose memory issues before they could cause  service disruptions, not to mention all the uses of heap profiling for development/optimization purposes. More generally, jemalloc's consistent behavior has allowed us to make more accurate memory utilization projections, which aids operations as well as long  
 term infrastructure planning. All that said, jemalloc does have one very tangible benefit: it is fast.
@@ -111,13 +111,13 @@ glibc derives its allocator from ptmalloc, so their performance similarity is no
 The main point of this experiment was to show the huge impact that allocator quality can have, as in glibc versus jemalloc, but we have performed numerous experiments at larger scales, using various hardware and  client request loads, in order to quantify the performance advantage of jemalloc over tcmalloc. In general we found that as the number of CPUs increases, the performance gap widens. We interpret this to indicate that jemalloc will continue to scale as we deploy  
 new hardware with ever-increasing CPU core counts.
 
-# 未完成的工作
+## 未完成的工作
 
 jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部分涉及到arenas 如何分配给线程。比如，某个程序创建了一个线程池去构造一个很大的静态数据结构，然后使用单线程进行后续操作。除非程序采取特殊的动作来控制 arenas 怎么分配（或者仅仅是简单地限制arenas的数量），那么初始化阶段很容易留下不少利用率很差的arenas（也就是说，内存碎片率高）。解决办法是有的，但是我们指出这个和其他问题，因为它们是由于不可预见的程序行为来出现的。（译注：这里说的问题其实是，开始的时候使用了大量的线程，那个线程都有thread cache，但是后续却无法快速释放内存，因为线程池还在，对应的thread cache还无法回收。一个解决办法是，降低thread pool size，或者是初始化的时候使用线程池，初始化完毕，删除线程池，这样线程退出后，对应的thread cache也就能够及时释放。如果是tcmalloc, 因为实现了borrow 内存的策略，所以只要后续的线程使用固定的线程，而不是每次从线程池中随机Pop一个线程来处理，那么也可以较快释放非活跃线程的内存）。
 
-# 致谢
+## 致谢
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODg5OTQ4MTVdfQ==
+eyJoaXN0b3J5IjpbMTM5ODY5NjM1LC0xNTg4OTk0ODE1XX0=
 -->
