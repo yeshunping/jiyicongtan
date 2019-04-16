@@ -51,7 +51,7 @@ jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc �
 ## Arena 块布局
 
 Each arena chunk contains metadata (primarily a page map), followed by one or more page runs. Small objects are grouped together, with additional metadata at the start of each page run, whereas large objects are  independent of each other, and their metadata reside entirely in the arena chunk header. Each arena tracks non-full small object page runs via red-black trees (one for each size class), and always services allocation requests using the non-full run with the  lowest address for that size class. Each arena tracks available page runs via two red-black trees — one for clean/untouched page runs, and one for dirty/touched page runs. Page runs are preferentially allocated from the dirty tree, using lowest best fit.
-每个arena块包含metadata信息（主要是页面映射），后面是一到多个连续页（译注：page runs，找不到合适的翻译词，这里翻译为连续页)。小对象被组织到一起，在每个连续页的起始地址存放额外的metadata。而大对象是彼此独立的，他们的 metadata 
+每个arena块包含metadata信息（主要是页面映射），后面是一到多个连续页（译注：page runs，找不到合适的翻译词，这里翻译为连续页)。小对象被组织到一起，在每个连续页的起始地址存放额外的metadata。而大对象是彼此独立的，他们的 metadata 完全存放在arena块的头部。每个arena块使用红黑树来记录未使用完的小对象连续页（每个大小的列表使用一棵红黑树），
 
 ## Arena和线程缓存布局
 
@@ -130,6 +130,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDI1OTAyMzIyLC01NjkwNjgxMjAsMTE0ND
-U1MjIwMV19
+eyJoaXN0b3J5IjpbLTgyMDk1NDYzOSwtNTY5MDY4MTIwLDExND
+Q1NTIyMDFdfQ==
 -->
