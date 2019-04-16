@@ -103,7 +103,7 @@ and [jemalloc] 2.1.0. Note that newer versions of
 glibc exist (we used the default for [CentOS] 5.2), and that the  
 newest version of tcmalloc is 1.6, but we encountered undiagnosed application instability when using versions 1.5 and 1.6.
 
-众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。
+众所周知，简单的内存分配器基准测试结果，难以反应真实世界的应用（虽然人们仍然乐此不疲）。Facebook投入了很大一部分基础设施到使用 HipHop 的机器，这些机器向用户提供网页服务。虽然这只是 jemalloc 在Facebook 内部众多应用类型之一，它提供了一个惊人的例子，说明了在现实世界中分配器性能有多重要。
 
 ### Web 服务吞吐量
 
@@ -120,6 +120,5 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTgwODU5OTcsLTE1ODg5OTQ4MTVdfQ
-==
+eyJoaXN0b3J5IjpbODQwNzk0MDY4LC0xNTg4OTk0ODE1XX0=
 -->
