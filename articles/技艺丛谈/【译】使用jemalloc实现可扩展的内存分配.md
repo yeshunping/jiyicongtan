@@ -86,6 +86,8 @@ jemalloc 一直都会在程序退出的时候，以可读的格式，打印详�
 Research and development of untried algorithms is in general a risky proposition; the majority of experiments fail. Indeed, a vast graveyard of failed experiments bears witness to jemalloc's past, despite its nature  
 as a practical endeavor. That hasn't stopped us from continuing to try new things though. Specifically, we developed two innovations that have the potential for broader usefulness than our current applications.
 
+研究和开发未经验证的算法通常是一个冒险的命题。大多数实验都失败了。事实上，尽管存在性质，但是一个巨大的失败实验墓地见证了jemalloc的过去 作为一种实际的努力
+
 -   Some of the datasets we work with are huge, far beyond what can fit in RAM on a single machine. With the recent increased availability of solid state disks (SSDs), it is tempting to expand datasets to scale with SSD rather than RAM. To this end we added   the **ability to explicitly map one or more files**, rather than using anonymous mmap(). Our experiments thus far indicate that this is a promising approach for applications with working sets that fit in RAM, but we are still analyzing  whether we can take sufficient advantage of this approach to justify the cost of SSD.
 
 -   The venerable malloc API is quite limited: malloc(), calloc(), realloc(), andfree(). Over the years, various extensions have been bolted on, like valloc(),memalign(), posix_memalign(), recalloc(),  
@@ -113,6 +115,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4ODg1NTQ3OCwxOTc2MzY0NjY1LC0yND
+eyJoaXN0b3J5IjpbMTQ2NDg1MDMxMywxOTc2MzY0NjY1LC0yND
 c5MzcxOTEsLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
 -->
