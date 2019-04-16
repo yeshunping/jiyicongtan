@@ -33,9 +33,9 @@ C 和 C++ 编程语言依赖于一个非常基础的类型无关的分配器API�
 
 -   **最小化活跃页面集**。操作系统内存按照页面（一般一个页面4K）来管理虚拟内存，因此尽可能集中所有数据到几个页面里就非常重要。phkmalloc 验证了这一宗旨，曾经有段时间，应用程序经常相互竞争活跃页面（已经被交换到磁盘中）（译注：以前内存比较小），然而这点哪怕在完全避免交换的现代背景下仍然很重要。
 
--   **最小化锁争用**。jemalloc 的独立的 arenas 受到 lkmalloc 的启发，但是随着时间的推移，tcmalloc 让这点更加凸显，它指出完全避免同步甚至会更好，因此 jemalloc 也实现了线程局部缓存。(译注：tcmalloc 里叫做thread local cache，通过 TLS 来访问，如果 cache 不足，则加锁从 central cache 获取)
+-   **最小化锁争用**。jemalloc 的独立的 arenas 受到 lkmalloc 的启发，但是随着时间的推移，tcmalloc 让这点更加凸显，它指出完全避免同步甚至会更好，因此 jemalloc 也实现了线程专属缓存。(译注：tcmalloc 里叫做thread cache，通过 TLS 来访问，如果 cache 不足，则加锁从 central cache 获取)
 
--  **若非通用则不够好用**。当 jemallo 第一次合并到 FreeBSD 时，在某些程序中，它存在严重的内存碎片问题，这时有人建议在操作系统中包含多个分配器，该观点认为开发人员有权根据应用程序特征做出明智的选择。正确的解决方案是，大力简化 jemalloc 的布局算法，以提高性能和可预测性。
+-  **若非通用则不够好用**。当 jemalloc 第一次合并到 FreeBSD 时，在某些程序中，它存在严重的内存碎片问题，这时有人建议在操作系统中包含多个分配器，该观点认为，开发人员有权根据应用程序的特征做出明智的选择。正确的解决方案是，大力简化 jemalloc 的布局算法，以提高性能和可预测性。
 
 过去几年，这个哲学理念激发了 jemalloc 的众多重大性能改进，随着不足被不断发现，它也将继续指导 jemalloc 的开发。
 
@@ -111,7 +111,7 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM2NzQzNjk4NSw1ODcyNTM1NTEsNDQ3OT
+eyJoaXN0b3J5IjpbLTk0MTQxNzgzMCw1ODcyNTM1NTEsNDQ3OT
 E5Nzc0LDE0MDAyMTA4NCwtMTE3MTM5OTE1OCwxOTc2MzY0NjY1
 LC0yNDc5MzcxOTEsLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
 -->
