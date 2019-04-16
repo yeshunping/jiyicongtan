@@ -92,20 +92,19 @@ as a practical endeavor. That hasn't stopped us from continuing to try new thing
 
 ## Facebook内部的成功应用
 
-Some of jemalloc's practical benefits for Facebook are difficult to quantify. For example, we have on numerous occasions used heap profiling on production systems to diagnose memory issues before they could cause  service disruptions, not to mention all the uses of heap profiling for development/optimization purposes. More generally, jemalloc's consistent behavior has allowed us to make more accurate memory utilization projections, which aids operations as well as long  
-term infrastructure planning. All that said, jemalloc does have one very tangible benefit: it is fast.
-jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc的一致的表现，允许我们进行更精确的内存利用率的预测，这帮助了服务运维，以及长期的基础架构规划。总而言之，jemalloc 
+jemalloc 给Facebook带来的一些实际的好处，是很难量化的。比如，我们在众多的场景中，在生产系统中使用内存剖析进行内存问题的诊断，从而避免了服务中断，更不用提在开发和优化工作中内存剖析工具的频繁使用了。更主要的是，jemalloc的一致的表现，允许我们进行更精确的内存利用率的预测，这帮助了服务运维，以及长期的基础架构规划。总而言之，jemalloc 有一个显著的好处：它够快。
 
 Memory allocator microbenchmark results are notoriously difficult to extrapolate to real-world applications (though that doesn't stop people from trying). Facebook devotes a significant portion of its infrastructure  
 to machines that use [HipHop](http://www.facebook.com/note.php?note_id=280583813919) to serve Web pages to users. Although this is just one of many ways in which jemalloc is used  
 at Facebook, it provides a striking real-world example of how much allocator performance can matter. We used a set of six identical machines, each with 8 CPU cores, to compare total server throughput. The machines served similar, though not identical, requests,  
-over the course of one hour. We sampled at four-minute intervals (15 samples total), measured throughput as inversely related to CPU consumption, and computed relative averages. For one machine we used the default malloc implementation that is part of [glibc](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.gnu.org%2Fsoftware%2Flibc%2F&h=GAQGZXXmm&s=1) 2.5,  
+over the course of one hour. We sampled at four-minute intervals (15 samples total), measured throughput as inversely related to CPU consumption, and computed relative averages. For one machine we used the default malloc implementation that is part of [glibc] 2.5,  
 and for the other five machines we used the LD_PRELOAD environment variable to load[ptmalloc3](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.malloc.de%2Fen%2F&h=1AQHW9CeR&s=1), [Hoard](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.hoard.org%2F&h=tAQGBgjNu&s=1) 3.8, [concur](http://www.facebook.com/l.php?u=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fconcur%2F&h=lAQFTULHF&s=1) 1.0.2, [tcmalloc](http://www.facebook.com/l.php?u=http%3A%2F%2Fcode.google.com%2Fp%2Fgoogle-perftools%2F&h=RAQFrSg9n&s=1) 1.4,  
 and [jemalloc](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.canonware.com%2Fjemalloc%2F&h=KAQFbRdsr&s=1) 2.1.0. Note that newer versions of  
 glibc exist (we used the default for [CentOS](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.centos.org%2F&h=cAQGiRnEM&s=1) 5.2), and that the  
 newest version of tcmalloc is 1.6, but we encountered undiagnosed application instability when using versions 1.5 and 1.6.
 
-Web server throughput
+
+### Web 服务吞吐量
 
 glibc derives its allocator from ptmalloc, so their performance similarity is no surprise. The Hoard allocator appears to spend a great deal of time contending on a spinlock, possibly as a side effect of its blowup avoidance algorithms. The concur allocator appears to scale well, but it does not implement thread caching, so it incurs a substantial synchronization cost even though contention is low. tcmalloc under-performs jemalloc by about 4.5%.
 
@@ -120,6 +119,5 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3ODUwNTAzMDYsLTE1ODg5OTQ4MTVdfQ
-==
+eyJoaXN0b3J5IjpbNDI3NTE0MjgsLTE1ODg5OTQ4MTVdfQ==
 -->
