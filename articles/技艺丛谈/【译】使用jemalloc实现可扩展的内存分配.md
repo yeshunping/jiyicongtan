@@ -102,16 +102,16 @@ glibc 源自ptmalloc，所以它们的性能表现相近并不让人意外。Hoa
 
 ## 未完成的工作
 
-jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部分涉及到arenas 如何分配给线程。比如，某个程序创建了一个线程池去构造一个很大的静态数据结构，然后使用单线程进行后续操作。除非程序采取特殊的动作来控制 arenas 怎么分配（或者仅仅是简单地限制arenas的数量），那么初始化阶段很容易留下不少利用率很差的arenas（也就是说，内存碎片率高）。解决办法是有的，但是我们指出这个和其他问题，因为它们是由于不可预见的程序行为来出现的。
+jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部分涉及到arenas 如何分配给线程。比如，某个程序创建了一个线程池去构造一个很大的静态数据结构，然后使用单线程进行后续操作。除非程序采取特殊的动作来控制 arenas 怎么分配（或者仅仅是简单地限制 arenas 的数量），那么初始化阶段很容易留下不少利用率很差的 arenas（也就是说，内存碎片率高）。解决办法是有的，但是我们指出这个和其他问题，因为它们是由于不可预见的程序行为来出现的。
 
-（译注：这里说的问题其实是，开始的时候使用了大量的线程，那个线程都有thread cache，但是后续却无法快速释放内存，因为线程池还在，对应的thread cache还无法回收。一个解决办法是，降低thread pool size，或者是初始化的时候使用线程池，初始化完毕，删除线程池，这样线程退出后，对应的thread cache也就能够及时释放。如果是tcmalloc, 因为实现了borrow 内存的策略，所以只要后续的线程使用固定的线程，而不是每次从线程池中随机Pop一个线程来处理，那么也可以较快释放非活跃线程的内存）。
+（译注：这里说的问题其实是，开始的时候使用了大量的线程，那些线程都有 thread cache，但是后续却无法快速释放内存，因为线程池还在，对应的 thread cache 还无法回收。一个解决办法是，降低 thread pool size，或者是初始化的时候使用线程池，初始化完毕，删除线程池，这样线程退出后，对应的 thread cache 也就能够及时释放。如果是tcmalloc, 因为实现了 borrow 内存的策略，所以只要后续的线程使用固定的线程，而不是每次从线程池中随机 Pop 一个线程来处理，那么也可以较快释放非活跃线程的内存）。
 
 ## 致谢
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDcyOTQ3Nzk1LC0xNTQ1MDA5NDY5LDU4Nz
-I1MzU1MSw0NDc5MTk3NzQsMTQwMDIxMDg0LC0xMTcxMzk5MTU4
-LDE5NzYzNjQ2NjUsLTI0NzkzNzE5MSwtOTc0MTc4NjU1LC0xNT
-g4OTk0ODE1XX0=
+eyJoaXN0b3J5IjpbLTE3MDMxMTQxOTgsLTE1NDUwMDk0NjksNT
+g3MjUzNTUxLDQ0NzkxOTc3NCwxNDAwMjEwODQsLTExNzEzOTkx
+NTgsMTk3NjM2NDY2NSwtMjQ3OTM3MTkxLC05NzQxNzg2NTUsLT
+E1ODg5OTQ4MTVdfQ==
 -->
