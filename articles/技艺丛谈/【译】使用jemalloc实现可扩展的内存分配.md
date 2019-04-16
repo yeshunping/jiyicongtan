@@ -96,7 +96,7 @@ jemalloc 给 Facebook 带来的实际的好处，是很难量化的。比如，�
 
 TOOD：图片3
 
-glibc 源自ptmalloc，所以它们的性能表现相近并不让人意外。Hoard 分配器似乎花费大量时间争夺自旋锁，可能是其爆炸避免算法的副作用（译注：应该是规避最糟糕情况引入的算法）。concur 分配器看起来扩展性很好，但是因为它没有实现线程缓存，因此也会产生很大的同步成本，即使争用率很低。tcmalloc 比 jemalloc 表现略差 4.5%。
+glibc 源自ptmalloc，所以它们的性能表现相近并不让人意外。Hoard 分配器似乎花费大量时间争夺自旋锁，可能是其爆炸避免算法的副作用（译注：应该是规避最糟糕情况引入的算法）。concur 分配器看起来扩展性很好，但是因为它没有实现线程缓存，因此即使争用率很低，但也会产生很大的同步成本。tcmalloc 比 jemalloc 表现略差 4.5%。
 
 这个实验的主要目的是展示分配器的好坏可能产生的巨大影响，如gblic 和 jemalloc 对比数据所示。不过我们在更大规模下，进行了大量的实验，使用不同的硬件和不同的客户端请求负载，目的在于量化 jemalloc 相比 tcmalloc 的性能优势。一般地，我们发现随着CPU核数的增加，性能差距加大。由此可见，在我们部署具有不断增加的CPU核数的新硬件时，jemalloc 将进一步方法优势。
 
@@ -110,7 +110,7 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0MDE5NTAxNywtMTU0NTAwOTQ2OSw1OD
+eyJoaXN0b3J5IjpbMjA4NjI0MjM2MSwtMTU0NTAwOTQ2OSw1OD
 cyNTM1NTEsNDQ3OTE5Nzc0LDE0MDAyMTA4NCwtMTE3MTM5OTE1
 OCwxOTc2MzY0NjY1LC0yNDc5MzcxOTEsLTk3NDE3ODY1NSwtMT
 U4ODk5NDgxNV19
