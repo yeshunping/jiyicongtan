@@ -23,7 +23,7 @@ Facebook 网站包括不同类型的服务，这些服务大部分运行在8核C
 
 ## 核心算法与数据结构
 
-C 和 C++ 编程语言依赖于一个非常基础的类型无关的分配器API，它仅包括五个函数：malloc(), posix_memalign(), calloc(),realloc(), 和 free()。 不少 malloc 的实现也提供了一些简单的内省能力（译注：也就是查看内存内部使用状态的详细信息等，比如多大的对象使分配了多少次，分配器 metadata 的大小等），比如函数malloc_usable_size()。虽然 API 本身很简单，但是高并发下的高吞吐量和规避内存碎片，却需要相当复杂的内部实现。jemalloc 采用了一些原创的想法，而更多的想法则被其它内存分配器先验证过的。以下是那些想法的概述，以及内存分配哲学，正是它们构成了jemalloc。
+C 和 C++ 编程语言依赖于一个非常基础的类型无关的分配器API，它仅包括五个函数：malloc(), posix_memalign(), calloc(),realloc(), 和 free()。 不少 malloc 的实现也提供了一些简单的内省能力（译注：也就是查看内存内部使用状态的详细信息等，比如多大的对象使分配了多少次，分配器 metadata 的大小等），比如函数 malloc_usable_size()。虽然 API 本身很简单，但是高并发下如何实现高吞吐量和规避内存碎片，却需要相当复杂的内部实现。jemalloc 采用了一些原创的想法，而更多的想法则被其它内存分配器先验证过的。以下概述这些想法，以及内存分配哲学，正是它们构成了 jemalloc。
 
 -   按照大小类别（译注：不是大小，但是不同大小的类别，比如16 , 32, 48, 64, 128, 256字节）隔离不同的小对象。并且**重复利用时倾向于选择低地址**，这个布局策略来源于phkmalloc, 这个也是 jemalloc 预期会有较低的内存碎片行为的关键所在。
 
@@ -111,7 +111,7 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI0NjQ4Nzc3NSw0NDc5MTk3NzQsMTQwMD
-IxMDg0LC0xMTcxMzk5MTU4LDE5NzYzNjQ2NjUsLTI0NzkzNzE5
-MSwtOTc0MTc4NjU1LC0xNTg4OTk0ODE1XX0=
+eyJoaXN0b3J5IjpbNTg3MjUzNTUxLDQ0NzkxOTc3NCwxNDAwMj
+EwODQsLTExNzEzOTkxNTgsMTk3NjM2NDY2NSwtMjQ3OTM3MTkx
+LC05NzQxNzg2NTUsLTE1ODg5OTQ4MTVdfQ==
 -->
