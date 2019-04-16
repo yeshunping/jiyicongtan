@@ -47,11 +47,11 @@ jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc �
 
 首次分配小/大对象时，应用程序线程通过轮询的方式来分配 arenas。Arenas 彼此之间相互独立。他们维护自己的块，在块中它们为小/大对象们分配 page runs (译注：翻译为连续的页面不知道准确不准确)。释放的内存则总是返还到分配它的 arena，不管是哪个线程执行了释放操作。
 
-TODO：图片
+TODO:图片1
 
 每个 arena 块包含元数据（主要是页面映射），后面是一到多个连续页（译注：page runs，找不到合适的翻译词，这里翻译为连续页)。小对象被组织到一起，在每个连续页的起始地址存放额外的元数据。而大对象是彼此独立的，他们的元数据完全存放在 arena 块的头部。每个 arena 块使用红黑树来记录未使用完的小对象连续页（每个大小的列表使用一棵红黑树），当有内存分配请求的时候，优先使用该大小的类别对应的未使用完的连续页，从低地址开始。每个 arena 使用两棵红黑树来追踪可使用的连续页——一个记录干净的/未被使用的连续页，一个记录脏的/被使用过的连续页。连续页优先从脏树中分配，使用浪费最小的最佳匹配（译注：也就是挑选大小最合适的，以避免浪费）。
 
-TODO：图片
+TODO：图片2
 
 每个线程维护一个小对象的缓存，以及最大到一定大小的大对象（默认是32K）。因此大部分分配请求，首先检测是否有可获取的缓存对象，然后再访问 arena。通过线程缓存的分配，是不需要任何锁的，而通过arena 来分配是需要锁住一个 arena 箱子（每个小的大小类别一个箱子），和（或）arena 整体。
 
@@ -81,8 +81,6 @@ jemalloc 一直都会在程序退出的时候，以可读的格式，打印详�
 
 ### 实验
 
-Research and development of untried algorithms is in general a risky proposition; the majority of experiments fail. Indeed, a vast graveyard of failed experiments bears witness to jemalloc's past, despite its nature as a practical endeavor. That hasn't stopped us from continuing to try new things though. Specifically, we developed two innovations that have the potential for broader usefulness than our current applications.
-
 研究和开发未经验证的算法通常是一个冒险的命题。大多数实验都以失败告终。事实上，尽管其性质是一种实际的努力，但是 jemalloc 在过去经历了无数次的失败尝试。不过这并不能够阻止我们继续尝试新的方法。特别值得一提的是，我们开发了两项创新功能，这些功能比我们目前的应用也许更具有广泛的实用性。
 
 -   我们使用的一些数据集非常庞大，远远超出了单机内存。随着最近固态磁盘（SSD）可用性的增强，使用SSD而不是内存将数据集进一步扩展，将是很有吸引力的。为此，我们添加了**显式映射一个或多个文件的能力**，而不是使用匿名mmap() 函数。到目前为止，我们的实验表明，对于适合放在内存的数据集的应用来说，这是一种很有前景的方法，但我们仍在分析是否可以更好地利用这种方法，以让花在SSD上的成本物有所值。
@@ -111,7 +109,7 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQwMDIxMDg0LC0xMTcxMzk5MTU4LDE5Nz
-YzNjQ2NjUsLTI0NzkzNzE5MSwtOTc0MTc4NjU1LC0xNTg4OTk0
-ODE1XX0=
+eyJoaXN0b3J5IjpbNzA4NDE0NDM3LDE0MDAyMTA4NCwtMTE3MT
+M5OTE1OCwxOTc2MzY0NjY1LC0yNDc5MzcxOTEsLTk3NDE3ODY1
+NSwtMTU4ODk5NDgxNV19
 -->
