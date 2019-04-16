@@ -56,9 +56,7 @@ jemalloc 实现了三个主要的大小类别，分别如下（假设 jemalloc �
 
 每个线程维护一个小对象的缓存，以及最大到一定大小的大对象（默认是32K）。因此大部分分配请求，首先检测是否有可获取的缓存对象，然后再访问 arena。通过线程缓存的分配，是不需要任何锁的，而通过arena 来分配是需要锁住一个 arena 箱子（每个小的大小类别一个箱子），和（或）arena 整体。
 
-The main goal of thread caches is to reduce the volume of synchronization events. Therefore, the maximum number of cached objects for each size class is capped at a level that allows for a 10-100X synchronization  reduction in practice. Higher caching limits would further speed up allocation for some applications, but at an unacceptable fragmentation cost in the general case. To further limit fragmentation, thread caches perform incremental "garbage collection" (GC),  where time is measured in terms of allocation requests. Cached objects that go unused for one or more GC passes are progressively flushed to their respective arenas using an exponential decay approach.
-
-线程缓存的主要目的在于降低同步事件的数量。因此，每个大小类别所缓存的对象最大数量，应该限制在一个允许在实践中减少同步事件10-100倍的水平。更高的缓存限制也许能为某些应用带来进一步的分配加速，但是一般会带来不可接受的内存碎片代价。为了进一步限制内存碎片，线程缓存会进行增量的“垃圾回收”（GC），其执行时间间隔是使用分配请求次数来衡量的。在一次到多次GC操作中未被回收的缓存对象，将使用指数衰减方法，逐渐fang hui到到各自的场地。
+线程缓存的主要目的在于降低同步事件的数量。因此，每个大小类别所缓存的对象最大数量，应该限制在一个允许在实践中减少同步事件10-100倍的水平。更高的缓存限制也许能为某些应用带来进一步的分配加速，但是一般会带来不可接受的内存碎片代价。为了进一步限制内存碎片，线程缓存会进行增量的“垃圾回收”（GC），其执行时间间隔是使用分配请求次数来衡量的。在一次到多次GC操作中未被回收的缓存对象，将使用指数衰减方法，逐渐放回到各自的 arena。
 
 # Facebook的原创改进
 
@@ -88,18 +86,14 @@ Research and development of untried algorithms is in general a risky proposition
 as a practical endeavor. That hasn't stopped us from continuing to try new things though. Specifically, we developed two innovations that have the potential for broader usefulness than our current applications.
 
 -   Some of the datasets we work with are huge, far beyond what can fit in RAM on a single machine. With the recent increased availability of solid state disks (SSDs), it is tempting to expand datasets to scale with SSD rather than RAM. To this end we added  
-    the **ability to explicitly map one or more files**, rather than using anonymous mmap(). Our experiments thus far indicate that this is a promising approach for applications with working sets that fit in RAM, but we are still analyzing  
-    whether we can take sufficient advantage of this approach to justify the cost of SSD.
+    the **ability to explicitly map one or more files**, rather than using anonymous mmap(). Our experiments thus far indicate that this is a promising approach for applications with working sets that fit in RAM, but we are still analyzing  whether we can take sufficient advantage of this approach to justify the cost of SSD.
+
 -   The venerable malloc API is quite limited: malloc(), calloc(), realloc(), andfree(). Over the years, various extensions have been bolted on, like valloc(),memalign(), posix_memalign(), recalloc(),  
-    and malloc_usable_size(), just to name a few. Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  
-    alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the [jemalloc  
-    manual page](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.canonware.com%2Fdownload%2Fjemalloc%2Fjemalloc-latest%2Fdoc%2Fjemalloc.html&h=QAQEamCGj&s=1). We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  
-    will simplify the existing application logic.
+    and malloc_usable_size(), just to name a few. Of these, only posix_memalign() has been standardized, and its bolt-on limitations become apparent when attempting to reallocate aligned memory. Similar issues exist for various combinations of  alignment, zeroing, padding, and extension/contraction with/without relocation. We **developed a new *allocm()API** that supports all reasonable combinations. For API details, see the [jemalloc manual page](http://www.facebook.com/l.php?u=http%3A%2F%2Fwww.canonware.com%2Fdownload%2Fjemalloc%2Fjemalloc-latest%2Fdoc%2Fjemalloc.html&h=QAQEamCGj&s=1). We are currently using this feature for an optimized C++ string class that depends on reallocation succeeding only if it can be done in place. We also have imminent plans to use it for aligned reallocation in a hash table implementation, which  will simplify the existing application logic.
 
 # Facebook内部的成功应用
 
-Some of jemalloc's practical benefits for Facebook are difficult to quantify. For example, we have on numerous occasions used heap profiling on production systems to diagnose memory issues before they could cause  
-service disruptions, not to mention all the uses of heap profiling for development/optimization purposes. More generally, jemalloc's consistent behavior has allowed us to make more accurate memory utilization projections, which aids operations as well as long  
+Some of jemalloc's practical benefits for Facebook are difficult to quantify. For example, we have on numerous occasions used heap profiling on production systems to diagnose memory issues before they could cause  service disruptions, not to mention all the uses of heap profiling for development/optimization purposes. More generally, jemalloc's consistent behavior has allowed us to make more accurate memory utilization projections, which aids operations as well as long  
 term infrastructure planning. All that said, jemalloc does have one very tangible benefit: it is fast.
 
 Memory allocator microbenchmark results are notoriously difficult to extrapolate to real-world applications (though that doesn't stop people from trying). Facebook devotes a significant portion of its infrastructure  
@@ -113,11 +107,9 @@ newest version of tcmalloc is 1.6, but we encountered undiagnosed application in
 
 Web server throughput
 
-glibc derives its allocator from ptmalloc, so their performance similarity is no surprise. The Hoard allocator appears to spend a great deal of time contending on a spinlock, possibly as a side effect of its blowup  
-avoidance algorithms. The concur allocator appears to scale well, but it does not implement thread caching, so it incurs a substantial synchronization cost even though contention is low. tcmalloc under-performs jemalloc by about 4.5%.
+glibc derives its allocator from ptmalloc, so their performance similarity is no surprise. The Hoard allocator appears to spend a great deal of time contending on a spinlock, possibly as a side effect of its blowup avoidance algorithms. The concur allocator appears to scale well, but it does not implement thread caching, so it incurs a substantial synchronization cost even though contention is low. tcmalloc under-performs jemalloc by about 4.5%.
 
-The main point of this experiment was to show the huge impact that allocator quality can have, as in glibc versus jemalloc, but we have performed numerous experiments at larger scales, using various hardware and  
-client request loads, in order to quantify the performance advantage of jemalloc over tcmalloc. In general we found that as the number of CPUs increases, the performance gap widens. We interpret this to indicate that jemalloc will continue to scale as we deploy  
+The main point of this experiment was to show the huge impact that allocator quality can have, as in glibc versus jemalloc, but we have performed numerous experiments at larger scales, using various hardware and  client request loads, in order to quantify the performance advantage of jemalloc over tcmalloc. In general we found that as the number of CPUs increases, the performance gap widens. We interpret this to indicate that jemalloc will continue to scale as we deploy  
 new hardware with ever-increasing CPU core counts.
 
 # 未完成的工作
@@ -128,6 +120,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI3MDc5Mjc3LC01NjkwNjgxMjAsMTE0ND
-U1MjIwMV19
+eyJoaXN0b3J5IjpbMTI2NDE4NzI3MSwtNTY5MDY4MTIwLDExND
+Q1NTIyMDFdfQ==
 -->
