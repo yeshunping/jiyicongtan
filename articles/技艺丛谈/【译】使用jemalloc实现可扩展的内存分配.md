@@ -65,7 +65,7 @@ TODO：图片2
 
 我们做了很多改进，解决了性能问题。以下是一些比较重要的改进：
 
--   我们重写了**线程缓存**。大部分性能的提升来自于降低了常数比例的代价（它们在关键路径中很重要），但是我们也观察到，更严格地控制缓存大小，可以提高数据局部性，而这会冲淡缓存填充和刷新带来的代价上升。因此，在设计时，我们选择一个非常简单的数据结构（每个不同大小的类别，使用单向链接的LIFO结构）和大小控制策略（给不同大小的类别设置硬限制，加上完全独立于其他线程的增量GC）
+-   我们重写了**线程缓存**。大部分性能的提升来自于降低了常数比例的代价（它们在关键路径中很重要），但是我们也观察到，更严格地控制缓存大小，可以提高数据局部性，而这会抵消缓存填充和刷新带来的代价上升。因此，在设计时，我们选择一个非常简单的数据结构（每个不同大小的类别，使用单向链接的 LIFO 结构）和大小控制策略（给不同大小的类别设置硬限制，加上完全独立于其他线程的增量 GC）
 
 -   我们**增加锁粒度**，并重构同步逻辑，使得**系统调用期间，完全不使用锁**。在之前，jemalloc 使用非常简单的锁策略——一个arena一把锁——但我们认识到，在mmap(), munmap(), 或者 madvise() 系统调用期间，持有arena的锁会有严重的序列化代价。尤其是2.6.27之前的内核版本。因此，我们将arena锁降级，仅用于保护和arena chunks 和 page runs 相关的所有操作。每个arena中，我们给每个不同大小的类别加了一把锁，以保护相关的数据结构，一般是由于轻量的内存和释放而被访问的。不过这些补救的措施依然不足，因此我们重写了脏页面的清除工具，在调用madvise()之前，释放所有的锁。这个改动彻底解决了锁序列化问题，包括Linux 内核 2.6.27 和更新的版本。
     
@@ -109,7 +109,8 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4MjU2ODk3MSw1ODcyNTM1NTEsNDQ3OT
-E5Nzc0LDE0MDAyMTA4NCwtMTE3MTM5OTE1OCwxOTc2MzY0NjY1
-LC0yNDc5MzcxOTEsLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbLTIwNzE3OTM5MDksNTg3MjUzNTUxLDQ0Nz
+kxOTc3NCwxNDAwMjEwODQsLTExNzEzOTkxNTgsMTk3NjM2NDY2
+NSwtMjQ3OTM3MTkxLC05NzQxNzg2NTUsLTE1ODg5OTQ4MTVdfQ
+==
 -->
