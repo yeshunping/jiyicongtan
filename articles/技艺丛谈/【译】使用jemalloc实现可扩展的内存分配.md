@@ -77,7 +77,7 @@ TODO：图片2
 
 jemalloc 一直都会在程序退出的时候，以可读的格式，打印详细的内部统计信息，但是这对于长期运行的服务程序来说用处有限，所以我们新增了malloc_stats_print() 这个函数，它可以在程序中被任意次调用。（译注：tcmalloc更进一步，改写了 malloc_stats() 这个函数的实现）不足的是，这个函数的输出，对使用者来说还需要进行解析（以拿到各个字段），因此我们添加了 mallctl*() 系列 API（接口参考 BSD 的 sysctl() 系统调用）用于获取各个统计信息。（译注：tcmalloc也提供了类似的接口）我们根据 mallctl*() 重新实现了malloc_stats_print() 函数，以确保完全覆盖这些信息。随着时间的推移，我们也扩展了这个工具函数，以提供不同的控制，比如线程缓存刷新和强制性脏页清除等。
 
-诊断内存泄露是一个很大的挑战，尤其是在线服务需要输出泄露信息（译注：这部分确实很难，改天有时间专文分享下）。谷歌的tcmalloc 提供了很出色的内存剖析工具，可以用于生产环境，我们发现这个工具的作用简直是无价的。然而，在一些应用上，我们不断碰到这样的困境：只有jemalloc能够重复控制内存使用，但是只有tcmalloc 提供了适当的工具同于理解内部的内存占用情况（译注：一般用于定位离线很难付现的内存泄露）。因此，我们在jemalloc中实现了兼容的内存剖析工具。这样我们就可以利用tcmalloc内置的后处理工具了。（译注：gperftools 实现的heap profiling 是和tcmalloc实现绑定的，官方说有计划独立出去，但是至今还没有接耦，因此jemalloc 只能在 jemalloc 项目内部实现一个heap profiling 工具）
+诊断内存泄露是一个很大的挑战，尤其是在线服务需要输出泄露信息（译注：这部分确实很难，改天有时间专文分享下）。谷歌的 tcmalloc 提供了很出色的内存剖析工具，可以用于生产环境，我们发现这个工具的作用简直是无价的。然而，在一些应用上，我们不断碰到这样的困境：只有 jemalloc 能够充分控制内存使用，但是只有 tcmalloc 提供了适当的内存p工具，同于理解内部的内存占用情况（译注：一般用于定位离线很难付现的内存泄露）。因此，我们在jemalloc中实现了兼容的内存剖析工具。这样我们就可以利用tcmalloc内置的后处理工具了。（译注：gperftools 实现的heap profiling 是和tcmalloc实现绑定的，官方说有计划独立出去，但是至今还没有接耦，因此jemalloc 只能在 jemalloc 项目内部实现一个heap profiling 工具）
 
 ### 实验
 
@@ -109,7 +109,7 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI1MTU0NDgyNCw1ODcyNTM1NTEsNDQ3OT
-E5Nzc0LDE0MDAyMTA4NCwtMTE3MTM5OTE1OCwxOTc2MzY0NjY1
-LC0yNDc5MzcxOTEsLTk3NDE3ODY1NSwtMTU4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbODY2Mzc1NTUyLDU4NzI1MzU1MSw0NDc5MT
+k3NzQsMTQwMDIxMDg0LC0xMTcxMzk5MTU4LDE5NzYzNjQ2NjUs
+LTI0NzkzNzE5MSwtOTc0MTc4NjU1LC0xNTg4OTk0ODE1XX0=
 -->
