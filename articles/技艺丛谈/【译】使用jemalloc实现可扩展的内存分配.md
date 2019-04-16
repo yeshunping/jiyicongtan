@@ -4,13 +4,14 @@
 译者：叶顺平
 原文链接：https://www.facebook.com/notes/facebook-engineering/scalable-memory-allocation-using-jemalloc/480222803919
 
-```cpp
-译者注：
+>**译者注**：
 大家在编程中经常使用 malloc() 函数，很多工程师可能觉得这个是一个系统调用，其实不是的，mmap(), sbrk() 等才是系统调用，malloc() 是 glibc 中实现的内存分配函数，是用户态的函数。
-如果大家对 malloc 的实现比较感兴趣，可以去下载 glibc 的源代码阅读。malloc 的 glibc 实现，有不少不足之处，其中就包括内存峰值比较高，线程多的时候内存分配比较慢等问题。工业界常用的还有 tcmalloc 和 jemalloc, 前者在谷歌内存广泛使用，后者在 Facebook 内部广泛使用。这篇文章是 jemalloc 的作者写的，内容比较切中要害，因此翻译出来，和读者分享。文中根据我理解的理解和经验，补充了一定的译注，希望对读者阅读有帮助。
-以后找个时间可以写一两篇介绍谷歌 tcmalloc 的文章。目前我们公司内部使用tcmalloc 更多一些，我本人也详细阅读过 tcmalloc, 并根据项目需求，做过一定的改造，以解决一些难搞的内存问题。
-值得一提的是，tcmalloc的作者，就是和Jeff Dean齐名的谷歌大神 Sanjay Ghemawat，最近有几篇文章讲他们的传奇故事的。jeaf dean 的代码，可以看看开源的leveldb, Sanjay的代码，我搜索了下，似乎就只有tcmalloc 是开源的了。
-```
+>
+>如果大家对 malloc 的实现比较感兴趣，可以去下载 glibc 的源代码阅读。malloc 的 glibc 实现，有不少不足之处，其中就包括内存峰值比较高，线程多的时候内存分配比较慢等问题。工业界常用的还有 tcmalloc 和 jemalloc, 前者在谷歌内存广泛使用，后者在 Facebook 内部广泛使用。这篇文章是 jemalloc 的作者写的，内容比较切中要害，因此翻译出来，和读者分享。文中根据我理解的理解和经验，补充了一定的译注，希望对读者阅读有帮助。
+>
+>以后找个时间可以写一两篇介绍谷歌 tcmalloc 的文章。目前我们公司内部使用tcmalloc 更多一些，我本人也详细阅读过 tcmalloc, 并根据项目需求，做过一定的改造，以解决一些难搞的内存问题。
+>
+>值得一提的是，tcmalloc的作者，就是和Jeff Dean齐名的谷歌大神 Sanjay Ghemawat，最近有几篇文章讲他们的传奇故事的。jeaf dean 的代码，可以看看开源的leveldb, Sanjay的代码，我搜索了下，似乎就只有tcmalloc 是开源的了。
 
 Facebook 网站包括不同类型的服务，这些服务大部分运行在8核CPU和8G内存以上的特定服务器中。这些服务程序一般使用POSIX线程来实现并发，通过最大化利用CPU和内存来实现最大化吞吐的目标。这样的运行环境给内存分配带来的很大的挑战，特别是以下几点：
 
@@ -111,6 +112,6 @@ jemalloc目前已经比较成熟，但是也依然存在已知的不足，大部
 
 略。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjI0NTIzMzYsLTk3NDE3ODY1NSwtMT
-U4ODk5NDgxNV19
+eyJoaXN0b3J5IjpbMjE0NTAxMzc0MywtOTc0MTc4NjU1LC0xNT
+g4OTk0ODE1XX0=
 -->
