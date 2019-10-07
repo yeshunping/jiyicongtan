@@ -55,7 +55,7 @@ varint 编码中的每个字节（最后一个字节除外），有一个最高�
 一个 protobuf 消息其实是一系列键值对(key-value paris，key 是字段tag [filed number + wire type]，value 是字段值)。消息的二进制版本，只是使用字段的编号来构造 key , 而字段名和类型信息，只有在解码结束后才能获知，并且需要从消息类型定义中推断出（也就是对应的 .proto 文件）。编码时，字段的键和值会依次拼接成字符流。解码时，解码器需要能够跳过那些它不认识的字段。只有这样，才能做到兼容协议的旧版本。也就是说，只有这样做，才能够给消息添加新的字段，而不会破坏对这些字段毫无知情的旧程序（没有使用新版本的 proto 文件重新编译和部署上线的程序）。为此，消息中的每个字段信息的键值（key part），其实包括了两个部分的信息——1，.proto 文件中的字段编号，2，wire type，它需要能够提供足够的信息，以确定后续值的长度。
 
 所有的wire type如下表所示:
-#TODO(补充表格)
+
 
 消息流中的每个 Key 信息，是一个 varint 值，其值等于
 ```cpp
@@ -118,7 +118,7 @@ message Test2 {
 ```
 红色部分是 "testing" 对应的 utf8 内容。 这里的键为 0x12 （十进制也就是18，二进制为 00010 010），经过计算，可以知道字段编号为 2，wire type 为 2（2 << 3 | 2 = 18）。长度部分的 varint 是 07， 由此可知，后面的字符串长度为 7，也就是 "testing" 的字符串长度。
 
-## 嵌套消息
+### 嵌套消息
 
 以下是带有嵌套消息 Test1 的消息定义，Test1 为上文作为示例的消息:
 ```cpp
@@ -228,5 +228,5 @@ https://developers.google.com/protocol-buffers/docs/encoding
 大家也可点击文末的“阅读原文”链接，阅读原始的英文文档。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzMwMDk3NDU5XX0=
+eyJoaXN0b3J5IjpbLTkwOTA3MzU3Nl19
 -->
