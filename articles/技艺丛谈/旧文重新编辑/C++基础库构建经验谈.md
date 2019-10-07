@@ -26,32 +26,21 @@
 
 ### Gflags
 
-  
-
 该库的主要好处是，可以通过一个函数搞定所有的命令行参数解析。想想很多开源项目，几乎要使用上百行甚至几百行代码，用于解析命令行参数，main函数冗长到近乎难以卒读。
-
-  
 
 有了gflags,你只需要调用  ParseCommandLineFlags  函数，就完成了所有的复杂的命令行解析工作。同时，该库至少还有以下几个好处：
 
-  
-
 -   引入该模块，使用到该库的所有模块，都拥有了同样的命令行参数风格。
-    
 -   命令行参数的定义与使用，不再需要集中到main函数对应的文件，而是根据模块化设计，分散到各个文件中。
-    
 -   命令行参数的风格统一，都是—version, --help, --helpshort之类的风格，
-    
 -   命令行的定义与使用绑定在一起，比如
-    
+
+```cpp
     DEFINE_string(log_filename, "log.txt", "filename for log file");
-    
+```
 -   使用--help查看的时候，可以显示默认值，参数的意义。
-    
 -   可以使用内置的--help查看某个binary使用到的所有flags,以及其对应的意义。
-    
 -   可以使用flagfile，用来管理线上模块复杂的命令行参数。
-    
 -   结合blade/bazel等构建工具，设置可以提供默认的--version等命令，用于查看Binary相关信息，比如谁编译的，代码的版本信息，编译的主机名，编译时间，编译的相关环境信息(操作系统，gcc版本等)。而这一切信息，都是构建工具帮你自动收集并绑定到Binary内部的。
     
 
@@ -90,7 +79,7 @@
       
     
 
-## Gtest
+### Gtest
 
   
 
@@ -152,7 +141,7 @@
 
 5，输出信息友好。Gtest输出的信息是彩色的，按照test case输出，并会输出各个测试用例的执行时间，提供多样的测试报告。
 
-## Gmock
+### Gmock
 
   
 
@@ -168,7 +157,7 @@ Gmock还可以用在一些复杂模块的协同开发。比如module B 依赖mod
 
   
 
-## Gperftools
+### Gperftools
 
   
 
@@ -193,7 +182,7 @@ Gmock还可以用在一些复杂模块的协同开发。比如module B 依赖mod
 
   
 
-## Protobuf
+### Protobuf
 
   
 
@@ -222,7 +211,7 @@ Google的序列化与反序列化功能，类似的有facebook出品的thrift. �
 -   thrift 的RPC，数据包没有id的概念，同一个RPC调用多次，可能这次的返回数据，会是上次调用返回的数据。因为使用者需要对超时等问题进行复杂的处理。
     
 
-## Leveldb
+### Leveldb
 
   
 
@@ -230,7 +219,7 @@ Leveldb是google开源出来的sstable实现，其性能表现优越，具体可
 
   
 
-## Snappy
+### Snappy
 
   
 
@@ -238,7 +227,7 @@ Leveldb是google开源出来的sstable实现，其性能表现优越，具体可
 
   
 
-## Re2
+### Re2
 
   
 
@@ -261,15 +250,13 @@ Leveldb是google开源出来的sstable实现，其性能表现优越，具体可
 2.  re2不支持gbk等编码。
     
 
-# **结语**
+### **结语**
 
 想必有经验的工程师，应该都有几个得心应手的开源项目，上面介绍的几个开源项目，便都是“谷哥”这位大厨掌勺亲自为广大程序猿提供的免费大餐。
-
-  
 
 我很喜欢这些大餐，因为他们色香味俱佳，吃多了，对健康很有好处。不知道没有尝试过的朋友们，是不是已经垂涎三尺了呢？
 
 ​
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUwMDE1MDk4MF19
+eyJoaXN0b3J5IjpbLTEyMjc4ODkzMjBdfQ==
 -->
