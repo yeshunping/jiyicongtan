@@ -72,46 +72,23 @@ protobuf 目前提供了两个版本的语法支持，包括 proto2 和 proto3�
 
 source file : address.proto
 ```cpp
-1.  `syntax =  "proto2";`
-    
-
-3.  `package tutorial;`
-    
-
-5.  `message Person  {`
-    
-6.   `required string name =  1;`
-    
-7.   `required int32 id =  2;`
-    
-8.   `optional string email =  3;`
-    
-
-10.   `enum  PhoneType  {`
-    
-11.   `MOBILE =  0;`
-    
-12.   `HOME =  1;`
-    
-13.   `WORK =  2;`
-    
-14.   `}`
-    
-
-16.   `message PhoneNumber  {`
-    
+1.  syntax =  "proto2";
+3.  package tutorial;
+5.  message Person  {
+6.   required string name =  1;
+7.   required int32 id =  2;
+8.   optional string email =  3;
+10.   enum  PhoneType  {
+11.     MOBILE =  0;
+12.     HOME =  1;
+13.     WORK =  2;
+14.   }
+16.   `message PhoneNumber  {
 17.   `required string number =  1;`
-    
 18.   `optional PhoneType type =  2  [default  = HOME];`
-    
 19.   `}`
-    
-
 21.   `repeated PhoneNumber phones =  4;`
-    
 22.  `}`
-    
-
 24.  `message AddressBook  {`
     
 25.   `repeated Person people =  1;`
@@ -207,5 +184,5 @@ source file : address.proto
 本文大概介绍了 protobuf 的 IDL 基础，生成的接口，如何使用 protobuf 进行对象的构造，对象的序列化与反序列化。同时简单比较了 protobuf 与 XML 的优劣势。在后续文章中，我们将深入介绍 protobuf 的消息编码算法，揭秘为什么其序列化后的对象比 XML 更小，编码效率更高。在后续文章中，也会将其与 Facebook Thrift 的消息编码格式进行对比。欢迎大家关注「技艺丛谈」公众号，阅读后续分享。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDg1NzM3NjRdfQ==
+eyJoaXN0b3J5IjpbLTgzOTgxNjE1MF19
 -->
