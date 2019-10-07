@@ -55,78 +55,27 @@ varint 编码中的每个字节（最后一个字节除外），有一个最高�
 一个 protobuf 消息其实是一系列键值对(key-value paris，key 是字段tag [filed number + wire type]，value 是字段值)。消息的二进制版本，只是使用字段的编号来构造 key , 而字段名和类型信息，只有在解码结束后才能获知，并且需要从消息类型定义中推断出（也就是对应的 .proto 文件）。编码时，字段的键和值会依次拼接成字符流。解码时，解码器需要能够跳过那些它不认识的字段。只有这样，才能做到兼容协议的旧版本。也就是说，只有这样做，才能够给消息添加新的字段，而不会破坏对这些字段毫无知情的旧程序（没有使用新版本的 proto 文件重新编译和部署上线的程序）。为此，消息中的每个字段信息的键值（key part），其实包括了两个部分的信息——1，.proto 文件中的字段编号，2，wire type，它需要能够提供足够的信息，以确定后续值的长度。
 
 所有的wire type如下表所示:
-
-类型
-
-表示
-
-使用在哪些数据类型中
-
-0
-
-Varint
-
-int32, int64, uint32,
-
-uint64, sint32,
-
-sint64, bool, enum
-
-1
-
-64-bit
-
-fixed64, sfixed64, double
-
-2
-
-长度分隔
-
-string, bytes,
-
-embedded messages,
-
-packed repeated fields
-
-3
-
-group开始
-
-groups (已废弃)
-
-4
-
-group结束
-
-groups (已废弃)
-
-5
-
-32-bit
-
-fixed32, sfixed32, float
+#TODO(补充表格)
 
 消息流中的每个 Key 信息，是一个 varint 值，其值等于
-
-`key = (field_number << 3) | wire_type`
-
+```cpp
+key = (field_number << 3) | wire_type
+```
 也就是说，其后三个比特，存储的是 wire type 信息。
 
-  
-
 好了，现在回过头来，我们看看文章开头提到的最简单的消息示例。我们已经知道了，字节流中的第一个数字，是一个 varint 键值，这里为 08。或者表示为如图（去掉最开始的 msb 比特）：
-
+```cpp
 000 1000
+```
 
 我们从中获取最后三个比特的信息，得到 wire type ( 0 )，然后右移三位，获取字段编号( 1 )。由此，我们知道字段编号为 1，后续的值是 varint 类型（查表格可知，wire type 为 0，对应的类型表示 varint ）。使用上一节介绍的 varint 编解码算法，我们可以得知，后续两个字节存储的值是 150。具体操作如下图所示：
-
+```cpp
 96 01 = 1001 0110  0000 0001
        → 000 0001  ++  001 0110   
 (drop the msb and reverse the groups of 7 bits)
        → 10010110
        → 2 + 4 + 16 + 128 = 150
-
-##   
+```
 
 ## 其他值类型的编码
 
@@ -341,5 +290,5 @@ https://developers.google.com/protocol-buffers/docs/encoding
 大家也可点击文末的“阅读原文”链接，阅读原始的英文文档。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NDMwNzcyMzRdfQ==
+eyJoaXN0b3J5IjpbLTMxNTY1NTY5Ml19
 -->
