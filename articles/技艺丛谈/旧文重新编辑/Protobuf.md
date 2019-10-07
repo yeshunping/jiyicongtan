@@ -1,77 +1,60 @@
-此为临时链接，仅用于预览，将在短期内失效。关闭
-
-## 对象序列化探秘 | protobuf 消息编解码算法
-
-叶顺平  技艺丛谈  _2017-09-06_
-
-![](https://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKEHaZRDKaKb0ApcibqKMjYbMpJiasAUQDxjbsnCdKc3CZ8SADPb3ZTJuw9IE3YTY18asYZjYZJVSrFw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-  
-
 在上篇文章《[对象序列化探秘 | protobuf 简介](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484394&idx=1&sn=b1e52826438152b16c35408bf15af71b&chksm=eb6bdd20dc1c5436e9b365b3822646e106c913b3a2d908714df057bb3733f3efbe52c2fb33ee&scene=21#wechat_redirect)》中，我们对 Protobuf 进行了简单的介绍。本文我们尝试对 protobuf 的消息编码进行剖析，详细描述 protobuf 的二进制格式。**上一篇文章偏重应用，本篇则偏重内功**，如果你只是想使用 protobuf，并不想深究其中奥秘，那么建议你直接阅读上文即可。不过假如你想要你定义的消息序列化后足够小，就需要阅读本文了。
-
-  
 
 我们在移动应用中，经常需要把一些模块做到离线设备中，此时如果你使用 protobuf 来存储数据或模型文件，就不妨读读本文，探究下到底怎么定义合适的 message，序列化后的对象才最小。值得注意的是，很多文件格式的设计，也可以参考 protobuf 的编解码算法。  
 
 万事由简始
 
 假设我们定义了一个非常简单的消息，该消息只有一个整型字段。消息定义如下：
-
-1.  `message Test1 {`
-    
-2.   `required int32 a = 1;`
-    
-3.  `}`
-    
+```cpp
+1.  message Test1 {
+2.   required int32 a = 1;
+3.  }
+```    
 
 在某个程序中，我们创建了一个 Test1 消息，并将 a 字段的值设置为 150。接着，我们将该消息序列化到一个输出流中。打印出该输出流的信息，你会看到如下三个字节的信息：
 
+```cpp
 08 96 01
+```
 
 哇靠，这个消息怎么这么小，才三个字节？怎么做到的？其中的各个数字又是什么意思？想摸清楚其中奥秘吗？那么请继续阅读下文吧。
 
-Varints 整型变长编码  
-
-  
+### Varints 整型变长编码  
 
 为了能够理解 protobuf 的编码方法，我们需要从最基础的 varints 算法讲起。Varints 是一种整数编码算法，它将整数序列化为一到多个字节——常见的整数有int8, int16, int32, int64 等，从一个字节到八个字节不等。整数值越小，编码后的字节数越少。
 
-  
-
 varint 编码中的每个字节（最后一个字节除外），有一个最高位，我们叫它 msb （ most significant bit 的英文缩写），它用于指示后续是否有更多的字节需要读取。每个字节的低位的 7 个比特，用于存储数据——以 7 个比特为单元，最不重要的单元放在最前面。
-
-  
 
 按照这个方案，数字 1 编码后只有一个字节，因此不需要设置 msb 信息。它的编码如下：
 
+```cpp
 0000 0001
+```
 
 数字 300 的编码就稍微复杂一些了，如下：
-
+```cpp
 1010 1100 0000 0010
+```
 
 我们如何看出这个是 300 对应的编码结果呢？首先，我们从每个字节中，丢弃掉 msb 信息，也就是最开始的一个比特，因为 msb 信息只是用于告诉我们是否已经读到了该数字的结尾。（300 对应的 varint 超过一个字节，对应的 msb 在首字节中设置）
-
+```cpp
 1010 1100 0000 0010
 → 010 1100  000 0010
+```
 
 此时，我们需要逆转两组 7 比特的单元，因为上文已经提及，varints 存储数字的时候，将最不重要的信息存到最前面。然后，拼接两组数据，得到最终结果。
-
+```cpp
 000 0010  010 1100
 →  000 0010 ++ 010 1100
 →  (0000000)1 00101100
 →  256 + 32 + 8 + 4 = 300
+```
 
-## 
+### 消息结构
 
-## 消息结构
-
-## 一个 protobuf 消息其实是一系列键值对(key-value paris，key 是字段tag [filed number + wire type]，value 是字段值)。消息的二进制版本，只是使用字段的编号来构造 key , 而字段名和类型信息，只有在解码结束后才能获知，并且需要从消息类型定义中推断出（也就是对应的 .proto 文件）。编码时，字段的键和值会依次拼接成字符流。解码时，解码器需要能够跳过那些它不认识的字段。只有这样，才能做到兼容协议的旧版本。也就是说，只有这样做，才能够给消息添加新的字段，而不会破坏对这些字段毫无知情的旧程序（没有使用新版本的 proto 文件重新编译和部署上线的程序）。为此，消息中的每个字段信息的键值（key part），其实包括了两个部分的信息——1，.proto 文件中的字段编号，2，wire type，它需要能够提供足够的信息，以确定后续值的长度。
+一个 protobuf 消息其实是一系列键值对(key-value paris，key 是字段tag [filed number + wire type]，value 是字段值)。消息的二进制版本，只是使用字段的编号来构造 key , 而字段名和类型信息，只有在解码结束后才能获知，并且需要从消息类型定义中推断出（也就是对应的 .proto 文件）。编码时，字段的键和值会依次拼接成字符流。解码时，解码器需要能够跳过那些它不认识的字段。只有这样，才能做到兼容协议的旧版本。也就是说，只有这样做，才能够给消息添加新的字段，而不会破坏对这些字段毫无知情的旧程序（没有使用新版本的 proto 文件重新编译和部署上线的程序）。为此，消息中的每个字段信息的键值（key part），其实包括了两个部分的信息——1，.proto 文件中的字段编号，2，wire type，它需要能够提供足够的信息，以确定后续值的长度。
 
 所有的wire type如下表所示:
-
-  
 
 类型
 
@@ -357,33 +340,6 @@ https://developers.google.com/protocol-buffers/docs/encoding
 
 大家也可点击文末的“阅读原文”链接，阅读原始的英文文档。
 
-  
-
-  
-
-技艺丛谈 原创热文
-
--   [混血美女长得好 | 职场混血理论初探](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484390&idx=1&sn=26d58b4e4065886dab7b971609126f41&chksm=eb6bdd2cdc1c543aa3dc3629ee8b40d84ff06fcc20d7d1a1cce1faad02cc24148df70cff9c12&scene=21#wechat_redirect)
-    
--   [由点及面的面试法](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484362&idx=1&sn=c95b70a7aeaaf9139c30460fa17500fc&chksm=eb6bdd00dc1c5416d95e8444e256b009d53db7420093fb299e2b8c7816d3a3a520ffc74e5290&scene=21#wechat_redirect)
-    
--   [C++ Singleton 发展史](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484352&idx=1&sn=93183add638fa03a2c38b4ddf40671db&chksm=eb6bdd0adc1c541c523deb6ac54aca3c16f271d249c39aef1fc0d0b007a038ed0c7acb4e54e7&scene=21#wechat_redirect)
-    
--   [C++编程｜C++基础库构建经验谈](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484277&idx=1&sn=2ee48a6c1031c2d3ca90eca56dd6ccc9&chksm=eb6bddbfdc1c54a9befab09d9b7e5b81860467cac534f791864bd3e8f2044a8b796bd49dd047&scene=21#wechat_redirect)
-    
--   ## [对象序列化探秘 | protobuf 简介](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484394&idx=1&sn=b1e52826438152b16c35408bf15af71b&chksm=eb6bdd20dc1c5436e9b365b3822646e106c913b3a2d908714df057bb3733f3efbe52c2fb33ee&scene=21#wechat_redirect)
-    
-
-  
-
-![](https://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKFq2jFTibJuHgibIcSzsB3lQNmZVH7Uyuy13kp336pdo1PTsraswC4ZX9zW2KJZKEaiaiacdS9ia1iaqeCg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-[阅读原文](https://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&tempkey=MTAyOV90QVRoR1BVOEtSVlZ0NHArckZOQmo4OVZrUERDLTZNdWRoRGFWVVBBc2NoYjJMZE5qVDJ2ZVhxbmx3Vm40ZGhtN1ROYWdkM3ZmekF5UGc4ZzJJVndhLUEtVWpCVTdFTlM4eEtyOEFJd1NoT05iRTVnMEEtLWFZSHJZeElPT0h3M0JTT1NHVGVrT0xIeTNwNURORDFGSzVTc2NmWVZURTZLZWhjYmNnfn4%3D&chksm=6b6bdadb5c1c53cd99dc9c43cc570c795a35f0f33fc476f5ad84f3e4979e41378258e13c4ebf##)
-
-![](https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=MzI3NzE1NDcyNQ==&mid=100000785&idx=1&sn=432dbc35ed0d55169030aabbbb27130f&send_time=1570420187)
-
-微信扫一扫  
-关注该公众号
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI3NTAxNTEyMF19
+eyJoaXN0b3J5IjpbLTE2NDMwNzcyMzRdfQ==
 -->
