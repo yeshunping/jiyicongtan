@@ -99,65 +99,69 @@ source file : address.proto
 
 使用 protoc 工具，也就是 protobuf IDL 语言的编译器，编译 address.proto 文件，会得到 address.pb.h 和 address.pb.cc 两个文件。（这里指的是 C++ 语言。protoc 也可以输出各种不同的语言文件，包括 Java , PHP, Python, Go 等主流语言。）当然，在编程中，我们一般使用 bazel 编译工具，配合 proto_library 编译出不同的语言文件。以下是 Person 消息对应的几个接口。
 ```cpp
-24.   // name
+1.  `  
+    // name`
     
-25.   inline  bool has_name()  const;
+2.  `inline  bool has_name()  const;`
     
-26.   inline  void clear_name();
+3.  `inline  void clear_name();`
     
-27.   inline  const  ::std::string& name()  const;
+4.  `inline  const  ::std::string& name()  const;`
     
-28.   inline  void set_name(const  ::std::string& value);
+5.  `inline  void set_name(const  ::std::string& value);`
     
-29.   inline  void set_name(const  char* value);
+6.  `inline  void set_name(const  char* value);`
     
-30.   inline  ::std::string* mutable_name();
+7.  `inline  ::std::string* mutable_name();  
+    `
     
-31.  
+8.  
 
-32.   // id
+10.  `// id`
     
-33.   inline  bool has_id()  const;
+11.  `inline  bool has_id()  const;`
     
-34.   inline  void clear_id();
+12.  `inline  void clear_id();`
     
-35.   inline  int32_t id()  const;
+13.  `inline  int32_t id()  const;`
     
-36.   inline  void set_id(int32_t value);
+14.  `inline  void set_id(int32_t value);  
+    `
     
-37.  
+15.  
 
-38.   // email
+17.  `// email`
     
-39.   inline  bool has_email()  const;`
+18.  `inline  bool has_email()  const;`
     
-40.   `inline  void clear_email();`
+19.  `inline  void clear_email();`
     
-41.   `inline  const  ::std::string& email()  const;`
+20.  `inline  const  ::std::string& email()  const;`
     
-42.   `inline  void set_email(const  ::std::string& value);`
+21.  `inline  void set_email(const  ::std::string& value);`
     
-43.   `inline  void set_email(const  char* value);`
+22.  `inline  void set_email(const  char* value);`
     
-44.   `inline  ::std::string* mutable_email();`
+23.  `inline  ::std::string* mutable_email();  
+    `
     
-45.  
+24.  
 
-46.   `// phones`
+26.  `// phones`
     
-47.   `inline  int phones_size()  const;`
+27.  `inline  int phones_size()  const;`
     
-48.   `inline  void clear_phones();`
+28.  `inline  void clear_phones();`
     
-49.   `inline  const  ::google::protobuf::RepeatedPtrField<  ::tutorial::Person_PhoneNumber  >& phones()  const;`
+29.  `inline  const  ::google::protobuf::RepeatedPtrField<  ::tutorial::Person_PhoneNumber  >& phones()  const;`
     
-50.   `inline  ::google::protobuf::RepeatedPtrField<  ::tutorial::Person_PhoneNumber  >* mutable_phones();`
+30.  `inline  ::google::protobuf::RepeatedPtrField<  ::tutorial::Person_PhoneNumber  >* mutable_phones();`
     
-51.   `inline  const  ::tutorial::Person_PhoneNumber& phones(int index)  const;`
+31.  `inline  const  ::tutorial::Person_PhoneNumber& phones(int index)  const;`
     
-52.   `inline  ::tutorial::Person_PhoneNumber* mutable_phones(int index);`
+32.  `inline  ::tutorial::Person_PhoneNumber* mutable_phones(int index);`
     
-53.   `inline  ::tutorial::Person_PhoneNumber* add_phones();`
+33.  `inline  ::tutorial::Person_PhoneNumber* add_phones();`
 ```
 
 以下代码示范了下如何使用生成的接口，直接操作 Person 对象。可以看到，相比 XML writer , protobuf 的对象读写更为方便。
@@ -185,5 +189,5 @@ source file : address.proto
 本文大概介绍了 protobuf 的 IDL 基础，生成的接口，如何使用 protobuf 进行对象的构造，对象的序列化与反序列化。同时简单比较了 protobuf 与 XML 的优劣势。在后续文章中，我们将深入介绍 protobuf 的消息编码算法，揭秘为什么其序列化后的对象比 XML 更小，编码效率更高。在后续文章中，也会将其与 Facebook Thrift 的消息编码格式进行对比。欢迎大家关注「技艺丛谈」公众号，阅读后续分享。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI0OTg4MTk3OF19
+eyJoaXN0b3J5IjpbMTc2ODk2MDQxXX0=
 -->
