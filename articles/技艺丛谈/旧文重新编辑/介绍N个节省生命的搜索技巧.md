@@ -53,66 +53,38 @@ https://www.google.com.hk/advanced_search
 
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIfPH3vkf6ia95JBdWOWuht7jBMibBMTM5eFSFUAyJdZbosg8TXllcAg2Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)  
 
-关键词位置
-
-  
+### 关键词位置
 
 搜索的时候，我们有时候希望目前关键词出现中标题中，或者是出现在URL中，或者是出现在锚文本中。使用以下命令，可以得到这个效果。
 
-  
-
-**intitle:出门问问  
-**
-
-**inurl:about**
-
-**inanchor: 出门问问**
-
-  
+> intitle:出门问问
+> inurl:about
+> inanchor: 出门问问
 
 释义：
 
 intitle: 所有的关键词出现在标题中。一般网页是一个html, 标题放在<title>这个标签中。标题一般是网页的核心信息。假如我们只想找标题中含有某个词的网页，就可以在查询词前加上"intitle:"这个指令。
 
-  
-
 inurl: URL 就是网页的链接。比如百度的链接为
-
 http://www.baidu.com/
 
 如果搜索 "inurl:baidu",将会找到在URL中包括“baidu”这个词的所有网页。网页正文和标题倒是不一定会出现"baidu"。
 
-  
-
 inanchor: 比如百度的首页，一般不会出现“搜索引擎”。但是我们找到“搜索引擎”的时候，百度一般都出现在结果中。这个就是因为有大量指向百度首页的anchor 包含“搜索引擎”这些词汇。anchor 就是锚文本的意思。比如“[C++基础库](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247483802&idx=1&sn=3b8f0f1716eb3f72f766b02931a03fc4&chksm=eb6bdf50dc1c5646fc9d0cdecaca8d03fcb1a9e0e04ed2051beb259e3db6bd2e88da8ef1ec9f&scene=21#wechat_redirect)”，这里的“C++基础库”就是锚文本，用于描述目标网页的内容。一般会取目标网页的标题，或者是一些描述能力强的摘要信息。锚文本指向的链接，就是link了。微信近期放开了公众号内的链接，我这里举的例子，指向的就是我之前写的《不要再重复造轮子了，造牢固的地基吧》那篇文章的地址。
-
-  
 
 **有图有真相：**
 
-  
-
 搜索：“intitle:出门问问”，会搜索出来网页标题里，包含出门问问的所有网页。结果如下图：
-
-  
 
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIBA92j0W8VjficJCllLVHdgCsPJ7vO9S3QtXyvBMkFYyXHOF92CjXawQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
-
-站内搜索
-
-  
+### 站内搜索
 
 有时候我们希望搜某个特定网站的内容。比如你自己开了一个博客，你希望搜索一下百度上索引了你博客的多少文章，你就可以使用站内搜索这个功能啦。
-
-  
 
 当然，前几年很多人通过这个技能，找一些网盘资源等，也算是活学活用。
 
 你浏览某个论坛，但是非会员无法使用搜索功能，或者是搜索一次就被禁用一分钟，很不爽怎么办？这时候也是这个技能发挥作用的时候。当然网页搜索的爬虫并非万能的，有时候目标网站，百度或者谷歌爬虫收录也不是很全就是了。
-
-  
 
 **有图有真相：**
 
@@ -122,17 +94,12 @@ query :  “投资 site:bbs.ticwear.com”
 
 搜索结果如下图，可以看到搜索到的网页，都是bbs.ticwear.com这个论坛上的。
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIyQ19KPyNjeCg0hickFkFDNI84z5YxMSDstiaKgkLIDs5wZdRVjWAIzLw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
 
 再举个例子，最近人工智能这么火，我想看看36kr这个网站上有关人工智能的相关文章，涨涨知识。
 
-  
-
-该怎么办？ 看下图吧。
+  该怎么办？ 看下图吧。
 
   
 
@@ -353,5 +320,5 @@ site:youku.com
 大家有什么其他的搜索技巧需要了解，或者分享的，欢迎留言交流。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU5NzE5NDkwNF19
+eyJoaXN0b3J5IjpbMTYyNDA3MDc4XX0=
 -->
