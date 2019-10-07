@@ -73,69 +73,42 @@ int Add(int a, int b) {
 你只需要编写简单的几行代码即可：
 ```cpp
 TEST(AddTest, SilmpleTest) {
-> EXPECT_EQ(Add(1, 2), 3);
-> EXPECT_EQ(Add(-1, 2), 1);
-> 
-> }
+ EXPECT_EQ(Add(1, 2), 3);
+ EXPECT_EQ(Add(-1, 2), 1);
+}
 ```
   
-
 2，提供了丰富的宏。gtest提供了非常多的宏，比如EXPECT_EQ，EXPECTFALSE，EXPECT_GT，ASSERT_DEATH等。
-
-  
 
 3，可以继承Test类，然后使用TEST_F宏，这样就可以在一组测试用例中共享很多数据和操作了。
 
-  
-
 4，使用简单：
-
 你最好使用以下代码，就可以执行相应的单元测试。
-
-> int main(int argc, char** argv) {  
->  ::testing::InitGoogleTest(&argc, argv); return RUN_ALL_TESTS();  
-> }
-
-  
+```cpp
+int main(int argc, char** argv{
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();  
+}
+```
 
 如果结合Blade之间的高级构建工具，则编写单元测试会更加方便。Blade定义了cc_test, 其内部会自动连接一个libgtest_main.a,你连main函数都不需要自己实现了。
 
-  
-
 同时，结合blade和下面要介绍的Gperftools,还可以在运行单元测试的时候，自动检测内存泄露等。
-
-  
 
 5，输出信息友好。Gtest输出的信息是彩色的，按照test case输出，并会输出各个测试用例的执行时间，提供多样的测试报告。
 
 ### Gmock
 
-  
-
 该库用户实现桩代码，与gtest结合，能更好地实现对一些代码的测试。
-
-  
 
 比如测试网络服务相关代码，由于网络存在不稳定性，直接运行可能会导致单元测试不稳定，时而成功时而失败。
 
-  
-
 Gmock还可以用在一些复杂模块的协同开发。比如module B 依赖module A，在开发B的时候，要进行单元测试，但是A虽然接口已经实现了，但是功能还没有实现。这时候就可以你一个MockB, 用于测试A，保证A和B可以更好地同时进行开发。
-
-  
 
 ### Gperftools
 
-  
-
 这个是google在程序性能方面的利器。有以下用处
-
-  
-
 -   内含tcmalloc,内存管理方便更加强大。本人写过的某个模块，不链接该库与链接该库的内存比大约是10:7 ,简单链接该库，内存占用明显降低。比自己实现代码花大力气优化带来的好处还大。
-    
-      
-    
 -   提供了内存泄露检测功能。结合其提供的pprof工具，可以非常方便地定义内存泄露的代码。
     
       
@@ -225,5 +198,5 @@ Leveldb是google开源出来的sstable实现，其性能表现优越，具体可
 
 ​
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMTA0MzAwMDFdfQ==
+eyJoaXN0b3J5IjpbLTk5OTczMTk5N119
 -->
