@@ -1,0 +1,389 @@
+此为临时链接，仅用于预览，将在短期内失效。关闭
+
+## 对象序列化探秘 | protobuf 消息编解码算法
+
+叶顺平  技艺丛谈  _2017-09-06_
+
+![](https://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKEHaZRDKaKb0ApcibqKMjYbMpJiasAUQDxjbsnCdKc3CZ8SADPb3ZTJuw9IE3YTY18asYZjYZJVSrFw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+  
+
+在上篇文章《[对象序列化探秘 | protobuf 简介](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484394&idx=1&sn=b1e52826438152b16c35408bf15af71b&chksm=eb6bdd20dc1c5436e9b365b3822646e106c913b3a2d908714df057bb3733f3efbe52c2fb33ee&scene=21#wechat_redirect)》中，我们对 Protobuf 进行了简单的介绍。本文我们尝试对 protobuf 的消息编码进行剖析，详细描述 protobuf 的二进制格式。**上一篇文章偏重应用，本篇则偏重内功**，如果你只是想使用 protobuf，并不想深究其中奥秘，那么建议你直接阅读上文即可。不过假如你想要你定义的消息序列化后足够小，就需要阅读本文了。
+
+  
+
+我们在移动应用中，经常需要把一些模块做到离线设备中，此时如果你使用 protobuf 来存储数据或模型文件，就不妨读读本文，探究下到底怎么定义合适的 message，序列化后的对象才最小。值得注意的是，很多文件格式的设计，也可以参考 protobuf 的编解码算法。  
+
+万事由简始
+
+假设我们定义了一个非常简单的消息，该消息只有一个整型字段。消息定义如下：
+
+1.  `message Test1 {`
+    
+2.   `required int32 a = 1;`
+    
+3.  `}`
+    
+
+在某个程序中，我们创建了一个 Test1 消息，并将 a 字段的值设置为 150。接着，我们将该消息序列化到一个输出流中。打印出该输出流的信息，你会看到如下三个字节的信息：
+
+08 96 01
+
+哇靠，这个消息怎么这么小，才三个字节？怎么做到的？其中的各个数字又是什么意思？想摸清楚其中奥秘吗？那么请继续阅读下文吧。
+
+Varints 整型变长编码  
+
+  
+
+为了能够理解 protobuf 的编码方法，我们需要从最基础的 varints 算法讲起。Varints 是一种整数编码算法，它将整数序列化为一到多个字节——常见的整数有int8, int16, int32, int64 等，从一个字节到八个字节不等。整数值越小，编码后的字节数越少。
+
+  
+
+varint 编码中的每个字节（最后一个字节除外），有一个最高位，我们叫它 msb （ most significant bit 的英文缩写），它用于指示后续是否有更多的字节需要读取。每个字节的低位的 7 个比特，用于存储数据——以 7 个比特为单元，最不重要的单元放在最前面。
+
+  
+
+按照这个方案，数字 1 编码后只有一个字节，因此不需要设置 msb 信息。它的编码如下：
+
+0000 0001
+
+数字 300 的编码就稍微复杂一些了，如下：
+
+1010 1100 0000 0010
+
+我们如何看出这个是 300 对应的编码结果呢？首先，我们从每个字节中，丢弃掉 msb 信息，也就是最开始的一个比特，因为 msb 信息只是用于告诉我们是否已经读到了该数字的结尾。（300 对应的 varint 超过一个字节，对应的 msb 在首字节中设置）
+
+1010 1100 0000 0010
+→ 010 1100  000 0010
+
+此时，我们需要逆转两组 7 比特的单元，因为上文已经提及，varints 存储数字的时候，将最不重要的信息存到最前面。然后，拼接两组数据，得到最终结果。
+
+000 0010  010 1100
+→  000 0010 ++ 010 1100
+→  (0000000)1 00101100
+→  256 + 32 + 8 + 4 = 300
+
+## 
+
+## 消息结构
+
+## 一个 protobuf 消息其实是一系列键值对(key-value paris，key 是字段tag [filed number + wire type]，value 是字段值)。消息的二进制版本，只是使用字段的编号来构造 key , 而字段名和类型信息，只有在解码结束后才能获知，并且需要从消息类型定义中推断出（也就是对应的 .proto 文件）。编码时，字段的键和值会依次拼接成字符流。解码时，解码器需要能够跳过那些它不认识的字段。只有这样，才能做到兼容协议的旧版本。也就是说，只有这样做，才能够给消息添加新的字段，而不会破坏对这些字段毫无知情的旧程序（没有使用新版本的 proto 文件重新编译和部署上线的程序）。为此，消息中的每个字段信息的键值（key part），其实包括了两个部分的信息——1，.proto 文件中的字段编号，2，wire type，它需要能够提供足够的信息，以确定后续值的长度。
+
+所有的wire type如下表所示:
+
+  
+
+类型
+
+表示
+
+使用在哪些数据类型中
+
+0
+
+Varint
+
+int32, int64, uint32,
+
+uint64, sint32,
+
+sint64, bool, enum
+
+1
+
+64-bit
+
+fixed64, sfixed64, double
+
+2
+
+长度分隔
+
+string, bytes,
+
+embedded messages,
+
+packed repeated fields
+
+3
+
+group开始
+
+groups (已废弃)
+
+4
+
+group结束
+
+groups (已废弃)
+
+5
+
+32-bit
+
+fixed32, sfixed32, float
+
+消息流中的每个 Key 信息，是一个 varint 值，其值等于
+
+`key = (field_number << 3) | wire_type`
+
+也就是说，其后三个比特，存储的是 wire type 信息。
+
+  
+
+好了，现在回过头来，我们看看文章开头提到的最简单的消息示例。我们已经知道了，字节流中的第一个数字，是一个 varint 键值，这里为 08。或者表示为如图（去掉最开始的 msb 比特）：
+
+000 1000
+
+我们从中获取最后三个比特的信息，得到 wire type ( 0 )，然后右移三位，获取字段编号( 1 )。由此，我们知道字段编号为 1，后续的值是 varint 类型（查表格可知，wire type 为 0，对应的类型表示 varint ）。使用上一节介绍的 varint 编解码算法，我们可以得知，后续两个字节存储的值是 150。具体操作如下图所示：
+
+96 01 = 1001 0110  0000 0001
+       → 000 0001  ++  001 0110   
+(drop the msb and reverse the groups of 7 bits)
+       → 10010110
+       → 2 + 4 + 16 + 128 = 150
+
+##   
+
+## 其他值类型的编码
+
+###   
+
+### 有符号整型
+
+正如上节所述，在 protobuf 中，wire type 为 0 的所有的数据类型，都会编码为 varints。不过，在编码负数的时候，有符号整型(sint32 和 sint64) 和“标准的”整型 ( int32 和 int64 )有明显的不同。如果你使用 int32 或者 int64 用于表示负数，varint 结果往往长达 10 个字节——实际上，它被当作非常大的有符号整数对待。而如果你使用的是有符号整型，varint 会使用 ZigZag 进行编码，从而使得编码更高效。
+
+  
+
+ZigZag 编码将有符号整数映射为无符号整数，这样绝对值很小的数字（比如 -1 ），也会有比较小的 varint 编码值了。
+
+ZigZag 编码算法在正负数之间来回游走进行编码( "zig-zags" 也因此得名), -1 编码为 1，1 编码为 2，-2 编码为 3，如此等等, 编码示例如下图:
+
+原始有符号整数
+
+编码后
+
+0
+
+0
+
+-1
+
+1
+
+1
+
+2
+
+-2
+
+3
+
+2147483647
+
+4294967294
+
+-2147483648
+
+4294967295
+
+换句话说，每个 n 值，sint32 会按照如下公式进行编码：
+
+(n << 1) ^ (n >> 31)
+
+sint64 如下：
+
+(n << 1) ^ (n >> 63)
+
+值得注意的是，第二个位移——(n >> 31) 部分——是一个算术移位。因此，移位的计算结果，要么是 0（n 为正数时），要么是 1 （n 为负数时）。
+
+  
+
+当 sint32 和 sint64 被解码的时候，它的值会被解码为原来的有符号版本。
+
+### 非 varint 的数值
+
+非 varint 的数值类型比较简单 —— double 和 fixed64 对应的 wire type 为 1，它意味着解码器需要读取后续的 64 比特的定长数据；类似的，float 和 fixed32 对应的 wire type 为 5，它意味着解码器需要读取后续的 32 比特的定长数据。两种类型， 数据都是以小端字节序进行存储的。
+
+###   
+
+### 字符串
+
+wire type 为 2 (长度分隔) 是指，值部分是 varint 编码的长度信息加上数据部分。比如以下消息类型：
+
+message Test2 {
+  required string b = 2;
+}
+
+设置 b 的内容为 "testing" ，编码结果为:
+
+12 07 74 65 73 74 69 6e 67
+
+红色部分是 "testing" 对应的 utf8 内容。 这里的键为 0x12 （十进制也就是18，二进制为 00010 010），经过计算，可以知道字段编号为 2，wire type 为 2（2 << 3 | 2 = 18）。长度部分的 varint 是 07， 由此可知，后面的字符串长度为 7，也就是 "testing" 的字符串长度。
+
+## 嵌套消息
+
+  
+
+以下是带有嵌套消息 Test1 的消息定义，Test1 为上文作为示例的消息:
+
+message Test3 {
+  required Test1 c = 3;
+}
+
+同样地，设置 Test1 消息中的 a 字段为 150。我们得到编码后的字节流为：
+
+1a 03 08 96 01
+
+可以看出，标红的最后三个字节（  08 96 01  ），和上文中的 Test1 的序列化结果是完全一样的。这三个字节之前的数字为 3（嵌套消息的大小） —— 是的，嵌套消息的编码方法和字符串如出一辙( wire type = 2 )。
+
+  
+
+Optional 和 Repeated 元素
+
+  
+
+如果一个 proto2 版本的消息定义带有 repeated 修饰符（不带有 [packed=true]选项），编码后的消息有 0 个或以上的带有相同的字段值的键值对 ( key-value pairs )。这些重复的值不需要连续出现，他们中间可以交错出现其它字段。在解码的时候，虽然不同字段的顺序会丢失，不过相同字段的 repeated 元素的顺序会得以保存。在 proto3 中，repeated 字段使用打包编码（ packed encoding ），相关编码算法在下节中会进行论述。
+
+  
+
+proto3 中的所有非 repeated 字段，或者 proto2 中的 optional 字段，其编码后的消息，可能有也可能没有该字段的内容。也就是说，该字段不一定存在。(C++ 中，如果对应 repeated 字段，其 size 为 0 ， 对应 optional 字段，其 has_xxx 为 false，则编码后不存该字段)。
+
+  
+
+正常来说，非 repeated 的字段，在编码后的消息中不会出现多次。不过如果真出现了这种情况，解码器也应该能够处理。对数值类型和字符串，如果一个相同的字段出现多次，解码器会使用最后一次的值（也就是会覆盖前面的值）。对嵌套消息字段，解码器会合并相同字段的多个值，正如 Message::MergeFrom 这个方法做的一样——具体来说就是，所有的单值（非嵌套消息）字段，后面的值会替换前面的值，非 repeated 的嵌套消息会被合并，而 repeated 字段则会拼接在一起。这些解码规则会导致这样的结果：两个编码后的消息直接拼起来 (str1 + str2)，解码后的对象，与你分别解码 str1 和 str2，然后合并得到的对象，是完全一样的。
+
+  
+
+形象点说，以下代码得到的 message 对象
+
+MyMessage message;
+message.ParseFromString(str1 + str2);
+
+和以下代码得到的 message 对象是一样的。  
+
+MyMessage message, message2;
+message.ParseFromString(str1);
+message2.ParseFromString(str2);
+message.MergeFrom(message2);
+
+这个属性在某些场景下是很有用的，因为它让你可以在完全不知道数据类型的情况下，合并两个消息。
+
+### Repeated 字段的打包
+
+protobuf 的 2.1.0 版本中，引入了 repeated 字段的打包方法，在 proto2 语法中，给 repeated 字段加上 `[packed=true]` 选项即可。在 proto3 语法中，repeated 字段会默认进行打包编码。这个功能类似于 repeated 字段的编码，但是编码方法又有所不同。repeated 字段，如果包含 0 个元素，则打包编码后，在编码后的消息中并不存在。相反地，repeated 字段的所有元素，都会被打包到单一的键值对中，对应的 wire type 为 2。每个元素的编码方法和常规编码类似，只不过前面不需要 tag 信息了(一个字节，也就是字段编号加 wire type)。
+
+比如以下消息类型：  
+
+message Test4 {
+  repeated int32 d = 4 [packed=true];
+}
+
+接着，我们构造出一个 Test4 类型的消息，给 d 添加 3、270 和 86942 三个元素。编码后的消息如下:
+
+22        // tag (field number 4, wire type 2)
+06        // payload size (6 bytes)
+03        // first element (varint 3)
+8E 02     // second element (varint 270)
+9E A7 05  // third element (varint 86942)
+
+需要注意的是，只有 repeated 字段，并且是原始数字类型（使用 varint, 32-bit, 或者 64-bit wire types 的数据类型），才能声明为 "packed"。
+
+虽然完全没有必要将一个 packed repeated 字段编码为一个以上的键值对，但是解码器却必须能够接受多个键值对。遇到这种情况，repeated 字段的元素将会被拼接到一起（相等于两个数组合并）。
+
+Protocol buffer 的解码器必须能够解析被编译为打包方式的 repeated 字段，解码后的结果应该和没有打包一样，反之亦然。只有这样，才能够对现有的字段添加  `[packed=true]` 选项，从而做到向前和向后兼容。
+
+## 字段顺序
+
+  
+
+大家在写 .ptoto 文件时，字段编号是可以随意写的，并不需要从小到大依次写。不过在进行消息序列化的时候，消息的已知字段却应该按照字段编号有序写入，这可以让解码器在解码时使用优化策略（优化策略依赖于字段编号的有序性）。然而，protocol buffer 解码器必须能够支持以任意顺序解码字段，因为并非所有的消息都是由简单地序列化对象而得来的——比如，直接拼接两个消息的内容，以获取新的消息，有时候就挺很有用的。
+
+  
+
+如果一个消息有未知的字段，当前的 Java 和 C++ 实现中，在已知的字段有序写完后，以任意顺序写入这些未知字段。而当前的 Python 实现，则直接丢掉这些未知的字段。
+
+总结
+
+在上文中，我们总结了 protobuf 相对 XML 的几个优点，分别是：
+
+  
+
+-   **更简单**
+    
+-   **更小**
+    
+-   **更快**
+    
+-   **更少歧义**
+    
+-   **更易编程**
+    
+
+  
+
+相信大家在阅读本文后，对上面的几个优点已经有所体会，尤其是更小和更快两个优点。读者朋友，你能用自己的语言，描述下为什么 protobuf 序列化后的对象体积更小，解码更快么？
+
+  
+
+最后，附上几个思考题，帮助大家消化理解，欢迎大家留言：
+
+  
+
+-   整型编码，除了文中提及的算法，还有别的方法么？
+    
+-   如果 repeated 整型数组都很大，有没有更高效的编码方式。比如 size 为 10000 以上。
+    
+-   如果 repeated 整型数组，有一定的规律，比如[100, 105, 150, ……1200, 1260, 1280, 1300……]，有没有更高效的编码方法？
+    
+-   protobuf 对 string 类型是怎么编码的？
+    
+-   在网络编程中，我们要发送变长的字符串信息，应该怎么设计协议？  
+    
+-   protobuf 对嵌套消息是如何编码的？
+    
+-   packed=true 属性有什么作用？对哪些数据类型有效？编码的时候又是怎么处理的？
+    
+-   ZigZag 有什么好处？适合什么样的数据？
+    
+-   假如存储的整数有正有负，并且绝对值比较小，应该设置为什么数据类型？
+    
+      
+    
+
+作者注：本文主体内容翻译自 protobuf 官方文档中 Encoding 一节，部分内容做了一些个人补充和发挥。原文档地址为：
+
+https://developers.google.com/protocol-buffers/docs/encoding
+
+大家也可点击文末的“阅读原文”链接，阅读原始的英文文档。
+
+  
+
+  
+
+技艺丛谈 原创热文
+
+-   [混血美女长得好 | 职场混血理论初探](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484390&idx=1&sn=26d58b4e4065886dab7b971609126f41&chksm=eb6bdd2cdc1c543aa3dc3629ee8b40d84ff06fcc20d7d1a1cce1faad02cc24148df70cff9c12&scene=21#wechat_redirect)
+    
+-   [由点及面的面试法](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484362&idx=1&sn=c95b70a7aeaaf9139c30460fa17500fc&chksm=eb6bdd00dc1c5416d95e8444e256b009d53db7420093fb299e2b8c7816d3a3a520ffc74e5290&scene=21#wechat_redirect)
+    
+-   [C++ Singleton 发展史](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484352&idx=1&sn=93183add638fa03a2c38b4ddf40671db&chksm=eb6bdd0adc1c541c523deb6ac54aca3c16f271d249c39aef1fc0d0b007a038ed0c7acb4e54e7&scene=21#wechat_redirect)
+    
+-   [C++编程｜C++基础库构建经验谈](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484277&idx=1&sn=2ee48a6c1031c2d3ca90eca56dd6ccc9&chksm=eb6bddbfdc1c54a9befab09d9b7e5b81860467cac534f791864bd3e8f2044a8b796bd49dd047&scene=21#wechat_redirect)
+    
+-   ## [对象序列化探秘 | protobuf 简介](http://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&mid=2247484394&idx=1&sn=b1e52826438152b16c35408bf15af71b&chksm=eb6bdd20dc1c5436e9b365b3822646e106c913b3a2d908714df057bb3733f3efbe52c2fb33ee&scene=21#wechat_redirect)
+    
+
+  
+
+![](https://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKFq2jFTibJuHgibIcSzsB3lQNmZVH7Uyuy13kp336pdo1PTsraswC4ZX9zW2KJZKEaiaiacdS9ia1iaqeCg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+[阅读原文](https://mp.weixin.qq.com/s?__biz=MzI3NzE1NDcyNQ==&tempkey=MTAyOV90QVRoR1BVOEtSVlZ0NHArckZOQmo4OVZrUERDLTZNdWRoRGFWVVBBc2NoYjJMZE5qVDJ2ZVhxbmx3Vm40ZGhtN1ROYWdkM3ZmekF5UGc4ZzJJVndhLUEtVWpCVTdFTlM4eEtyOEFJd1NoT05iRTVnMEEtLWFZSHJZeElPT0h3M0JTT1NHVGVrT0xIeTNwNURORDFGSzVTc2NmWVZURTZLZWhjYmNnfn4%3D&chksm=6b6bdadb5c1c53cd99dc9c43cc570c795a35f0f33fc476f5ad84f3e4979e41378258e13c4ebf##)
+
+![](https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=102&__biz=MzI3NzE1NDcyNQ==&mid=100000785&idx=1&sn=432dbc35ed0d55169030aabbbb27130f&send_time=1570420187)
+
+微信扫一扫  
+关注该公众号
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTI3NTAxNTEyMF19
+-->
