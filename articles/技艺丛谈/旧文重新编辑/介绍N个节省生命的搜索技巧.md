@@ -153,115 +153,64 @@ query：  搜索引擎 -谷歌，搜索结果中，有关谷歌的网页会被�
 
 搜索"cache:www.sohu.com"，谷歌会直接重定向到缓存页面，并显示是什么时候的快照。截图如下：
 
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIomW1OYwZl9ib3qWicDSHPbSl2ADNMbpmXFzfKrh1YtPdYkLMh8wbNueg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
-
-info指令  
-
-  
+### info指令  
 
 Google还提供了 info指令，其会显示和快照，相似网页，指向某个网页的网页，包含全部关键词的网页等几个链接。
 
 比如我们搜索"info:youku.com"，出来的结果中，会包含四个链接信息。点击的话，分别相当于
 
-cache:youku.com
-
-related:youku.com
-
-site:youku.com  
-
-"youku.com"
+> cache:youku.com 
+> related:youku.com 
+> site:youku.com   
+> "youku.com"
 
 这四个搜索。
-
-  
 
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIsUvsQneee8vG732sjib358XNAqtQ57BPL1VAegHyTRNgHlblhZAFgmA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 其中几个上面都有所介绍。相似网页我这里介绍下。我们发现某个网站比较好玩，想要找相似的网站，就可以使用这个功能了。比如找和花瓣之类的看图网站类似的网站。
 
-  
-
 下面我们使用“related:youku.com”，搜索下和优酷相似的网站有哪些？如下图所示，我们可以很方便地找到土豆，爱奇艺，百度视频，凤凰视频，腾讯视频，搜狐视频等相似网站。
-
-  
 
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIaSj4cxvwWwr6ibI6XJUY6VzOoGXO7vIrB1ngVa8bAL7Gk05yIkL0rNg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
-
-限制网页的最后更新时间
-
-  
+### 限制网页的最后更新时间
 
 这个没有对应的指令，只能在网页界面中选择。比如要找一天内的有关刘德华的新网页，可以如下图选择“一天内”，然后点击搜索。
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oILBh4ZLLfD9f7mvkFRwLqmY8GZiau9KmDXXMSxwFQtUNIsEWODIWAS6A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)  
-
-  
 
 搜索出来的网页，我们可以从摘要信息中看到，都是一天内的。
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIoRctedAaZibjIbHCuJgbmybLxbDyptLgfwv6JGQGW3WgGPYnQsfuQfQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)  
 
-  
-
-一页显示更多的搜索结果数
-
-  
+### 一页显示更多的搜索结果数
 
 有时候我们在搜索某个资料，需要经常翻页，不够高效，怎么办呢？这个时候可以在搜索设置中，将每页搜索结果数调整到20条设置50条等。
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oI6aV9lnNJBfINrjtecGqkgvfDFO9RCr3GAz6ukNk6ibzs9RDAH39xqqg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-  
 
 举一些需要翻页的场景：搜索你感兴趣的论文，搜索你感兴趣的人物资料。
 
-  
-
 程序员写爬虫，抓取百度等搜索结果页，也可以考虑调整这个对应的URL参数，一次性抓取更多的搜索结果。
 
-  
-
-搜索经验
-
-  
-
+## 搜索经验
+---
 介绍了这么多搜索指令，有时候没有谷歌也是白搭。最后再附上一些搜索经验，作为补充。
 
-  
-
 -   技术搜索最好能访问谷歌。
-    
 -   学会挑选搜索关键词，尝试变换关键词。比如少一个词，多一个词，换个说法，换个同义词，换个别名，换个英文名等。
-    
 -   技术问题可以使用"site:"指令，搜索下stackoverflow.com这个网站上的问答。
-    
 -   不知道怎么使用谷歌，搜索下“VPN”相关网页。
-    
 -   学好英文。一些问题，能用英文搜就不要用中文。
-    
 -   英文不好也没问题，使用下谷歌翻译，翻译为英文单词，再使用英文搜索。  
-    
 -   谷歌无法使用，那就试试必应吧。
-    
 -   尝试使用谷歌或百度的高级搜索框的各个输入框，熟能生巧。
-    
 -   英文网页看不懂，可以试试谷歌翻译插件。
-    
 -   程序员编译错误不知道怎么解决，把编译错误在谷歌搜索下。如果编译错误是中文的，那么先调为中文的，不知道怎么调的，先搜索下。
-    
 -   专业领域，了解下有没有更专业的垂直搜索。比如搜视频种子，最好使用种子搜索。当然搜索种子搜索网站，可以使用通用搜索。
-    
 -   花半小时搜索免费资源，有时候不如花钱买个会员。时间就是金钱，省时间就是省钱，省生命。
     
 
@@ -270,5 +219,5 @@ site:youku.com
 大家有什么其他的搜索技巧需要了解，或者分享的，欢迎留言交流。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzUwNjQ3NTU0XX0=
+eyJoaXN0b3J5IjpbMjEwNTU0OTYyMl19
 -->
