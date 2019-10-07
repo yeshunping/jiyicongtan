@@ -110,85 +110,40 @@ Gmock还可以用在一些复杂模块的协同开发。比如module B 依赖mod
 这个是google在程序性能方面的利器。有以下用处
 -   内含tcmalloc,内存管理方便更加强大。本人写过的某个模块，不链接该库与链接该库的内存比大约是10:7 ,简单链接该库，内存占用明显降低。比自己实现代码花大力气优化带来的好处还大。
 -   提供了内存泄露检测功能。结合其提供的pprof工具，可以非常方便地定义内存泄露的代码。
-    
-      
-    
 -   提供了HEAPPROFILE功能，用于检测程序中哪些代码最为消耗内存，用于定位改进内存使用。
-    
-      
-    
 -   提供了CPUPROFILE功能，用于性能调优方面，效果极佳。腾讯台风系统实现的google protobuf RPC框架poppy，便使用它提供了在线profile功能。
-    
-
-  
 
 ### Protobuf
-
-  
-
 Google的序列化与反序列化功能，类似的有facebook出品的thrift. 国内公司，使用thrift的团队应该不在少数，不过protobuf至少有以下几个强项：
-
-  
-
 -   提供了TextFormat，这个与thrift的string表示不可等同而观，thrift的string是残缺的，因此无法反序列化，而google protofbuf的TextFormat则是完整的，可以反序列化。因此protobuf天然适合作为配置文件。一个复杂的配置，只要表示为protobuf的text format，可读性好，人工可直接编辑。同时，简单几行代码即可实现反序列化，后续读取配置项，简单方便。
-    
-      
-    
+
     值得一提的是，甚至有直接使用windows窗口、浏览器表单等，直接配置protobuf配置项的开源项目。
-    
-      
-    
--   protobuf设置了反射功能。这个使得实现不同的format非常方便，比如实现从Json转protobuf，从Protobuf转json都非常方便。
-    
-    反射的设计，使得poppy之类RPC能够提供比thrift 内置的RPC更为强大，更为酷的功能。
-    
-      
-    
+
+-   protobuf设置了反射功能。这个使得实现不同的format非常方便，比如实现从Json转protobuf，从Protobuf转json都非常方便。反射的设计，使得poppy之类RPC能够提供比thrift 内置的RPC更为强大，更为酷的功能。
+
 -   protobuf可以实现对未知字段的透明传递，比如有几个模块使用了protobuf Data进行传输，a-->b-->c-->d, 如果A在Data中添加某个字段，d模块需要使用该字段，如果使用thrift，则四个模块全部需要重新编译部署上线，而使用protobuf的话，则只需要更新上线模块a和d。
-    
-      
-    
+
 -   thrift 的RPC，数据包没有id的概念，同一个RPC调用多次，可能这次的返回数据，会是上次调用返回的数据。因为使用者需要对超时等问题进行复杂的处理。
     
-
 ### Leveldb
-
-  
 
 Leveldb是google开源出来的sstable实现，其性能表现优越，具体可以参考其benchmark记录。如果需要实现一个简单的sstable server, 则可以考虑使用leveldb,某些小型规模的数据，也可以考虑直接使用leveldb进行存储。
 
-  
-
 ### Snappy
-
-  
 
 压缩库有很多，著名的比如zlib, lzo等，snappy则是google出品的在读写性能与压缩比等各个指标间取得很好的平衡的压缩库。Google内部的BigTable，应该就是使用snappy进行压缩的。Snappy开源库中内置了benchmark程序，读者朋友要是有兴趣，可以自己跑跑与其它压缩库的对比。
 
-  
-
 ### Re2
-
-  
 
 正则表达式是大家经常使用的功能。在匹配url,比如文本内容等场合，都需要使用到正则表达式。除了Linux系统内置的正则库外，知名的还有boost的正则库等。
 
-  
-
 既然有了这么多的开源库，google为什么要实现自己的正则库呢？个人猜测，可能是搜索等相关业务，使用到正则的频繁较高，且正则表达式的规模不小，对其性能有较高的要求。不错，re2的强势，正是在于其超强的性能。Re2通过对正则语法的适当裁剪，专注在高性能。
-
-  
 
 关注性能的朋友，不妨试试re2这个开源项目。
 
-  
-
 不过re2也有几个缺点：
-
 1.  支持的正则语法有所限制，比如回溯功能就不支持
-    
 2.  re2不支持gbk等编码。
-    
 
 ### **结语**
 
@@ -198,5 +153,5 @@ Leveldb是google开源出来的sstable实现，其性能表现优越，具体可
 
 ​
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5OTczMTk5N119
+eyJoaXN0b3J5IjpbLTE2MTk2MjM2MzVdfQ==
 -->
