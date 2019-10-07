@@ -138,25 +138,19 @@ inline ::tutorial::Person_PhoneNumber* add_phones();
 Person person;
 person.set_name(“John Doe”);
 person.set_id(1234);
-
 person.set_email(“jdoe@example.com”);
-
 fstream output(“myfile”, ios::out | ios::binary);
-
 person.SerializeToOstream(&output);
 ```
+
 而对象的反序列化也很简单，示例代码如下：
+
 ```cpp
 Person john;
-
 fstream input(argv[1], ios::in | ios::binary);
-
 john.ParseFromIstream(&input);
-
 id = john.id();
-
 name = john.name();
-
 email = john.email();
 ```
 
@@ -164,6 +158,7 @@ email = john.email();
 
 本文大概介绍了 protobuf 的 IDL 基础，生成的接口，如何使用 protobuf 进行对象的构造，对象的序列化与反序列化。同时简单比较了 protobuf 与 XML 的优劣势。在后续文章中，我们将深入介绍 protobuf 的消息编码算法，揭秘为什么其序列化后的对象比 XML 更小，编码效率更高。在后续文章中，也会将其与 Facebook Thrift 的消息编码格式进行对比。欢迎大家关注「技艺丛谈」公众号，阅读后续分享。
 
+(本文为公众号旧文重发)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk2MjkyNjA3OV19
+eyJoaXN0b3J5IjpbLTEyNzcwMzEyNzFdfQ==
 -->
