@@ -42,75 +42,42 @@
 -   可以使用内置的--help查看某个binary使用到的所有flags,以及其对应的意义。
 -   可以使用flagfile，用来管理线上模块复杂的命令行参数。
 -   结合blade/bazel等构建工具，设置可以提供默认的--version等命令，用于查看Binary相关信息，比如谁编译的，代码的版本信息，编译的主机名，编译时间，编译的相关环境信息(操作系统，gcc版本等)。而这一切信息，都是构建工具帮你自动收集并绑定到Binary内部的。
-    
 
 ### Glog
-
-  
-
 一般比较大的软件，都会有日志模块，以打印一些信息，用于调试，或者跟踪分析等。很多程序员可能都写过自己的日志库，或者是使用过开源的日志库，
 
 比如较为著名的Log4cplus，java的 log4j 。不过个人使用过的最方便简洁的日志库（C++），还是google出品的。
 
-  
-
 其有以下几个特点。
-
-  
-
 -   流式风格，输出日志便捷，比如
-    
-    LOG(INFO) << "thread started, tid:"
-    
-    << tid();
-    
+```cpp    
+    LOG(INFO) << "thread started, tid:" << tid();
+```    
 -   默认输出到标准输出，对很多小工具而言，不需要指定日志文件名，不需要进行任何初始化操作。
-    
 -   如果要指定日志文件，可以调用 InitGoogleLogging 函数进行设置。
-    
 -   提供了不同的log等级，包括INFO，WARNING，ERROR，FATAL等。
-    
 -   提供了丰富的宏，比如DLOG, LOG_IF，CHECK，DCHECK。
-    
 -   提供了VLOG功能，程序启动的时候，随着需求不同，可以开启不同的级别，而所需要的工作仅仅是在命令行中指定 --v=level。
-    
 -   日志信息足够丰富，包含输出时间，源文件名，代码行号，日志等级以及用户输出的具体信息等。
-    
-      
-    
 
 ### Gtest
 
-  
-
 著名的单元测试框架有很多，比如CppUnit，boost的单元测试框架等。不过还是gtest有其过人的优点：
-
-  
-
 1，简洁到极致。比如你要测试以下函数
 
-  
-
-> int Add(int a, int b) {
-> 
-> return a + b;
-> 
-> }
-
-  
-
+```cpp
+int Add(int a, int b) { 
+  return a + b;
+}
+```
 你只需要编写简单的几行代码即可：
-
-  
-
-> TEST(AddTest, SilmpleTest) {
-> 
+```cpp
+TEST(AddTest, SilmpleTest) {
 > EXPECT_EQ(Add(1, 2), 3);
-> 
 > EXPECT_EQ(Add(-1, 2), 1);
 > 
 > }
-
+```
   
 
 2，提供了丰富的宏。gtest提供了非常多的宏，比如EXPECT_EQ，EXPECTFALSE，EXPECT_GT，ASSERT_DEATH等。
@@ -258,5 +225,5 @@ Leveldb是google开源出来的sstable实现，其性能表现优越，具体可
 
 ​
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjc4ODkzMjBdfQ==
+eyJoaXN0b3J5IjpbLTIxMTA0MzAwMDFdfQ==
 -->
