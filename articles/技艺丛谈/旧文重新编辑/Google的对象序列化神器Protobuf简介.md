@@ -184,31 +184,22 @@ source file : address.proto
 
 以下代码示范了下如何使用生成的接口，直接操作 Person 对象。可以看到，相比 XML writer , protobuf 的对象读写更为方便。
 ```cpp
-1.  `Person person;`
-    
-2.  `person.set_name("John Doe");`
-    
-3.  `person.set_id(1234);`
-    
-4.  `person.set_email("jdoe@example.com");`
-    
-5.  `fstream output("myfile", ios::out | ios::binary);`
-    
-6.  `person.SerializeToOstream(&output);`
+1.  Person person;
+2.  person.set_name("John Doe");
+3.  person.set_id(1234);
+4.  person.set_email("jdoe@example.com");
+5.  fstream output("myfile", ios::out | ios::binary);
+6.  person.SerializeToOstream(&output);
 ```
 
 而对象的反序列化也很简单，示例代码如下：  
 ```cpp
-1.  `Person john;`
-2.  `fstream input(argv[1], ios::in  | ios::binary);`
-    
-3.  `john.ParseFromIstream(&input);`
-    
-4.  `id = john.id();`
-    
-5.  `name = john.name();`
-    
-6.  `email = john.email();`
+1.  Person john;
+2.  fstream input(argv[1], ios::in  | ios::binary);
+3.  john.ParseFromIstream(&input);
+4.  id = john.id();
+5.  name = john.name();
+6.  email = john.email();
 ```
 
 当然，在代码中，我们一般会封装一个函数，比如 ReadTextFileToProto。值得一提的是，项目的配置文件，使用 protobuf 的文本格式来表示，也非常方便，我呆过的很多团队，就经常使用 protobuf 的文本格式来存储项目配置信息，可读性高，编辑方便，解析和访问方便。
@@ -216,5 +207,5 @@ source file : address.proto
 本文大概介绍了 protobuf 的 IDL 基础，生成的接口，如何使用 protobuf 进行对象的构造，对象的序列化与反序列化。同时简单比较了 protobuf 与 XML 的优劣势。在后续文章中，我们将深入介绍 protobuf 的消息编码算法，揭秘为什么其序列化后的对象比 XML 更小，编码效率更高。在后续文章中，也会将其与 Facebook Thrift 的消息编码格式进行对比。欢迎大家关注「技艺丛谈」公众号，阅读后续分享。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0ODIyNDIyMl19
+eyJoaXN0b3J5IjpbLTIwMDg1NzM3NjRdfQ==
 -->
