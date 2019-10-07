@@ -4,72 +4,49 @@
 
 相比 XML ， Protocol buffers 在序列化结构化数据方面，有很多优势。包括：
 
--   **更简单**
-    
--   **更小**。压缩效率在3到10倍以上
-    
--   **更快**。速度在20到100倍以上
-    
--   **更少歧义**
-    
--   **更易编程**。编译器直接生成相关的数据操作类，编程中可直接使用。
-    
-
-  
+> -   **更简单**
+>     
+> -   **更小**。压缩效率在3到10倍以上
+>     
+> -   **更快**。速度在20到100倍以上
+>     
+> -   **更少歧义**
+>     
+> -   **更易编程**。编译器直接生成相关的数据操作类，编程中可直接使用。
 
 比如要表示人这个对象，它带有名字和邮件信息。
 
-  
-
 XML格式表示如下：
-
-  
-
-1.  `<person>`
-    
-2.   `<name>John Doe</name>`
-    
-3.   `<email>jdoe@example.com</email>`
-    
-4.  `</person>`
-    
+```cpp
+1.  <person>
+2.   <name>John Doe</name>
+3.   <email>jdoe@example.com</email>
+4.  </person>
+```    
 
 protocol buffer 的 IDL 定义如下：
-
-1.  `message Person  {`
-    
-2.   `required string name =  1;`
-    
-3.   `optional string email =  2;`
-    
-4.  `}`
-    
+```cpp
+1.  message Person  {
+2.   required string name =  1;
+3.   optional string email =  2;
+4.  }
+```
 
 protocol buffer 的文本格式如下：
-
-1.  `person {`
-    
-2.   `name:  "John Doe"`
-    
-3.   `email:  "jdoe@example.com"`
-    
-4.  `}`
-    
-
-  
+```cpp
+1.  person {
+2.   name:  "John Doe"
+3.   email:  "jdoe@example.com"
+4.  }
+```
 
 而如果使用 protocol buffer 的二进制编码格式，对象大小才 28 字节，耗时大约 100-200 纳秒。相对地，XML 格式表示，至少需要 69 字节（移除掉空格后），解析该对象的时间，至少在 5,000-10,000 纳秒以上。
 
-  
-
 编程中操作 Protobuf 消息非常简单，如下：
-
-  
-
-1.  `cout <<  "Name: "  << person.name()  << endl;`
-    
-2.  `cout <<  "E-mail: "  << person.email()  << endl;`
-    
+```cpp
+1.  cout <<  "Name: "  << person.name()  << endl;
+2.  cout <<  "E-mail: "  << person.email()  << endl;
+```
 
 而操作 XML 的话，则较为繁琐，大概如下：
 
@@ -252,5 +229,5 @@ source file : address.proto
 本文大概介绍了 protobuf 的 IDL 基础，生成的接口，如何使用 protobuf 进行对象的构造，对象的序列化与反序列化。同时简单比较了 protobuf 与 XML 的优劣势。在后续文章中，我们将深入介绍 protobuf 的消息编码算法，揭秘为什么其序列化后的对象比 XML 更小，编码效率更高。在后续文章中，也会将其与 Facebook Thrift 的消息编码格式进行对比。欢迎大家关注「技艺丛谈」公众号，阅读后续分享。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMzMDk4ODM4NV19
+eyJoaXN0b3J5IjpbMTYwOTU3MTI5XX0=
 -->
