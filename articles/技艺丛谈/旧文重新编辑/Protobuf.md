@@ -55,7 +55,7 @@ varint 编码中的每个字节（最后一个字节除外），有一个最高�
 一个 protobuf 消息其实是一系列键值对(key-value paris，key 是字段tag [filed number + wire type]，value 是字段值)。消息的二进制版本，只是使用字段的编号来构造 key , 而字段名和类型信息，只有在解码结束后才能获知，并且需要从消息类型定义中推断出（也就是对应的 .proto 文件）。编码时，字段的键和值会依次拼接成字符流。解码时，解码器需要能够跳过那些它不认识的字段。只有这样，才能做到兼容协议的旧版本。也就是说，只有这样做，才能够给消息添加新的字段，而不会破坏对这些字段毫无知情的旧程序（没有使用新版本的 proto 文件重新编译和部署上线的程序）。为此，消息中的每个字段信息的键值（key part），其实包括了两个部分的信息——1，.proto 文件中的字段编号，2，wire type，它需要能够提供足够的信息，以确定后续值的长度。
 
 所有的wire type如下表所示:
-
+![Protobuf_wire_type](https://picasaweb.google.com/yeshunping/6744942831208782881#6744942833066382354 "wire_type")
 
 消息流中的每个 Key 信息，是一个 varint 值，其值等于
 ```cpp
@@ -86,7 +86,7 @@ key = (field_number << 3) | wire_type
 ZigZag 编码将有符号整数映射为无符号整数，这样绝对值很小的数字（比如 -1 ），也会有比较小的 varint 编码值了。
 
 ZigZag 编码算法在正负数之间来回游走进行编码( "zig-zags" 也因此得名), -1 编码为 1，1 编码为 2，-2 编码为 3，如此等等, 编码示例如下图:
-#TODO(补充表格)
+![ZigZag编码](https://picasaweb.google.com/yeshunping/6744943030325774081#6744943030911162978 "protobuf")
 
 换句话说，每个 n 值，sint32 会按照如下公式进行编码：
 ```cpp
@@ -228,5 +228,5 @@ https://developers.google.com/protocol-buffers/docs/encoding
 大家也可点击文末的“阅读原文”链接，阅读原始的英文文档。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkwOTA3MzU3Nl19
+eyJoaXN0b3J5IjpbLTc4NzA3Mjk5NF19
 -->
