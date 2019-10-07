@@ -151,7 +151,8 @@ Leveldb是google开源出来的sstable实现，其性能表现优越，具体可
 
 我很喜欢这些大餐，因为他们色香味俱佳，吃多了，对健康很有好处。不知道没有尝试过的朋友们，是不是已经垂涎三尺了呢？
 
-​
+​（本文为公众号旧文重发）
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MTk2MjM2MzVdfQ==
+eyJoaXN0b3J5IjpbLTEzNTAzMjQ0MTksLTE2MTk2MjM2MzVdfQ
+==
 -->
