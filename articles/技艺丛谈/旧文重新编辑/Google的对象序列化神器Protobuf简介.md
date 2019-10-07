@@ -18,29 +18,25 @@
 
 XML格式表示如下：
 
-John Doe  
-  
-jdoe@example.com  
-  
+```cpp
+1.  <person>
+2.  <name>John Doe</name>
+3.  <email>jdoe@example.com</email>
+4.  </person>
+``` 
 
 protocol buffer 的 IDL 定义如下：
 ```cpp
 message Person {
-
-required string name = 1;
-
-optional string email = 2;
-
+  required string name = 1;
+  optional string email = 2;
 }
 ```
 protocol buffer 的文本格式如下：
 ```cpp
 person {
-
 name: “John Doe”
-
 email: “jdoe@example.com”
-
 }
 ```
 而如果使用 protocol buffer 的二进制编码格式，对象大小才 28 字节，耗时大约 100-200 纳秒。相对地，XML 格式表示，至少需要 69 字节（移除掉空格后），解析该对象的时间，至少在 5,000-10,000 纳秒以上。  
@@ -48,13 +44,11 @@ email: “jdoe@example.com”
 编程中操作 Protobuf 消息非常简单，如下：
 ```cpp
 cout << “Name: “ << person.name() << endl;
-
 cout << “E-mail: “ << person.email() << endl;
 ```
 而操作 XML 的话，则较为繁琐，大概如下：
 ```cpp
 cout << “Name: “ << person.getElementsByTagName(“name”)->item(0)->innerText() << endl;
-
 cout << “E-mail: “ << person.getElementsByTagName(“email”)->item(0)->innerText() << endl;
 ```
 
@@ -77,39 +71,21 @@ protobuf 目前提供了两个版本的语法支持，包括 proto2 和 proto3�
 source file : address.proto
 ```cpp
 syntax = “proto2”;
-
 package tutorial;
 
 message Person {
-
 required string name = 1;
-
 required int32 id = 2;
-
 optional string email = 3;
-
 enum PhoneType {
-
-```
 MOBILE = 0;
-
 HOME = 1;
-
 WORK = 2;
-
-```
-
 }
 
 message PhoneNumber {
-
-```
 required string number = 1;
-
 optional PhoneType type = 2 [default = HOME];
-
-```
-
 }
 
 repeated PhoneNumber phones = 4;
@@ -212,5 +188,5 @@ email = john.email();
 本文大概介绍了 protobuf 的 IDL 基础，生成的接口，如何使用 protobuf 进行对象的构造，对象的序列化与反序列化。同时简单比较了 protobuf 与 XML 的优劣势。在后续文章中，我们将深入介绍 protobuf 的消息编码算法，揭秘为什么其序列化后的对象比 XML 更小，编码效率更高。在后续文章中，也会将其与 Facebook Thrift 的消息编码格式进行对比。欢迎大家关注「技艺丛谈」公众号，阅读后续分享。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDc0MTk5N119
+eyJoaXN0b3J5IjpbMjA3MjE4MDkwNV19
 -->
