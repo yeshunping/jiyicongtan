@@ -215,6 +215,7 @@ Google还提供了 info指令，其会显示和快照，相似网页，指向某
 
 大家有什么其他的搜索技巧需要了解，或者分享的，欢迎留言交流。
 
+（本文为公众号旧文重发）
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQyMjg2NjQ3NV19
+eyJoaXN0b3J5IjpbMTM2NzUyODM2MV19
 -->
