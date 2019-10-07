@@ -74,92 +74,69 @@ syntax = “proto2”;
 package tutorial;
 
 message Person {
-required string name = 1;
-required int32 id = 2;
-optional string email = 3;
-enum PhoneType {
-MOBILE = 0;
-HOME = 1;
-WORK = 2;
-}
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
 
-message PhoneNumber {
-required string number = 1;
-optional PhoneType type = 2 [default = HOME];
-}
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
 
-repeated PhoneNumber phones = 4;
+  message PhoneNumber {
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+  }
 
+  repeated PhoneNumber phones = 4;
 }
 
 message AddressBook {
-
-repeated Person people = 1;
-
+  repeated Person people = 1;
 }
 ```
+
 使用 protoc 工具，也就是 protobuf IDL 语言的编译器，编译 address.proto 文件，会得到 address.pb.h 和 address.pb.cc 两个文件。（这里指的是 C++ 语言。protoc 也可以输出各种不同的语言文件，包括 Java , PHP, Python, Go 等主流语言。）当然，在编程中，我们一般使用 bazel 编译工具，配合 proto_library 编译出不同的语言文件。以下是 Person 消息对应的几个接口。
+
 ```cpp
 // name
-
 inline bool has_name() const;
-
 inline void clear_name();
-
 inline const ::std::string& name() const;
-
 inline void set_name(const ::std::string& value);
-
 inline void set_name(const char* value);
-
 inline ::std::string* mutable_name();
 
 // id
-
 inline bool has_id() const;
-
 inline void clear_id();
-
 inline int32_t id() const;
-
 inline void set_id(int32_t value);
 
 // email
-
 inline bool has_email() const;
-
 inline void clear_email();
-
 inline const ::std::string& email() const;
-
 inline void set_email(const ::std::string& value);
-
 inline void set_email(const char* value);
-
 inline ::std::string* mutable_email();
 
 // phones
-
 inline int phones_size() const;
-
 inline void clear_phones();
-
 inline const ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >& phones() const;
-
 inline ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber >* mutable_phones();
-
 inline const ::tutorial::Person_PhoneNumber& phones(int index) const;
-
 inline ::tutorial::Person_PhoneNumber* mutable_phones(int index);
-
 inline ::tutorial::Person_PhoneNumber* add_phones();
 ```
+
 以下代码示范了下如何使用生成的接口，直接操作 Person 对象。可以看到，相比 XML writer , protobuf 的对象读写更为方便。
+
 ```cpp
 Person person;
-
 person.set_name(“John Doe”);
-
 person.set_id(1234);
 
 person.set_email(“jdoe@example.com”);
@@ -188,5 +165,5 @@ email = john.email();
 本文大概介绍了 protobuf 的 IDL 基础，生成的接口，如何使用 protobuf 进行对象的构造，对象的序列化与反序列化。同时简单比较了 protobuf 与 XML 的优劣势。在后续文章中，我们将深入介绍 protobuf 的消息编码算法，揭秘为什么其序列化后的对象比 XML 更小，编码效率更高。在后续文章中，也会将其与 Facebook Thrift 的消息编码格式进行对比。欢迎大家关注「技艺丛谈」公众号，阅读后续分享。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3MjE4MDkwNV19
+eyJoaXN0b3J5IjpbMTk2MjkyNjA3OV19
 -->
