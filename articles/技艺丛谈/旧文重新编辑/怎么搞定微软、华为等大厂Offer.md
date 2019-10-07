@@ -113,7 +113,7 @@ AA 面试中，主要问一些宏观的事情，比如对人工智能的看法�
 
 Follow your heart.
 
-（）
+（本文为公众号旧文重发）
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA2NDc1NzEzNF19
+eyJoaXN0b3J5IjpbMTQ2MzE1MjE5MV19
 -->
