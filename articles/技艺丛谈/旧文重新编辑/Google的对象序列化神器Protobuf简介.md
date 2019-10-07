@@ -73,110 +73,111 @@ protobuf 目前提供了两个版本的语法支持，包括 proto2 和 proto3�
 source file : address.proto
 ```cpp
 1.  syntax =  "proto2";
-3.  package tutorial;
-5.  message Person  {
-6.   required string name =  1;
-7.   required int32 id =  2;
-8.   optional string email =  3;
-10.   enum  PhoneType  {
-11.     MOBILE =  0;
-12.     HOME =  1;
-13.     WORK =  2;
-14.   }
-16.   `message PhoneNumber  {
-17.   `required string number =  1;`
-18.   `optional PhoneType type =  2  [default  = HOME];`
-19.   `}`
-21.   `repeated PhoneNumber phones =  4;`
-22.  `}`
-24.  `message AddressBook  {`
-    
-25.   `repeated Person people =  1;`
-    
-26.  `}`
+2.  package tutorial;
+3. 
+4.  message Person  {
+5.   required string name =  1;
+6.   required int32 id =  2;
+7.   optional string email =  3;
+8.   enum  PhoneType  {
+9.     MOBILE =  0;
+10.     HOME =  1;
+11.     WORK =  2;
+12.   }
+13. 
+14.   message PhoneNumber  {
+15.     required string number =  1;
+16.     optional PhoneType type =  2  [default  = HOME];
+17.   }
+18.   repeated PhoneNumber phones =  4;
+19.  }
+20. 
+21.  message AddressBook  {
+22.   repeated Person people =  1;
+23.  }
 ```
 
 使用 protoc 工具，也就是 protobuf IDL 语言的编译器，编译 address.proto 文件，会得到 address.pb.h 和 address.pb.cc 两个文件。（这里指的是 C++ 语言。protoc 也可以输出各种不同的语言文件，包括 Java , PHP, Python, Go 等主流语言。）当然，在编程中，我们一般使用 bazel 编译工具，配合 proto_library 编译出不同的语言文件。以下是 Person 消息对应的几个接口。
 ```cpp
-1.   `// name`
+24.   // name
     
-2.   `inline  bool has_name()  const;`
+25.   inline  bool has_name()  const;
     
-3.   `inline  void clear_name();`
+26.   inline  void clear_name();
     
-4.   `inline  const  ::std::string& name()  const;`
+27.   inline  const  ::std::string& name()  const;
     
-5.   `inline  void set_name(const  ::std::string& value);`
+28.   inline  void set_name(const  ::std::string& value);
     
-6.   `inline  void set_name(const  char* value);`
+29.   inline  void set_name(const  char* value);
     
-7.   `inline  ::std::string* mutable_name();`
+30.   inline  ::std::string* mutable_name();
     
-8.  
+31.  
 
-10.   `// id`
+32.   // id
     
-11.   `inline  bool has_id()  const;`
+33.   inline  bool has_id()  const;
     
-12.   `inline  void clear_id();`
+34.   inline  void clear_id();
     
-13.   `inline  int32_t id()  const;`
+35.   inline  int32_t id()  const;
     
-14.   `inline  void set_id(int32_t value);`
+36.   inline  void set_id(int32_t value);
     
-15.  
+37.  
 
-17.   `// email`
+38.   // email
     
-18.   `inline  bool has_email()  const;`
+39.   inline  bool has_email()  const;`
     
-19.   `inline  void clear_email();`
+40.   `inline  void clear_email();`
     
-20.   `inline  const  ::std::string& email()  const;`
+41.   `inline  const  ::std::string& email()  const;`
     
-21.   `inline  void set_email(const  ::std::string& value);`
+42.   `inline  void set_email(const  ::std::string& value);`
     
-22.   `inline  void set_email(const  char* value);`
+43.   `inline  void set_email(const  char* value);`
     
-23.   `inline  ::std::string* mutable_email();`
+44.   `inline  ::std::string* mutable_email();`
     
-24.  
+45.  
 
-26.   `// phones`
+46.   `// phones`
     
-27.   `inline  int phones_size()  const;`
+47.   `inline  int phones_size()  const;`
     
-28.   `inline  void clear_phones();`
+48.   `inline  void clear_phones();`
     
-29.   `inline  const  ::google::protobuf::RepeatedPtrField<  ::tutorial::Person_PhoneNumber  >& phones()  const;`
+49.   `inline  const  ::google::protobuf::RepeatedPtrField<  ::tutorial::Person_PhoneNumber  >& phones()  const;`
     
-30.   `inline  ::google::protobuf::RepeatedPtrField<  ::tutorial::Person_PhoneNumber  >* mutable_phones();`
+50.   `inline  ::google::protobuf::RepeatedPtrField<  ::tutorial::Person_PhoneNumber  >* mutable_phones();`
     
-31.   `inline  const  ::tutorial::Person_PhoneNumber& phones(int index)  const;`
+51.   `inline  const  ::tutorial::Person_PhoneNumber& phones(int index)  const;`
     
-32.   `inline  ::tutorial::Person_PhoneNumber* mutable_phones(int index);`
+52.   `inline  ::tutorial::Person_PhoneNumber* mutable_phones(int index);`
     
-33.   `inline  ::tutorial::Person_PhoneNumber* add_phones();`
+53.   `inline  ::tutorial::Person_PhoneNumber* add_phones();`
 ```
 
 以下代码示范了下如何使用生成的接口，直接操作 Person 对象。可以看到，相比 XML writer , protobuf 的对象读写更为方便。
 ```cpp
-1.  Person person;
-2.  person.set_name("John Doe");
-3.  person.set_id(1234);
-4.  person.set_email("jdoe@example.com");
-5.  fstream output("myfile", ios::out | ios::binary);
-6.  person.SerializeToOstream(&output);
+54.  Person person;
+55.  person.set_name("John Doe");
+56.  person.set_id(1234);
+57.  person.set_email("jdoe@example.com");
+58.  fstream output("myfile", ios::out | ios::binary);
+59.  person.SerializeToOstream(&output);
 ```
 
 而对象的反序列化也很简单，示例代码如下：  
 ```cpp
-1.  Person john;
-2.  fstream input(argv[1], ios::in  | ios::binary);
-3.  john.ParseFromIstream(&input);
-4.  id = john.id();
-5.  name = john.name();
-6.  email = john.email();
+60.  Person john;
+61.  fstream input(argv[1], ios::in  | ios::binary);
+62.  john.ParseFromIstream(&input);
+63.  id = john.id();
+64.  name = john.name();
+65.  email = john.email();
 ```
 
 当然，在代码中，我们一般会封装一个函数，比如 ReadTextFileToProto。值得一提的是，项目的配置文件，使用 protobuf 的文本格式来表示，也非常方便，我呆过的很多团队，就经常使用 protobuf 的文本格式来存储项目配置信息，可读性高，编辑方便，解析和访问方便。
@@ -184,5 +185,5 @@ source file : address.proto
 本文大概介绍了 protobuf 的 IDL 基础，生成的接口，如何使用 protobuf 进行对象的构造，对象的序列化与反序列化。同时简单比较了 protobuf 与 XML 的优劣势。在后续文章中，我们将深入介绍 protobuf 的消息编码算法，揭秘为什么其序列化后的对象比 XML 更小，编码效率更高。在后续文章中，也会将其与 Facebook Thrift 的消息编码格式进行对比。欢迎大家关注「技艺丛谈」公众号，阅读后续分享。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgzOTgxNjE1MF19
+eyJoaXN0b3J5IjpbLTI0OTg4MTk3OF19
 -->
