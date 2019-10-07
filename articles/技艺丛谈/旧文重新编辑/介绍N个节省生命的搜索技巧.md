@@ -4,67 +4,44 @@
 
 下面就先来给大家介绍下平时使用搜索引擎的一些技巧。
 
-### 高级搜索指令
+## 高级搜索指令
 
 先放一个表格，比较下百度和谷歌对以下提到的几个搜索指令的支持。  
 
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIpRdokIC95zfx0lSKhfWwViaSUlZN6vwnGqLfp1a4qYrR1pJIcrpdRuA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-**如何使用网页版高级搜索技巧？**
+### 如何使用网页版高级搜索技巧？
 
 这个很简单，谷歌和百度都提供了高级搜索的页面，可以点击进去直接搜索。
 
 进入方法如下：
-
 谷歌：
-
 首页右下侧，点击“设置”，然后点击“高级搜索”，就进入高级搜索页面啦。
-
 页面的网址为：
-
 https://www.google.com.hk/advanced_search
-
 页面如下：
-
-  
 
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oId3qqjI2g1s5WYYa8ZmtoDsn0FdHhexxphcZkQ9cDSEr9dTTbrIbglA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
-
 接下来看百度：
-
 按照“首页 -> 设置 -> 高级搜索”的步骤，就可以接入到百度的高级搜索页面啦啦，页面效果如下：
-
-  
 
 ![](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
 
-  
-
 当然，对于有经验的人来说，直接在输入框中输入对应的指令，效率更高。因此下面我们分别介绍一下，希望读者在掌握这些命令后，能提高搜索效率，将节省下来的时候花在更有意义的事情上。
 
-  
-
-文档格式  
+## 文档格式  
 
 我们在搜索的时候，希望能够找到对应的文档类型。比如找论文的时候，很多时候我们希望直接搜索到pdf格式的论文本身，而不是和论文相关的一些网页。这种场景，使用文档格式的相关指令就很方便了。
 
-  
-
 比如，你可以使用常规的搜索词，配合以下指令
 
-**filetype:pdf**
-
-**filetype:doc**
-
-**filetype:ppt**
-
-**filetype:xls**
+> **filetype:pdf**
+> **filetype:doc**
+> **filetype:ppt**
+> **filetype:xls**
 
 去搜索pdf,doc,ppt,xls等不同的文档。
-
-  
 
 **有图有真相：**
 
@@ -72,15 +49,9 @@ https://www.google.com.hk/advanced_search
 
 “公安部 filetype:pdf”
 
-  
-
 以下是搜索结果的截图，可以看到，搜到的都是pdf文件，而不是普通的网页。
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIfPH3vkf6ia95JBdWOWuht7jBMibBMTM5eFSFUAyJdZbosg8TXllcAg2Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)  
-
-  
 
 关键词位置
 
@@ -382,5 +353,5 @@ site:youku.com
 大家有什么其他的搜索技巧需要了解，或者分享的，欢迎留言交流。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NzI5OTM5MTJdfQ==
+eyJoaXN0b3J5IjpbLTU5NzE5NDkwNF19
 -->
