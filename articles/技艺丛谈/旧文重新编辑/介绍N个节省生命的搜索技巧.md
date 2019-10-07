@@ -99,110 +99,60 @@ query :  “投资 site:bbs.ticwear.com”
 
 再举个例子，最近人工智能这么火，我想看看36kr这个网站上有关人工智能的相关文章，涨涨知识。
 
-  该怎么办？ 看下图吧。
-
-  
+该怎么办？ 看下图吧。
 
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIiceWRhDXbGcMUjqKv2ZUIt9R59UDMoBby6hHtt0OpDhk2WHhS40w38Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
-
-关键词信息
-
-  
+### 关键词信息
 
 一般我们搜索的时候，想到几次词，都是几个词放在一起搜索。比如我们想找一些和公安部培训相关的网页，我们一般搜索  公安部培训  这几个字。搜索结果如下图所示：
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIhtKPfWWFRs8AAKjNpbiacKWKKIQfguFZ2VeRApL9hdgEsHjdQAqDPHQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
-
 可以看到，搜索结果中，公安部 和 培训 两个词不一定都挨在一起。如果我们想找到“公安部”和“培训”两个词挨在一起，怎么办呢？
-
-  
 
 这个时候，可以使用引号，将两个词放在引号中，query :  “公安部培训”  
 
 搜索结果如下图，可以看到，搜索到的网页，公安部和培训两个字都是挨在一起的。
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIlSv8vyibZUoslEW1r8tfdAVISbpC5ibQywaYod9WAP6PG0XQ15Zozgag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-  
 
 有时候，我们搜索一些词，只是希望几个词命中了其中一个就可以，应该怎么办呢？这时候可以使用 OR 这个指令，注释需要全部大写。另外，百度的查询方式不太一样，需要使用括号括起来。  
 
-  
-
 **有图有真相：**
 
-query :
-
-谷歌：树木 OR 种子 OR 草
-
-百度：(树木种子草)
-
-  
+> query : 
+> 谷歌：树木 OR 种子 OR 草 
+> 百度：(树木种子草)
 
 搜索结果如下图，可以看到有一些结果包含树木，有一些结果包含草，有一些结果包含两个到三个关键词
 
-  
-
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIH7BsVbsxKNDdbuUEYlPgwibtuL3ZNyzQkmtTwGR0HLib9pPTcA79gwjw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
-
-  
 
 如果我们搜索某个词的时候，经常出现相关的另一个词，但是这不是我们想要的，这个时候在不需要的字词前添加一个减号，就可以过滤掉不包含该词的结果啦。
 
-  
-
-有图有真相：
+**有图有真相**：
 
 query： 搜索引擎，结果中会出现不少和谷歌有关的网页。
-
 query：  搜索引擎 -谷歌，搜索结果中，有关谷歌的网页会被过滤掉。
-
-  
 
 如下图，搜索“搜索引擎”，第三条和第五条包含谷歌这个关键词
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oI5UOv4vOYKY9UdbE1OQnDGBw8EtkbXJ79XTQK2nLwtKkuTskGAfDoPg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
-
-  
-
-  
 
 接着，我们搜索“搜索引擎 -谷歌”，搜索结果中都不包括“谷歌”这个关键词。结果如下图：
 
-  
-
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oI31esHdgrweLrqvlYenewwYaoxG54IQZvnZu06I5NMrFvEOwZlJAkRg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-  
-
-**cache指令  
-**
-
-  
+### cache指令 
 
 有时候一个网页暂时挂了，成为死链了，你又想看，怎么办？可以使用cache指令，查看搜索引擎的缓存。（百度的话，搜索结果中，有“百度快照”这个链接，点击即可访问）
-
-  
 
 **有图有真相：**
 
 搜索"cache:www.sohu.com"，谷歌会直接重定向到缓存页面，并显示是什么时候的快照。截图如下：
 
-  
 
 ![](http://mmbiz.qpic.cn/mmbiz_png/qX2ED6UwyKGzZvp4XK8pnLiadYuuA03oIomW1OYwZl9ib3qWicDSHPbSl2ADNMbpmXFzfKrh1YtPdYkLMh8wbNueg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
@@ -320,5 +270,5 @@ site:youku.com
 大家有什么其他的搜索技巧需要了解，或者分享的，欢迎留言交流。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYyNDA3MDc4XX0=
+eyJoaXN0b3J5IjpbNzUwNjQ3NTU0XX0=
 -->
