@@ -43,9 +43,10 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 
 云壤当时开发人员还不算太多，使用的方案是 distcc + ccache。编译速度也还过得去。
 
+### 代码审查
+
 由于涉及到的话题比较多，暂时先写到这里，后续主要想聊聊以下话题，欢迎关注。
 
-* 代码审查
 *  软件测试
 * 调试与剖析 
 * 上线与发布 
@@ -57,5 +58,6 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwMTQxMjg1NywyMDY0MjY0NjMzXX0=
+eyJoaXN0b3J5IjpbODU3MzQwMDIwLC0zMDE0MTI4NTcsMjA2ND
+I2NDYzM119
 -->
