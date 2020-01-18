@@ -4,8 +4,8 @@
 
 除此之外，最近两年详细阅读了不少jeff dean 和 sanjay ghemawat论文，也算是加深了对谷歌工程文化的理解。
 
-
+之所以想聊聊这个话题，是因为这几天我们一个同事翻译了《Software Engineering at Google》这份文档。
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg0NjgzNjg3Ml19
+eyJoaXN0b3J5IjpbMzc1NzMwODVdfQ==
 -->
