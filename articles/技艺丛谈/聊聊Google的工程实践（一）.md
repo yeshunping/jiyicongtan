@@ -50,7 +50,10 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 1，code review很随意，无法强制执行。开会也浪费很多人的时间。
 2，comment不够便捷。
 3，缺少一来一回的交互。拉个会，估计大部分人都不敢说话了，大家提出一些问题，只能乖乖认错，技不如人，心理感受也差。
-4，开会review无法形成积累，不方便新人xue xi
+4，开会review无法形成积累，不方便新人从以往review的comment中学习经验。
+5，无法结合工具做来必要的前置检查，比如代码风格检查，内存泄露检查等。
+
+也有不少候选人认为，做code review固然有价值，但是
 
 由于涉及到的话题比较多，暂时先写到这里，后续主要想聊聊以下话题，欢迎关注。
 
@@ -65,6 +68,6 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NDIwMDYzNiwtMzAxNDEyODU3LDIwNj
-QyNjQ2MzNdfQ==
+eyJoaXN0b3J5IjpbMTAwMzY1NjgxLC0zMDE0MTI4NTcsMjA2ND
+I2NDYzM119
 -->
