@@ -70,7 +70,7 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 遗憾的是，随着负责事情的增多，往往技术管理者很难抽出足够的时间编写代码，甚至是做代码审查。不过即使如此，也应该让整体团队保持对代码审查这件事情的重视，不能因为自己没时间了，而导致整个事情放松。应该是代码审查成为工程文化，成为工程师的日常。学生时代，作业需要老师批改，学生在批注中学习。成年了，作家在自我review中保持对文字的精益求精，而程序员则在相互的review中成长。reviewer往往是leader，当然也可以是同级，甚至可以是自己的下属。reviewer的级别不是很重要，能不能对你提交的代码提出有建设性意见才是最重要的。
 
 说过code review， 其中最基本的环节就是代码风格。我这几年一直使用的是Google的编程风格，地址如下：[https://google.github.io/styleguide/cppguide.html](https://google.github.io/styleguide/cppguide.html)
-Google的风格指南，每隔一段时间就会有所变化，因此我们也偶尔会重读一遍，多读几遍，往往也会常读常新。一般随着C++标准的更新，Google的C++风格编
+Google的风格指南，每隔一段时间就会有所变化，因此我们也偶尔会重读一遍，多读几遍，往往也会常读常新。一般随着C++标准的更新，Google的C++风格指南也会有所更新。有趣的是，我在面试中碰到不少技术人，说他们有比较丰富的code review经验，但是当我问及他们，一般code style涉及到哪些环节，他们一般只能想到可怜的三四点。
 
 
 由于涉及到的话题比较多，暂时先写到这里，后续主要想聊聊以下话题，欢迎关注。
@@ -86,6 +86,6 @@ Google的风格指南，每隔一段时间就会有所变化，因此我们也�
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzU2ODgwOTIsLTMwMTQxMjg1NywyMDY0Mj
-Y0NjMzXX0=
+eyJoaXN0b3J5IjpbLTIwODk2NzQ5MTMsLTMwMTQxMjg1NywyMD
+Y0MjY0NjMzXX0=
 -->
