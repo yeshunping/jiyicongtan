@@ -4,8 +4,13 @@
 
 除此之外，最近两年详细阅读了不少jeff dean 和 sanjay ghemawat论文，也算是加深了对谷歌工程文化的理解。
 
-之所以想聊聊这个话题，是因为这几天我们一个同事翻译了《Software Engineering at Google》这份文档。
+之所以想聊聊这个话题，是因为这几天我们一个同事翻译了《Software Engineering at Google》这份文档。翻译文章是《Google软件工程之道》，有兴趣的可以阅读下。下面围绕这份文档的话题，聊聊我这几年的一些理解。
 
+## 代码仓库
+
+## 构建系统
+
+## 代码s
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzc1NzMwODVdfQ==
+eyJoaXN0b3J5IjpbLTEwMDg0Mzc2MjFdfQ==
 -->
