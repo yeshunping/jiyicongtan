@@ -36,8 +36,9 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 6. 方便引入后处理流程。比如引入单元测试运行，如果失败就拒绝合并。比如在执行单元测试的同时引入内存泄露检测等。
 7. 最大化基础库的使用。通过简单的依赖就可以引用大量基础代码，当然开发效率会提到很大的提升。
 
+当然，构建系统除了节省你编写编译规则的时间外，非常重要的一点就是节省你编译的时间。谷歌内部解决这个构建问题是好几个系统，包括Blaze, Forge, SrcFS, ObjFS等。
 
-d
+
 ## 代码审查
 
 ## 软件测试
@@ -60,5 +61,5 @@ d
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyNTU1NjEzNSwxMjcwNTAxOTI5XX0=
+eyJoaXN0b3J5IjpbLTUwMTc1MDY1NCwxMjcwNTAxOTI5XX0=
 -->
