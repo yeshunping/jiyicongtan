@@ -59,7 +59,8 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 作为一个Leader， 说服老板认为到code review的重要性，是他的基本工作。而想办法解决code review的可行性和推行成本，也是对leader工程经验的考验。
 
 当然，能做code review的解决方案很多，github 也行，gitlab 也可以，review board 也挺好的，gerrit 也不赖。说一下code review工具需要解决的几个问题：
-
+1，发起一个code review，需要发送必要的通知邮件。内容可以是标题，更新涉及的文件列表等。
+2，可以和持续集成工具结合，比如jenkins。解决掉代码风格自动检查，编译参数
 
 由于涉及到的话题比较多，暂时先写到这里，后续主要想聊聊以下话题，欢迎关注。
 
@@ -74,6 +75,6 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExOTYxMzM4ODksLTMwMTQxMjg1NywyMD
-Y0MjY0NjMzXX0=
+eyJoaXN0b3J5IjpbMTgxNzEyNTI5LC0zMDE0MTI4NTcsMjA2ND
+I2NDYzM119
 -->
