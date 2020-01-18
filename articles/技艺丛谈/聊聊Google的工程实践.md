@@ -29,7 +29,7 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 
 那么构建系统解决什么问题呢？我认为有以下几个：
 1. 让各个语言有统一的构建语法。不过你使用C++还是java，都可以使用bazel build xxx, bazel test xxx 来进行编译或者测试。
-2. 简化编译需要编写的内容。使用cmake 
+2. 简化编译需要编写的内容。使用make 工具的话，往往makefile 不忍卒读，并且比较凌乱，结构化很差。而bazel 的话就很简单，你只需要写一个简单的BUILD 文件就行了，你需要关注的是编译类型（jing ta）文件列表，
 
 ## 代码审查
 
@@ -53,5 +53,5 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNjIxODY5ODZdfQ==
+eyJoaXN0b3J5IjpbMTgzMDQyMjc3Ml19
 -->
