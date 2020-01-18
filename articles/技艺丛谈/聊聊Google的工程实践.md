@@ -10,7 +10,22 @@
 
 ## 构建系统
 
-## 代码s
+## 代码审查
+
+## 软件测试
+
+## 调试与剖析
+
+## 上线与发布
+
+## 代码重写
+
+## OKR
+
+## 20%时间
+
+## 绩效考核
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMDg0Mzc2MjFdfQ==
+eyJoaXN0b3J5IjpbLTE1MjMyOTc3MDldfQ==
 -->
