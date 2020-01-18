@@ -65,6 +65,8 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 4，有简单的issue概览和状态显示。方便别人做决策是否能LGTM。
 5，可以方便地合并代码。
 
+再聊聊应该花多少时间在code review上。我认为一个合格的leader，应该花费10%以上的时间在code review上。不过最好控制在30%以内。我目前公司的CTO，到今天位置，也hua
+
 由于涉及到的话题比较多，暂时先写到这里，后续主要想聊聊以下话题，欢迎关注。
 
 *  软件测试
@@ -78,6 +80,6 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjQzMjQxMzA1LC0zMDE0MTI4NTcsMjA2ND
-I2NDYzM119
+eyJoaXN0b3J5IjpbLTEwNTc4OTUwMjAsLTMwMTQxMjg1NywyMD
+Y0MjY0NjMzXX0=
 -->
