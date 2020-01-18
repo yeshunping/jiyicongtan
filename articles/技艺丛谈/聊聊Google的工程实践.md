@@ -7,7 +7,10 @@
 之所以想聊聊这个话题，是因为这几天我们一个同事翻译了《Software Engineering at Google》这份文档。翻译文章是《Google软件工程之道》，有兴趣的可以阅读下。下面围绕这份文档的话题，聊聊我这几年的一些理解。
 
 ## 代码仓库
-谷歌基本使用单一代码仓库，大家基于master进行开发。我呆的第一家公司也是这么干的。我们在master branch上创建了一个e x pe
+谷歌基本使用单一代码仓库，大家基于master进行开发。我呆的第一家公司也是这么干的。当时我们基于SVN来做代码管理，我们在master branch上创建了一个experiment目录，每个人在上面创建一个自己的文件夹，可以把未经review的代码提交到这个文件夹。
+
+单一的一个仓库当然会有很多问题，比如代码庞大，新人checkout 代码需要花费不少时间，编译缓慢等。谷歌使用的是分布式编辑x
+
 
 ## 构建系统
 
@@ -33,5 +36,5 @@
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc2NDExODA0NV19
+eyJoaXN0b3J5IjpbLTE0MTc5NjIwMDNdfQ==
 -->
