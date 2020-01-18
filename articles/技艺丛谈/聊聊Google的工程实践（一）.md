@@ -44,7 +44,10 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 云壤当时开发人员还不算太多，使用的方案是 distcc + ccache。编译速度也还过得去。
 
 ### 代码审查
-有关code review，之前写过一篇文章《代码审查(Code Review)之道》，
+有关code review，之前写过一篇文章《代码审查(Code Review)之道》，没读过的可以读读。
+
+这里说一下这两年的新感悟。面试过几个总监候选人，也大概知道code review，但是往往是最原始的review方式，开会的时候，拉着一堆人对着代码进行review。这样做有一个问题：
+1，code review
 
 由于涉及到的话题比较多，暂时先写到这里，后续主要想聊聊以下话题，欢迎关注。
 
@@ -59,6 +62,6 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTI2MDA1NDAsLTMwMTQxMjg1NywyMD
-Y0MjY0NjMzXX0=
+eyJoaXN0b3J5IjpbNjA4MzE3MzMwLC0zMDE0MTI4NTcsMjA2ND
+I2NDYzM119
 -->
