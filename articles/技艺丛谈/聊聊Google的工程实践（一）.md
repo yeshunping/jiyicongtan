@@ -44,6 +44,7 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 云壤当时开发人员还不算太多，使用的方案是 distcc + ccache。编译速度也还过得去。
 
 ### 代码审查
+
 有关code review，之前写过一篇文章《代码审查(Code Review)之道》，没读过的可以读读。
 
 这里说一下这两年的新感悟。面试过几个总监候选人，也大概知道code review，但是往往是最原始的review方式，开会的时候，拉着一堆人对着代码进行review。这样做有一个问题：
@@ -55,7 +56,10 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 
 也有不少候选人认为，做code review固然有价值，但是项目忙的时候，交付最重要，从而认为code review在更重要的交付面前，是必要的牺牲品。
 
-作为一个Leader， 说服老板认为到code review的重要性，是他的基本工作。而想办法解决code review的可行性和推行成本，
+作为一个Leader， 说服老板认为到code review的重要性，是他的基本工作。而想办法解决code review的可行性和推行成本，也是对leader工程经验的考验。
+
+当然，能做code review的解决方案很多，github 也行，gitlab 也可以，review board 也挺好的，gerrit 也不赖。说一下code review工具需要解决的几个问题：
+
 
 由于涉及到的话题比较多，暂时先写到这里，后续主要想聊聊以下话题，欢迎关注。
 
@@ -70,6 +74,6 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjk4MDk1NzIxLC0zMDE0MTI4NTcsMjA2ND
-I2NDYzM119
+eyJoaXN0b3J5IjpbLTExOTYxMzM4ODksLTMwMTQxMjg1NywyMD
+Y0MjY0NjMzXX0=
 -->
