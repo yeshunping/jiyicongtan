@@ -27,10 +27,11 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 
 我猜想，在Google的bazel 开放出来之前，中国互联网上至少出现过十个本土化的模仿者。其中一个叫做blade, 是腾讯开发的，后来还开源了，使用python实现。我当时还有幸参与了一部分。
 
-那么构建系统解决什么问题呢？
+那么构建系统解决什么问题呢？我认为有以下几个：
+1. 让各个语言有统一的构建语法。不过你使用C++还是java，都可以使用bazel build xxx, bazel test xxx 来进行编译或者测试。
+2. 简化编译需要编写的内容。使用cmake 
 
 ## 代码审查
-
 
 ## 软件测试
 
@@ -52,5 +53,5 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4OTgxNjUxMDFdfQ==
+eyJoaXN0b3J5IjpbLTIwNjIxODY5ODZdfQ==
 -->
