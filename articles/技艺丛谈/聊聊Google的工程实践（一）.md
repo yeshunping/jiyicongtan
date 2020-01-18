@@ -2,7 +2,7 @@
 
 先说一下我的工作经历，我实习的第一家公司叫云壤，云壤有很多的ex-Googler，创始人是谷歌中国工程院副院长，他搭建的早期团队，基本都是谷歌工程师。在这家公司工作了两年的时间。目前所在的公司和谷歌的关系也比较特殊，不仅CEO和CTO都是谷歌出来的，而且在C轮还拿到了谷歌的投资。前段时间写过《How Google Works》的施密特，还到我们参观了一趟。目前我在这家公司呆了大概五年半时间，多少也对谷歌的一些文化有了更多的了解。
 
-除此之外，最近两年详细阅读了不少jeff dean 和 sanjay ghemawat论文，也算是加深了对谷歌工程文化的理解。
+除此之外，最近两年详细阅读了不少jeff dean 和 sanjay ghemawat等谷歌大牛的论文，也算是加深了对谷歌工程文化的理解。
 
 之所以想聊聊这个话题，是因为这几天我们一个同事翻译了《Software Engineering at Google》这份文档。翻译文章是《Google软件工程之道》，有兴趣的可以阅读下。下面围绕这份文档的话题，聊聊我这几年的一些理解。
 
@@ -57,5 +57,5 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2NDI2NDYzM119
+eyJoaXN0b3J5IjpbLTMwMTQxMjg1NywyMDY0MjY0NjMzXX0=
 -->
