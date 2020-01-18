@@ -53,7 +53,9 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 4，开会review无法形成积累，不方便新人从以往review的comment中学习经验。
 5，无法结合工具做来必要的前置检查，比如代码风格检查，内存泄露检查等。
 
-也有不少候选人认为，做code review固然有价值，但是
+也有不少候选人认为，做code review固然有价值，但是项目忙的时候，交付最重要，从而认为code review在更重要的交付面前，是必要的牺牲品。
+
+作为一个Leader， 说服老板认为到code review的重要性，是他的基本工作。而想办法解决code review的可行性和推行成本，
 
 由于涉及到的话题比较多，暂时先写到这里，后续主要想聊聊以下话题，欢迎关注。
 
@@ -68,6 +70,6 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 * 谷歌的大佬们
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwMzY1NjgxLC0zMDE0MTI4NTcsMjA2ND
+eyJoaXN0b3J5IjpbMjk4MDk1NzIxLC0zMDE0MTI4NTcsMjA2ND
 I2NDYzM119
 -->
