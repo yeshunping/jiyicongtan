@@ -37,6 +37,7 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 7. 最大化基础库的使用。通过简单的依赖就可以引用大量基础代码，当然开发效率会提到很大的提升。
 
 
+d
 ## 代码审查
 
 ## 软件测试
@@ -59,5 +60,5 @@ Git 起来后，使用单一的repo应该比较少了，想要强力推动也有
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI3MDUwMTkyOV19
+eyJoaXN0b3J5IjpbMTEyNTU1NjEzNSwxMjcwNTAxOTI5XX0=
 -->
